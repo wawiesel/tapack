@@ -1,0 +1,23 @@
+!!#### REQUIRED INPUT
+!! * function (see included interface)
+!! * a triangle <Tr>        
+REAL(KIND_R),INTENT(IN) :: Tr( 1:2 , 1:3 ) 
+
+!!#### OPTIONAL INPUT
+!! * tolerances
+REAL(KIND_R),OPTIONAL,INTENT(IN) :: abstol,reltol
+INTEGER     ,OPTIONAL,INTENT(IN) :: nmin,nmax
+
+
+!!#### OPTIONAL OUTPUT
+REAL(KIND_R),OPTIONAL,INTENT(OUT) :: err
+INTEGER     ,OPTIONAL,INTENT(OUT) :: num_eval,ierr
+
+
+!!#### REQUIRED OUTPUT
+!! * integral <INTEGRALF>
+REAL(KIND_R) :: INTEGRALF
+
+
+!!#### LOCAL VARIABLES
+REAL(KIND_R) :: Trx(1:2,1:3,1)

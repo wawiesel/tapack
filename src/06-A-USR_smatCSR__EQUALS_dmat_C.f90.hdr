@@ -1,0 +1,6 @@
+!#REQUIRED INPUT
+COMPLEX(KIND_C),INTENT(IN) :: A(:,:)
+
+!#LOCAL VARIABLES
+INTEGER                    :: i, k ,nrow , ncol , nzmax , j
+COMPLEX(KIND_C),PARAMETER   :: ZERO = (0._KIND_C,0._KIND_C)

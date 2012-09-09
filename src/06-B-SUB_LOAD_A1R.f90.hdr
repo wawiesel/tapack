@@ -1,0 +1,2 @@
+!!#### REQUIRED OUTPUT
+REAL(KIND_R),INTENT(OUT) :: A(:)

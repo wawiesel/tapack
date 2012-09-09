@@ -1,0 +1,14 @@
+
+!#NOTES
+! Your fair warning:  SetRow_MSR do not check for multiple
+! entries in cols due to the cost of this check.  Multiple entries
+! in cols will give unpredictable results since the matrix will no
+! longer be uniqely defined.
+
+!#REQUIRED INPUT
+INTEGER    ,INTENT(IN) :: i
+INTEGER    ,INTENT(IN) :: cols(:)
+REAL(KIND_R),INTENT(IN) :: vals(1:SIZE(cols))
+
+!#LOCAL VARIABLES
+INTEGER :: old_len, new_len, diff_len, N

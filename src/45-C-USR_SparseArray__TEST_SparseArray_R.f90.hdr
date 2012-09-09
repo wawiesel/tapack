@@ -1,0 +1,8 @@
+!!#### LOCAL VARIABLES 2
+REAL(KIND_R),POINTER     :: DenseArray(:,:)
+
+REAL(KIND_R),POINTER     :: SparseArray(:)
+INTEGER     ,POINTER     :: IndexArray(:)
+
+REAL(KIND_R),ALLOCATABLE :: Entry(:),Entry1_(:),Entry2_(:)
+REAL(KIND_R)             :: Entry1,Entry2

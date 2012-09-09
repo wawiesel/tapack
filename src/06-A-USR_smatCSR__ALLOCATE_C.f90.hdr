@@ -1,0 +1,5 @@
+    INTEGER,           INTENT(in) :: N
+    INTEGER, OPTIONAL, INTENT(in) :: NZMAX
+    COMPLEX(KIND_C), OPTIONAL, INTENT(in) :: InitDiag_scalar
+    COMPLEX(KIND_C), OPTIONAL, INTENT(in) :: InitDiag_dvec(:)
+    INTEGER :: i,SIZE

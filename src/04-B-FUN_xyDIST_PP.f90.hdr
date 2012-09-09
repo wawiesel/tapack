@@ -1,0 +1,9 @@
+!!#### REQUIRED INPUT
+!! @ point a <P_a>
+!! @ point b <P_b>
+REAL(KIND_R),INTENT(IN) :: P_a( 1:2 )
+REAL(KIND_R),INTENT(IN) :: P_b( 1:2 )
+
+!!#### REQUIRED OUTPUT
+!! @ distance between points <DIST>
+REAL(KIND_R) :: DIST

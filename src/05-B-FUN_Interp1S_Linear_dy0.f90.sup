@@ -1,0 +1,12 @@
+SELECT CASE( SIZE(y) )
+ CASE(1)      ; y0 = y(1) ; dy0 = HUGE(dy0) ; RETURN
+ CASE(2)      ; k  = (/1,2/)
+ CASE DEFAULT ; k  = Interval( x0 , x )
+END SELECT
+
+!the error is equal to 1/8 * (x2-x1)^2 * MAX(g'')
+!where MAX(g'') is the maximum value of the second
+!derivative of the function we are trying to approximate
+!in the interval from x1 to x2
+!we do not know g'' so we just return the coefficient 1/8 * (x2-x1)^2/8
+dy0 = ( x(k(2)) - x(k(1)) )**2 / REAL(8,KIND(dy0))

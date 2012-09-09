@@ -1,0 +1,9 @@
+!#REQUIRED INPUT
+! @ plane in R^3 <Pn>
+! @ point in R^3 <P>
+REAL(KIND_R),INTENT(IN) :: Pn( 1:4 )
+REAL(KIND_R),INTENT(IN) :: P ( 1:3 )
+
+!#REQUIRED OUTPUT
+! @ signed distance from plane to point <SDIST>
+REAL(KIND_R) :: SDIST

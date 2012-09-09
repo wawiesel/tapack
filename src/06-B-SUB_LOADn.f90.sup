@@ -1,0 +1,16 @@
+
+Unformatted_ = Default( .FALSE. , Unformatted )
+
+Unit = NewUnit()
+
+IF( Unformatted_ )THEN
+
+ OPEN(Unit,file=TRIM(SP)//'.dat',FORM="Unformatted",ACTION="Read",STATUS="Old")
+
+ELSE
+
+ OPEN(Unit,file=TRIM(SP)//'.dat',FORM="Formatted",ACTION="Read",STATUS="Old")
+
+END IF
+ 
+CALL CLEARn( P )

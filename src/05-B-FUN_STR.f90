@@ -1,0 +1,617 @@
+!!# FUNCTION MODULE <<FUN_STR>>
+MODULE FUN_STR
+
+!!## PURPOSE
+!! Defines the string creation function, <STR>.
+
+!!## USAGE
+!
+!             S = STR( X [, FMT , AdjustLeft , AdjustRight ] )
+!
+!! where <X> is an intrinsic typed variable pointer, <FMT> is an
+!! optional format statement, <AdjustLeft> is whether to adjust
+!! to the left (default), and <AdjustRight> is whether to
+!! adjust to the right.  If the pointer <X> is not associated then
+!! the string <NULL(type-kind)>.
+
+!!## METHOD
+!! Note: In <STR>, efficient internal file WRITE statemtents are used.
+
+!!## EXTERNAL KINDS
+USE KND_IntrinsicTypes,ONLY: KIND_L1,KIND_L2,KIND_L4,& !!((01-A-KND_IntrinsicTypes.f90))
+                  KIND_I1,KIND_I2,KIND_I4,KIND_I8,&
+                  KIND_Rsp,KIND_Rdp,&
+                  KIND_Csp,KIND_Cdp,&
+                  KIND_S,KIND_Sfmt
+
+!!## EXTERNAL PARAMETERS
+USE PAR_IntrinsicLengths,ONLY: LEN_L1,LEN_L2,LEN_L4,&  !!((02-A-PAR_IntrinsicLengths.f90))
+                  LEN_I1,LEN_I2,LEN_I4,LEN_I8,&
+                  LEN_Rsp,LEN_Rdp,&
+                  LEN_Csp,LEN_Cdp
+
+!!## EXTERNAL PROCEDURES
+USE FUN_Error                                          !!((04-A-FUN_Error.f90))
+USE SUB_CLEAR                                          !!((04-A-SUB_CLEAR.f90))
+USE ISO_varying_string                                 !!((03-A-ISO_varying_string.f90))
+USE FUN_Default                                        !!((04-A-FUN_Default.f90))
+
+!!## DEFAULT IMPLICIT
+IMPLICIT NONE
+
+
+!!## DEFAULT ACCESS
+PRIVATE
+
+
+!!## PROCEDURE OVERLOADING
+INTERFACE STR
+ !MODULE PROCEDURE STR_S
+ !MODULE PROCEDURE STR_Csp
+ !MODULE PROCEDURE STR_Cdp
+ !MODULE PROCEDURE STR_Rsp
+ !MODULE PROCEDURE STR_Rdp
+ !MODULE PROCEDURE STR_I1
+ !MODULE PROCEDURE STR_I2
+ !MODULE PROCEDURE STR_I4
+ !MODULE PROCEDURE STR_I8
+ !MODULE PROCEDURE STR_L1
+ !MODULE PROCEDURE STR_L2
+ !MODULE PROCEDURE STR_L4
+ MODULE PROCEDURE STR_VS
+ MODULE PROCEDURE STR_A1Csp
+ MODULE PROCEDURE STR_A1Cdp
+ MODULE PROCEDURE STR_A1Rsp
+ MODULE PROCEDURE STR_A1Rdp
+ MODULE PROCEDURE STR_A1I1
+ MODULE PROCEDURE STR_A1I2
+ MODULE PROCEDURE STR_A1I4
+ MODULE PROCEDURE STR_A1I8
+ MODULE PROCEDURE STR_A1L1
+ MODULE PROCEDURE STR_A1L2
+ MODULE PROCEDURE STR_A1L4
+ MODULE PROCEDURE STR_A1S
+ MODULE PROCEDURE STR_A1VS
+ MODULE PROCEDURE STR_ECsp
+ MODULE PROCEDURE STR_ECdp
+ MODULE PROCEDURE STR_ERsp
+ MODULE PROCEDURE STR_ERdp
+ MODULE PROCEDURE STR_EI1
+ MODULE PROCEDURE STR_EI2
+ MODULE PROCEDURE STR_EI4
+ MODULE PROCEDURE STR_EI8
+ MODULE PROCEDURE STR_EL1
+ MODULE PROCEDURE STR_EL2
+ MODULE PROCEDURE STR_EL4
+ MODULE PROCEDURE STR_ES
+ !MODULE PROCEDURE STR_EVS
+END INTERFACE
+
+
+!!## PUBLIC ACCESS LIST
+PUBLIC :: STR
+!PUBLIC :: Test1_STR,Test2_STR
+
+!!## MODULE PROCEDURES
+CONTAINS
+
+
+!!!### PURE FUNCTION: STR_Csp
+!PURE FUNCTION STR_Csp(X,FMT,AdjustLeft,AdjustRight) RESULT(S)
+!!!#### LOCAL KINDS
+!USE KND_IntrinsicTypes,ONLY: KIND_C=>KIND_Csp          !!((01-A-KND_IntrinsicTypes.f90))
+!!!#### LOCAL LENGTHS
+!INTEGER,PARAMETER :: LEN_S=LEN_Csp
+!INCLUDE "05-B-FUN_STR_C.f90.hdr"
+!INCLUDE "05-B-FUN_STR.f90.hdr"
+!!!--begin--
+!INCLUDE "05-B-FUN_STR.f90.bdy"
+!!!--end--
+!END FUNCTION
+!
+!!!### PURE FUNCTION: STR_Cdp
+!PURE FUNCTION STR_Cdp(X,FMT,AdjustLeft,AdjustRight) RESULT(S)
+!!!#### LOCAL KINDS
+!USE KND_IntrinsicTypes,ONLY: KIND_C=>KIND_Cdp          !!((01-A-KND_IntrinsicTypes.f90))
+!!!#### LOCAL LENGTHS
+!INTEGER,PARAMETER :: LEN_S=LEN_Cdp
+!INCLUDE "05-B-FUN_STR_C.f90.hdr"
+!INCLUDE "05-B-FUN_STR.f90.hdr"
+!!!--begin--
+!INCLUDE "05-B-FUN_STR.f90.bdy"
+!!!--end--
+!END FUNCTION
+!
+!
+!!!### PURE FUNCTION: STR_Rsp
+!PURE FUNCTION STR_Rsp(X,FMT,AdjustLeft,AdjustRight) RESULT(S)
+!!!#### LOCAL KINDS
+!USE KND_IntrinsicTypes,ONLY: KIND_R=>KIND_Rsp          !!((01-A-KND_IntrinsicTypes.f90))
+!!!#### LOCAL LENGTHS
+!INTEGER,PARAMETER :: LEN_S=LEN_Rsp
+!INCLUDE "05-B-FUN_STR_R.f90.hdr"
+!INCLUDE "05-B-FUN_STR.f90.hdr"
+!!!--begin--
+!INCLUDE "05-B-FUN_STR.f90.bdy"
+!!!--end--
+!END FUNCTION
+!
+!!!### PURE FUNCTION: STR_Rdp
+!PURE FUNCTION STR_Rdp(X,FMT,AdjustLeft,AdjustRight) RESULT(S)
+!!!#### LOCAL KINDS
+!USE KND_IntrinsicTypes,ONLY: KIND_R=>KIND_Rdp          !!((01-A-KND_IntrinsicTypes.f90))
+!!!#### LOCAL LENGTHS
+!INTEGER,PARAMETER :: LEN_S=LEN_Rdp
+!INCLUDE "05-B-FUN_STR_R.f90.hdr"
+!INCLUDE "05-B-FUN_STR.f90.hdr"
+!!!--begin--
+!INCLUDE "05-B-FUN_STR.f90.bdy"
+!!!--end--
+!END FUNCTION
+!
+!
+!
+!!!### PURE FUNCTION: STR_I1
+!PURE FUNCTION STR_I1(X,FMT,AdjustLeft,AdjustRight) RESULT(S)
+!!!#### LOCAL KINDS
+!USE KND_IntrinsicTypes,ONLY: KIND_I=>KIND_I1           !!((01-A-KND_IntrinsicTypes.f90))
+!!!#### LOCAL LENGTHS
+!INTEGER,PARAMETER :: LEN_S=LEN_I1
+!INCLUDE "05-B-FUN_STR_I.f90.hdr"
+!INCLUDE "05-B-FUN_STR.f90.hdr"
+!!!--begin--
+!INCLUDE "05-B-FUN_STR.f90.bdy"
+!!!--end--
+!END FUNCTION
+!
+!
+!!!### PURE FUNCTION: STR_I2
+!PURE FUNCTION STR_I2(X,FMT,AdjustLeft,AdjustRight) RESULT(S)
+!!!#### LOCAL KINDS
+!USE KND_IntrinsicTypes,ONLY: KIND_I=>KIND_I2           !!((01-A-KND_IntrinsicTypes.f90))
+!!!#### LOCAL LENGTHS
+!INTEGER,PARAMETER :: LEN_S=LEN_I2
+!INCLUDE "05-B-FUN_STR_I.f90.hdr"
+!INCLUDE "05-B-FUN_STR.f90.hdr"
+!!!--begin--
+!INCLUDE "05-B-FUN_STR.f90.bdy"
+!!!--end--
+!END FUNCTION
+!
+!
+!!!### PURE FUNCTION: STR_I4
+!PURE FUNCTION STR_I4(X,FMT,AdjustLeft,AdjustRight) RESULT(S)
+!!!#### LOCAL KINDS
+!USE KND_IntrinsicTypes,ONLY: KIND_I=>KIND_I4           !!((01-A-KND_IntrinsicTypes.f90))
+!!!#### LOCAL LENGTHS
+!INTEGER,PARAMETER :: LEN_S=LEN_I4
+!INCLUDE "05-B-FUN_STR_I.f90.hdr"
+!INCLUDE "05-B-FUN_STR.f90.hdr"
+!!!--begin--
+!INCLUDE "05-B-FUN_STR.f90.bdy"
+!!!--end--
+!END FUNCTION
+!
+!
+!!!### PURE FUNCTION: STR_I8
+!PURE FUNCTION STR_I8(X,FMT,AdjustLeft,AdjustRight) RESULT(S)
+!!!#### LOCAL KINDS
+!USE KND_IntrinsicTypes,ONLY: KIND_I=>KIND_I8           !!((01-A-KND_IntrinsicTypes.f90))
+!!!#### LOCAL LENGTHS
+!INTEGER,PARAMETER :: LEN_S=LEN_I8
+!INCLUDE "05-B-FUN_STR_I.f90.hdr"
+!INCLUDE "05-B-FUN_STR.f90.hdr"
+!!!--begin--
+!INCLUDE "05-B-FUN_STR.f90.bdy"
+!!!--end--
+!END FUNCTION
+!
+!
+!
+!!!### PURE FUNCTION: STR_L1
+!PURE FUNCTION STR_L1(X,FMT,AdjustLeft,AdjustRight) RESULT(S)
+!!!#### LOCAL KINDS
+!USE KND_IntrinsicTypes,ONLY: KIND_L=>KIND_L1           !!((01-A-KND_IntrinsicTypes.f90))
+!!!#### LOCAL LENGTHS
+!INTEGER,PARAMETER :: LEN_S=LEN_L1
+!INCLUDE "05-B-FUN_STR_L.f90.hdr"
+!INCLUDE "05-B-FUN_STR.f90.hdr"
+!!!--begin--
+!INCLUDE "05-B-FUN_STR.f90.bdy"
+!!!--end--
+!END FUNCTION
+!
+!
+!!!### PURE FUNCTION: STR_L2
+!PURE FUNCTION STR_L2(X,FMT,AdjustLeft,AdjustRight) RESULT(S)
+!!!#### LOCAL KINDS
+!USE KND_IntrinsicTypes,ONLY: KIND_L=>KIND_L2           !!((01-A-KND_IntrinsicTypes.f90))
+!!!#### LOCAL LENGTHS
+!INTEGER,PARAMETER :: LEN_S=LEN_L2
+!INCLUDE "05-B-FUN_STR_L.f90.hdr"
+!INCLUDE "05-B-FUN_STR.f90.hdr"
+!!!--begin--
+!INCLUDE "05-B-FUN_STR.f90.bdy"
+!!!--end--
+!END FUNCTION
+!
+!
+!!!### PURE FUNCTION: STR_L4
+!PURE FUNCTION STR_L4(X,FMT,AdjustLeft,AdjustRight) RESULT(S)
+!!!#### LOCAL KINDS
+!USE KND_IntrinsicTypes,ONLY: KIND_L=>KIND_L4           !!((01-A-KND_IntrinsicTypes.f90))
+!!!#### LOCAL LENGTHS
+!INTEGER,PARAMETER :: LEN_S=LEN_L4
+!INCLUDE "05-B-FUN_STR_L.f90.hdr"
+!INCLUDE "05-B-FUN_STR.f90.hdr"
+!!!--begin--
+!INCLUDE "05-B-FUN_STR.f90.bdy"
+!!!--end--
+!END FUNCTION
+!
+!
+!!!### PURE FUNCTION: STR_S
+!PURE FUNCTION STR_S(X,FMT,AdjustLeft,AdjustRight) RESULT(S)
+!INCLUDE "05-B-FUN_STR_S.f90.hdr"
+!!!--begin--
+!INCLUDE "05-B-FUN_STR_S.f90.bdy"
+!!!--end--
+!END FUNCTION
+
+!!### PURE FUNCTION: STR_VS
+PURE FUNCTION STR_VS(X,FMT,AdjustLeft,AdjustRight) RESULT(S)
+INCLUDE "05-B-FUN_STR_VS.f90.hdr"
+!!--begin--
+INCLUDE "05-B-FUN_STR_VS.f90.bdy"
+!!--end--
+END FUNCTION
+
+
+
+
+
+
+!!### PURE FUNCTION: STR_A1Csp
+PURE FUNCTION STR_A1Csp(X,FMT,AdjustLeft,AdjustRight) RESULT(S)
+!!#### LOCAL KINDS
+USE KND_IntrinsicTypes,ONLY: KIND_C=>KIND_Csp          !!((01-A-KND_IntrinsicTypes.f90))
+!!#### LOCAL LENGTHS
+INTEGER,PARAMETER :: LEN_S=LEN_Csp
+INCLUDE "05-B-FUN_STR_A1C.f90.hdr"
+INCLUDE "05-B-FUN_STR_A1.f90.hdr"
+!!--begin--
+INCLUDE "05-B-FUN_STR_A1.f90.bdy"
+!!--end--
+END FUNCTION
+
+!!### PURE FUNCTION: STR_A1Cdp
+PURE FUNCTION STR_A1Cdp(X,FMT,AdjustLeft,AdjustRight) RESULT(S)
+!!#### LOCAL KINDS
+USE KND_IntrinsicTypes,ONLY: KIND_C=>KIND_Cdp          !!((01-A-KND_IntrinsicTypes.f90))
+!!#### LOCAL LENGTHS
+INTEGER,PARAMETER :: LEN_S=LEN_Cdp
+INCLUDE "05-B-FUN_STR_A1C.f90.hdr"
+INCLUDE "05-B-FUN_STR_A1.f90.hdr"
+!!--begin--
+INCLUDE "05-B-FUN_STR_A1.f90.bdy"
+!!--end--
+END FUNCTION
+
+
+!!### PURE FUNCTION: STR_A1Rsp
+PURE FUNCTION STR_A1Rsp(X,FMT,AdjustLeft,AdjustRight) RESULT(S)
+!!#### LOCAL KINDS
+USE KND_IntrinsicTypes,ONLY: KIND_R=>KIND_Rsp          !!((01-A-KND_IntrinsicTypes.f90))
+!!#### LOCAL LENGTHS
+INTEGER,PARAMETER :: LEN_S=LEN_Rsp
+INCLUDE "05-B-FUN_STR_A1R.f90.hdr"
+INCLUDE "05-B-FUN_STR_A1.f90.hdr"
+!!--begin--
+INCLUDE "05-B-FUN_STR_A1.f90.bdy"
+!!--end--
+END FUNCTION
+
+!!### PURE FUNCTION: STR_A1Rdp
+PURE FUNCTION STR_A1Rdp(X,FMT,AdjustLeft,AdjustRight) RESULT(S)
+!!#### LOCAL KINDS
+USE KND_IntrinsicTypes,ONLY: KIND_R=>KIND_Rdp          !!((01-A-KND_IntrinsicTypes.f90))
+!!#### LOCAL LENGTHS
+INTEGER,PARAMETER :: LEN_S=LEN_Rdp
+INCLUDE "05-B-FUN_STR_A1R.f90.hdr"
+INCLUDE "05-B-FUN_STR_A1.f90.hdr"
+!!--begin--
+INCLUDE "05-B-FUN_STR_A1.f90.bdy"
+!!--end--
+END FUNCTION
+
+
+
+!!### PURE FUNCTION: STR_A1I1
+PURE FUNCTION STR_A1I1(X,FMT,AdjustLeft,AdjustRight) RESULT(S)
+!!#### LOCAL KINDS
+USE KND_IntrinsicTypes,ONLY: KIND_I=>KIND_I1           !!((01-A-KND_IntrinsicTypes.f90))
+!!#### LOCAL LENGTHS
+INTEGER,PARAMETER :: LEN_S=LEN_I1
+INCLUDE "05-B-FUN_STR_A1I.f90.hdr"
+INCLUDE "05-B-FUN_STR_A1.f90.hdr"
+!!--begin--
+INCLUDE "05-B-FUN_STR_A1.f90.bdy"
+!!--end--
+END FUNCTION
+
+
+!!### PURE FUNCTION: STR_A1I2
+PURE FUNCTION STR_A1I2(X,FMT,AdjustLeft,AdjustRight) RESULT(S)
+!!#### LOCAL KINDS
+USE KND_IntrinsicTypes,ONLY: KIND_I=>KIND_I2           !!((01-A-KND_IntrinsicTypes.f90))
+!!#### LOCAL LENGTHS
+INTEGER,PARAMETER :: LEN_S=LEN_I2
+INCLUDE "05-B-FUN_STR_A1I.f90.hdr"
+INCLUDE "05-B-FUN_STR_A1.f90.hdr"
+!!--begin--
+INCLUDE "05-B-FUN_STR_A1.f90.bdy"
+!!--end--
+END FUNCTION
+
+
+!!### PURE FUNCTION: STR_A1I4
+PURE FUNCTION STR_A1I4(X,FMT,AdjustLeft,AdjustRight) RESULT(S)
+!!#### LOCAL KINDS
+USE KND_IntrinsicTypes,ONLY: KIND_I=>KIND_I4           !!((01-A-KND_IntrinsicTypes.f90))
+!!#### LOCAL LENGTHS
+INTEGER,PARAMETER :: LEN_S=LEN_I4
+INCLUDE "05-B-FUN_STR_A1I.f90.hdr"
+INCLUDE "05-B-FUN_STR_A1.f90.hdr"
+!!--begin--
+INCLUDE "05-B-FUN_STR_A1.f90.bdy"
+!!--end--
+END FUNCTION
+
+
+!!### PURE FUNCTION: STR_A1I8
+PURE FUNCTION STR_A1I8(X,FMT,AdjustLeft,AdjustRight) RESULT(S)
+!!#### LOCAL KINDS
+USE KND_IntrinsicTypes,ONLY: KIND_I=>KIND_I8           !!((01-A-KND_IntrinsicTypes.f90))
+!!#### LOCAL LENGTHS
+INTEGER,PARAMETER :: LEN_S=LEN_I8
+INCLUDE "05-B-FUN_STR_A1I.f90.hdr"
+INCLUDE "05-B-FUN_STR_A1.f90.hdr"
+!!--begin--
+INCLUDE "05-B-FUN_STR_A1.f90.bdy"
+!!--end--
+END FUNCTION
+
+
+
+!!### PURE FUNCTION: STR_A1L1
+PURE FUNCTION STR_A1L1(X,FMT,AdjustLeft,AdjustRight) RESULT(S)
+!!#### LOCAL KINDS
+USE KND_IntrinsicTypes,ONLY: KIND_L=>KIND_L1           !!((01-A-KND_IntrinsicTypes.f90))
+!!#### LOCAL LENGTHS
+INTEGER,PARAMETER :: LEN_S=LEN_L1
+INCLUDE "05-B-FUN_STR_A1L.f90.hdr"
+INCLUDE "05-B-FUN_STR_A1.f90.hdr"
+!!--begin--
+INCLUDE "05-B-FUN_STR_A1.f90.bdy"
+!!--end--
+END FUNCTION
+
+
+!!### PURE FUNCTION: STR_A1L2
+PURE FUNCTION STR_A1L2(X,FMT,AdjustLeft,AdjustRight) RESULT(S)
+!!#### LOCAL KINDS
+USE KND_IntrinsicTypes,ONLY: KIND_L=>KIND_L2           !!((01-A-KND_IntrinsicTypes.f90))
+!!#### LOCAL LENGTHS
+INTEGER,PARAMETER :: LEN_S=LEN_L2
+INCLUDE "05-B-FUN_STR_A1L.f90.hdr"
+INCLUDE "05-B-FUN_STR_A1.f90.hdr"
+!!--begin--
+INCLUDE "05-B-FUN_STR_A1.f90.bdy"
+!!--end--
+END FUNCTION
+
+
+!!### PURE FUNCTION: STR_A1L4
+PURE FUNCTION STR_A1L4(X,FMT,AdjustLeft,AdjustRight) RESULT(S)
+!!#### LOCAL KINDS
+USE KND_IntrinsicTypes,ONLY: KIND_L=>KIND_L4           !!((01-A-KND_IntrinsicTypes.f90))
+!!#### LOCAL LENGTHS
+INTEGER,PARAMETER :: LEN_S=LEN_L4
+INCLUDE "05-B-FUN_STR_A1L.f90.hdr"
+INCLUDE "05-B-FUN_STR_A1.f90.hdr"
+!!--begin--
+INCLUDE "05-B-FUN_STR_A1.f90.bdy"
+!!--end--
+END FUNCTION
+
+
+!!### PURE FUNCTION: STR_A1S
+PURE FUNCTION STR_A1S(X,FMT,AdjustLeft,AdjustRight) RESULT(S)
+INCLUDE "05-B-FUN_STR_A1S.f90.hdr"
+!!--begin--
+INCLUDE "05-B-FUN_STR_A1S.f90.bdy"
+!!--end--
+END FUNCTION
+
+!!### PURE FUNCTION: STR_A1VS
+PURE FUNCTION STR_A1VS(X,FMT,AdjustLeft,AdjustRight) RESULT(S)
+INCLUDE "05-B-FUN_STR_A1VS.f90.hdr"
+!!--begin--
+INCLUDE "05-B-FUN_STR_A1VS.f90.bdy"
+!!--end--
+END FUNCTION
+
+
+
+
+!!### ELEMENTAL FUNCTION: STR_ECsp
+ELEMENTAL FUNCTION STR_ECsp(X,FMT,AdjustLeft,AdjustRight) RESULT(S)
+!!#### LOCAL KINDS
+USE KND_IntrinsicTypes,ONLY: KIND_C=>KIND_Csp          !!((01-A-KND_IntrinsicTypes.f90))
+!!#### LOCAL LENGTHS
+INTEGER,PARAMETER :: LEN_S=LEN_Csp
+INCLUDE "05-B-FUN_STR_EC.f90.hdr"
+INCLUDE "05-B-FUN_STR_E.f90.hdr"
+!!--begin--
+INCLUDE "05-B-FUN_STR_E.f90.bdy"
+!!--end--
+END FUNCTION
+
+!!### ELEMENTAL FUNCTION: STR_ECdp
+ELEMENTAL FUNCTION STR_ECdp(X,FMT,AdjustLeft,AdjustRight) RESULT(S)
+!!#### LOCAL KINDS
+USE KND_IntrinsicTypes,ONLY: KIND_C=>KIND_Cdp          !!((01-A-KND_IntrinsicTypes.f90))
+!!#### LOCAL LENGTHS
+INTEGER,PARAMETER :: LEN_S=LEN_Cdp
+INCLUDE "05-B-FUN_STR_EC.f90.hdr"
+INCLUDE "05-B-FUN_STR_E.f90.hdr"
+!!--begin--
+INCLUDE "05-B-FUN_STR_E.f90.bdy"
+!!--end--
+END FUNCTION
+
+
+!!### ELEMENTAL FUNCTION: STR_ERsp
+ELEMENTAL FUNCTION STR_ERsp(X,FMT,AdjustLeft,AdjustRight) RESULT(S)
+!!#### LOCAL KINDS
+USE KND_IntrinsicTypes,ONLY: KIND_R=>KIND_Rsp          !!((01-A-KND_IntrinsicTypes.f90))
+!!#### LOCAL LENGTHS
+INTEGER,PARAMETER :: LEN_S=LEN_Rsp
+INCLUDE "05-B-FUN_STR_ER.f90.hdr"
+INCLUDE "05-B-FUN_STR_E.f90.hdr"
+!!--begin--
+INCLUDE "05-B-FUN_STR_E.f90.bdy"
+!!--end--
+END FUNCTION
+
+!!### ELEMENTAL FUNCTION: STR_ERdp
+ELEMENTAL FUNCTION STR_ERdp(X,FMT,AdjustLeft,AdjustRight) RESULT(S)
+!!#### LOCAL KINDS
+USE KND_IntrinsicTypes,ONLY: KIND_R=>KIND_Rdp          !!((01-A-KND_IntrinsicTypes.f90))
+!!#### LOCAL LENGTHS
+INTEGER,PARAMETER :: LEN_S=LEN_Rdp
+INCLUDE "05-B-FUN_STR_ER.f90.hdr"
+INCLUDE "05-B-FUN_STR_E.f90.hdr"
+!!--begin--
+INCLUDE "05-B-FUN_STR_E.f90.bdy"
+!!--end--
+END FUNCTION
+
+
+
+!!### ELEMENTAL FUNCTION: STR_EI1
+ELEMENTAL FUNCTION STR_EI1(X,FMT,AdjustLeft,AdjustRight) RESULT(S)
+!!#### LOCAL KINDS
+USE KND_IntrinsicTypes,ONLY: KIND_I=>KIND_I1           !!((01-A-KND_IntrinsicTypes.f90))
+!!#### LOCAL LENGTHS
+INTEGER,PARAMETER :: LEN_S=LEN_I1
+INCLUDE "05-B-FUN_STR_EI.f90.hdr"
+INCLUDE "05-B-FUN_STR_E.f90.hdr"
+!!--begin--
+INCLUDE "05-B-FUN_STR_E.f90.bdy"
+!!--end--
+END FUNCTION
+
+
+!!### ELEMENTAL FUNCTION: STR_EI2
+ELEMENTAL FUNCTION STR_EI2(X,FMT,AdjustLeft,AdjustRight) RESULT(S)
+!!#### LOCAL KINDS
+USE KND_IntrinsicTypes,ONLY: KIND_I=>KIND_I2           !!((01-A-KND_IntrinsicTypes.f90))
+!!#### LOCAL LENGTHS
+INTEGER,PARAMETER :: LEN_S=LEN_I2
+INCLUDE "05-B-FUN_STR_EI.f90.hdr"
+INCLUDE "05-B-FUN_STR_E.f90.hdr"
+!!--begin--
+INCLUDE "05-B-FUN_STR_E.f90.bdy"
+!!--end--
+END FUNCTION
+
+
+!!### ELEMENTAL FUNCTION: STR_EI4
+ELEMENTAL FUNCTION STR_EI4(X,FMT,AdjustLeft,AdjustRight) RESULT(S)
+!!#### LOCAL KINDS
+USE KND_IntrinsicTypes,ONLY: KIND_I=>KIND_I4           !!((01-A-KND_IntrinsicTypes.f90))
+!!#### LOCAL LENGTHS
+INTEGER,PARAMETER :: LEN_S=LEN_I4
+INCLUDE "05-B-FUN_STR_EI.f90.hdr"
+INCLUDE "05-B-FUN_STR_E.f90.hdr"
+!!--begin--
+INCLUDE "05-B-FUN_STR_E.f90.bdy"
+!!--end--
+END FUNCTION
+
+
+!!### ELEMENTAL FUNCTION: STR_EI8
+ELEMENTAL FUNCTION STR_EI8(X,FMT,AdjustLeft,AdjustRight) RESULT(S)
+!!#### LOCAL KINDS
+USE KND_IntrinsicTypes,ONLY: KIND_I=>KIND_I8           !!((01-A-KND_IntrinsicTypes.f90))
+!!#### LOCAL LENGTHS
+INTEGER,PARAMETER :: LEN_S=LEN_I8
+INCLUDE "05-B-FUN_STR_EI.f90.hdr"
+INCLUDE "05-B-FUN_STR_E.f90.hdr"
+!!--begin--
+INCLUDE "05-B-FUN_STR_E.f90.bdy"
+!!--end--
+END FUNCTION
+
+
+
+!!### ELEMENTAL FUNCTION: STR_EL1
+ELEMENTAL FUNCTION STR_EL1(X,FMT,AdjustLeft,AdjustRight) RESULT(S)
+!!#### LOCAL KINDS
+USE KND_IntrinsicTypes,ONLY: KIND_L=>KIND_L1           !!((01-A-KND_IntrinsicTypes.f90))
+!!#### LOCAL LENGTHS
+INTEGER,PARAMETER :: LEN_S=LEN_L1
+INCLUDE "05-B-FUN_STR_EL.f90.hdr"
+INCLUDE "05-B-FUN_STR_E.f90.hdr"
+!!--begin--
+INCLUDE "05-B-FUN_STR_E.f90.bdy"
+!!--end--
+END FUNCTION
+
+
+!!### ELEMENTAL FUNCTION: STR_EL2
+ELEMENTAL FUNCTION STR_EL2(X,FMT,AdjustLeft,AdjustRight) RESULT(S)
+!!#### LOCAL KINDS
+USE KND_IntrinsicTypes,ONLY: KIND_L=>KIND_L2           !!((01-A-KND_IntrinsicTypes.f90))
+!!#### LOCAL LENGTHS
+INTEGER,PARAMETER :: LEN_S=LEN_L2
+INCLUDE "05-B-FUN_STR_EL.f90.hdr"
+INCLUDE "05-B-FUN_STR_E.f90.hdr"
+!!--begin--
+INCLUDE "05-B-FUN_STR_E.f90.bdy"
+!!--end--
+END FUNCTION
+
+
+!!### ELEMENTAL FUNCTION: STR_EL4
+ELEMENTAL FUNCTION STR_EL4(X,FMT,AdjustLeft,AdjustRight) RESULT(S)
+!!#### LOCAL KINDS
+USE KND_IntrinsicTypes,ONLY: KIND_L=>KIND_L4           !!((01-A-KND_IntrinsicTypes.f90))
+!!#### LOCAL LENGTHS
+INTEGER,PARAMETER :: LEN_S=LEN_L4
+INCLUDE "05-B-FUN_STR_EL.f90.hdr"
+INCLUDE "05-B-FUN_STR_E.f90.hdr"
+!!--begin--
+INCLUDE "05-B-FUN_STR_E.f90.bdy"
+!!--end--
+END FUNCTION
+
+
+!!### ELEMENTAL FUNCTION: STR_ES
+ELEMENTAL FUNCTION STR_ES(X,FMT,AdjustLeft,AdjustRight) RESULT(S)
+INCLUDE "05-B-FUN_STR_ES.f90.hdr"
+!!--begin--
+INCLUDE "05-B-FUN_STR_ES.f90.bdy"
+!!--end--
+END FUNCTION
+
+!!!### ELEMENTAL FUNCTION: STR_EVS
+!ELEMENTAL FUNCTION STR_EVS(X,FMT,AdjustLeft,AdjustRight) RESULT(S)
+!INCLUDE "05-B-FUN_STR_EVS.f90.hdr"
+!!!--begin--
+!INCLUDE "05-B-FUN_STR_EVS.f90.bdy"
+!!!--end--
+!END FUNCTION
+
+END MODULE

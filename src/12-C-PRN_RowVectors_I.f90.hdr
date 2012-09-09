@@ -1,0 +1,3 @@
+!!####REQUIRED INPUT
+!! @ the integer input array to print as row vectors <x>
+INTEGER(KIND_I),INTENT(IN) :: x(:,:)

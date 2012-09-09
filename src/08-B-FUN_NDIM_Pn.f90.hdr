@@ -1,0 +1,9 @@
+!#REQUIRED INPUT
+! @ coordinate system <Coords>
+! @ plane <Pn>
+INTEGER    ,INTENT(IN) :: Coords
+REAL(KIND_R),INTENT(IN) :: Pn(:)
+
+!#REQUIRED OUTPUT
+! @ number of dimensions <NDIM>
+INTEGER :: NDIM

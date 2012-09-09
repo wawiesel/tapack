@@ -1,0 +1,11 @@
+!!#### REQUIRED INPUT
+!! a vector in R^2 <V>
+REAL(KIND_R),INTENT(IN) :: V(1:2)
+
+!!#### REQUIRED OUTPUT
+!! @ unit vector <xyU>
+REAL(KIND_R) :: xyU(1:2)
+
+!!#### LOCAL VARIABLES
+!! @ normalization constant to check for zero so we don't divide by zero
+REAL(KIND_R) :: s

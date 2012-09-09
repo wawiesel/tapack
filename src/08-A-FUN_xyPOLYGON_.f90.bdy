@@ -1,0 +1,6 @@
+IF( MOD(SIZE(ARRAY),2)/=0 )THEN
+ xyPg = Error(1._KIND_R)
+ELSE
+ N = SIZE(ARRAY)/2
+ xyPg = RESHAPE( ARRAY , xySHAPE_Pg(:,N) )
+END IF

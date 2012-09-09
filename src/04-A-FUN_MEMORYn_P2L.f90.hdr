@@ -1,0 +1,2 @@
+!!#### REQUIRED INPUT
+LOGICAL(KIND_L),POINTER :: X(:,:)

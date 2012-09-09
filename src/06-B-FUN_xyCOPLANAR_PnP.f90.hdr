@@ -1,0 +1,9 @@
+!!#### REQUIRED INPUT
+!! @ a plane in R^2 <Pn>
+!! @ one point in R^2 <P>
+REAL(KIND_R),INTENT(IN) :: Pn( 1:3 )
+REAL(KIND_R),INTENT(IN) :: P( 1:2 )
+
+!!#### REQUIRED OUTPUT
+!! @ true if point is on the plane, false otherwise <COPLANAR>
+LOGICAL :: COPLANAR

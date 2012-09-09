@@ -1,0 +1,5 @@
+SELECT CASE( SIZE(y) )
+ CASE(1)      ; y0 = y(1) ; RETURN
+ CASE(2)      ; k  = (/1,2/)
+ CASE DEFAULT ; k  = Interval( x0 , x )
+END SELECT

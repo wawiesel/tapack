@@ -1,0 +1,23 @@
+!!#### REQUIRED INPUT
+!! @ chain of points in R^2 [N,Cn]
+!! @ base index of the chain [base]
+!! @ anchor index of the chain [anchor]
+INTEGER  ,INTENT(IN) :: N                    
+REAL(KIND_R),INTENT(IN) :: Cn( 1:2 , 1:N )
+INTEGER  ,INTENT(IN) :: base
+INTEGER  ,INTENT(IN) :: anchor
+
+!!#### REQUIRED OUTPUT
+!! @ counter clockwise ordering of the points in the chain
+INTEGER :: order_ccw(1:N)
+
+!!#### OPTIONAL INPUT
+!! @ whether or not to reverse the result of the sort [ReverseOrder]
+LOGICAL,INTENT(IN),OPTIONAL :: ReverseOrder
+
+!!#### LOCAL VARIABLES
+INTEGER :: j,ilead,itrail,icheck,ijunk
+REAL(KIND_R) :: U_reference(1:2),U_test(1:2),U_base(1:2)
+REAL(KIND_R) :: t,P_x(1:N)
+TYPE(TYPE_Stack) :: Stack
+INTEGER :: order_x(1:N)

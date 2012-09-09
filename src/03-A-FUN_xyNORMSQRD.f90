@@ -1,0 +1,48 @@
+MODULE FUN_xyNORMSQRD
+!!#### PURPOSE
+!! Compute the square of the normalization factor for a
+!! vector in R^2.
+
+!!#### METHOD
+!! Sum of the squares of x and y components.
+
+!!#### DEPENDENCIES
+USE KND_IntrinsicTypes,ONLY: KIND_Rsp,KIND_Rdp !!((01-A-KND_IntrinsicTypes.f90))
+
+!!#### DEFAULT IMPLICIT
+IMPLICIT NONE
+
+!!#### DEFAULT ACCESS
+PRIVATE
+
+!!#### PROCEDURE OVERLOADING
+INTERFACE xyNORMSQRD_V
+ MODULE PROCEDURE xyNORMSQRD_V_Rsp
+ MODULE PROCEDURE xyNORMSQRD_V_Rdp
+END INTERFACE
+
+!!#### PUBLIC ACCESS LIST
+PUBLIC :: xyNORMSQRD_V
+
+
+CONTAINS
+
+
+PURE FUNCTION xyNORMSQRD_V_Rsp( V ) RESULT(NORMSQRD)
+USE KND_IntrinsicTypes,ONLY: KIND_R=>KIND_Rsp  !!((01-A-KND_IntrinsicTypes.f90))
+INCLUDE "03-A-FUN_xyNORMSQRD_V.f90.hdr"
+!!--begin--
+INCLUDE "03-A-FUN_xyNORMSQRD_V.f90.bdy"
+!!--end--
+END FUNCTION
+
+PURE FUNCTION xyNORMSQRD_V_Rdp( V ) RESULT(NORMSQRD)
+USE KND_IntrinsicTypes,ONLY: KIND_R=>KIND_Rdp  !!((01-A-KND_IntrinsicTypes.f90))
+INCLUDE "03-A-FUN_xyNORMSQRD_V.f90.hdr"
+!!--begin--
+INCLUDE "03-A-FUN_xyNORMSQRD_V.f90.bdy"
+!!--end--
+END FUNCTION
+
+
+END MODULE

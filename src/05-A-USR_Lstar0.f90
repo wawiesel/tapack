@@ -1,0 +1,113 @@
+!!### MODULE: USER routines for USR_Lstar0
+MODULE USR_Lstar0
+!!#### PURPOSE
+!! The scalar variable-kind (*) logical.
+
+!!#### EXTERNAL KINDS
+USE KND_IntrinsicTypes,ONLY: KIND_L,KIND_L1,KIND_L2,KIND_L4 !!((01-A-KND_IntrinsicTypes.f90))
+
+!!#### DEFAULT IMPLICIT
+IMPLICIT NONE
+
+!!#### DEFAULT ACCESS
+PRIVATE
+
+!!#### TYPE DEFINITION: TYPE_Lstar0
+TYPE TYPE_Lstar0
+ INTEGER          :: KIND = -1
+ LOGICAL(KIND_L1) :: L1   = .FALSE._KIND_L1
+ LOGICAL(KIND_L2) :: L2   = .FALSE._KIND_L2
+ LOGICAL(KIND_L4) :: L4   = .FALSE._KIND_L4
+END TYPE
+
+!!#### ASSIGNMENT OPERATOR
+INTERFACE ASSIGNMENT(=)
+ MODULE PROCEDURE ASSIGN_L1_Lstar0
+ MODULE PROCEDURE ASSIGN_L2_Lstar0
+ MODULE PROCEDURE ASSIGN_L4_Lstar0
+ MODULE PROCEDURE ASSIGN_Lstar0_L1
+ MODULE PROCEDURE ASSIGN_Lstar0_L2
+ MODULE PROCEDURE ASSIGN_Lstar0_L4
+END INTERFACE
+
+INTERFACE IsOk
+ MODULE PROCEDURE IsOk_Lstar0
+END INTERFACE
+
+!!#### PUBLIC ACCESS
+PUBLIC :: TYPE_Lstar0
+PUBLIC :: ASSIGNMENT(=)
+PUBLIC :: IsOk
+
+CONTAINS
+
+
+PURE ELEMENTAL FUNCTION IsOk_Lstar0( Lstar0 ) RESULT(IsOk)
+!!#### REQUIRED INPUT
+TYPE(TYPE_Lstar0),INTENT(IN) :: Lstar0
+!!#### REQUIRED OUTPUT
+LOGICAL :: IsOk
+!!--begin--
+IsOk = Lstar0 % KIND >= 0
+!!--end--
+END FUNCTION
+
+
+PURE ELEMENTAL SUBROUTINE ASSIGN_L1_Lstar0(L,Lstar0)
+!!#### LOCAL KINDS
+USE KND_IntrinsicTypes,ONLY: KIND_L=>KIND_L1                !!((01-A-KND_IntrinsicTypes.f90))
+INCLUDE "05-A-USR_Lstar0__ASSIGN_L_Lstar0.f90.hdr"
+!!--begin--
+INCLUDE "05-A-USR_Lstar0__ASSIGN_L_Lstar0.f90.bdy"
+!!--end--
+END SUBROUTINE
+
+PURE ELEMENTAL SUBROUTINE ASSIGN_L2_Lstar0(L,Lstar0)
+!!#### LOCAL KINDS
+USE KND_IntrinsicTypes,ONLY: KIND_L=>KIND_L2                !!((01-A-KND_IntrinsicTypes.f90))
+INCLUDE "05-A-USR_Lstar0__ASSIGN_L_Lstar0.f90.hdr"
+!!--begin--
+INCLUDE "05-A-USR_Lstar0__ASSIGN_L_Lstar0.f90.bdy"
+!!--end--
+END SUBROUTINE
+
+PURE ELEMENTAL SUBROUTINE ASSIGN_L4_Lstar0(L,Lstar0)
+!!#### LOCAL KINDS
+USE KND_IntrinsicTypes,ONLY: KIND_L=>KIND_L4                !!((01-A-KND_IntrinsicTypes.f90))
+INCLUDE "05-A-USR_Lstar0__ASSIGN_L_Lstar0.f90.hdr"
+!!--begin--
+INCLUDE "05-A-USR_Lstar0__ASSIGN_L_Lstar0.f90.bdy"
+!!--end--
+END SUBROUTINE
+
+
+
+PURE ELEMENTAL SUBROUTINE ASSIGN_Lstar0_L1(Lstar0,L)
+!!#### LOCAL KINDS
+USE KND_IntrinsicTypes,ONLY: KIND_L=>KIND_L1                !!((01-A-KND_IntrinsicTypes.f90))
+INCLUDE "05-A-USR_Lstar0__ASSIGN_Lstar0_L.f90.hdr"
+!!--begin--
+INCLUDE "05-A-USR_Lstar0__ASSIGN_Lstar0_L.f90.bdy"
+!!--end--
+END SUBROUTINE
+
+PURE ELEMENTAL SUBROUTINE ASSIGN_Lstar0_L2(Lstar0,L)
+!!#### LOCAL KINDS
+USE KND_IntrinsicTypes,ONLY: KIND_L=>KIND_L2                !!((01-A-KND_IntrinsicTypes.f90))
+INCLUDE "05-A-USR_Lstar0__ASSIGN_Lstar0_L.f90.hdr"
+!!--begin--
+INCLUDE "05-A-USR_Lstar0__ASSIGN_Lstar0_L.f90.bdy"
+!!--end--
+END SUBROUTINE
+
+PURE ELEMENTAL SUBROUTINE ASSIGN_Lstar0_L4(Lstar0,L)
+!!#### LOCAL KINDS
+USE KND_IntrinsicTypes,ONLY: KIND_L=>KIND_L4                !!((01-A-KND_IntrinsicTypes.f90))
+INCLUDE "05-A-USR_Lstar0__ASSIGN_Lstar0_L.f90.hdr"
+!!--begin--
+INCLUDE "05-A-USR_Lstar0__ASSIGN_Lstar0_L.f90.bdy"
+!!--end--
+END SUBROUTINE
+
+
+END MODULE

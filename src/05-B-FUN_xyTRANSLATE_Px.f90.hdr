@@ -1,0 +1,14 @@
+!!#### REQUIRED INPUT
+!! @ list of points <N,Px>
+!! @ translation vector <V>
+INTEGER     ,INTENT(IN) :: N
+REAL(KIND_R),INTENT(IN) :: Px(1:2,1:N)
+REAL(KIND_R),INTENT(IN) :: V(1:2)
+
+!!#### REQUIRED OUTPUT
+!! @ translated list of points <xyPx>
+REAL(KIND_R) :: xyPx(1:2,1:N)
+
+!!#### LOCAL VARIABLES
+!! @ index
+INTEGER :: i

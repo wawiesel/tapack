@@ -1,0 +1,5 @@
+!#REQUIRED OUTPUT
+LOGICAL :: IsStrictlyLower
+
+!#LOCAL VARIABLES
+INTEGER :: i

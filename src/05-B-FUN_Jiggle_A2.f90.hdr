@@ -1,0 +1,3 @@
+REAL(KIND_R),INTENT(IN) :: x(:,:)
+REAL(KIND_R)            :: y(SIZE(x,1),SIZE(x,2))
+REAL(KIND_R),OPTIONAL,INTENT(IN)   :: f

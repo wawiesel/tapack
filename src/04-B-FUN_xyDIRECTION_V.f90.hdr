@@ -1,0 +1,7 @@
+!!#### REQUIRED INPUT
+!! vector in R^2 <V>
+REAL(KIND_R),INTENT(IN) :: V(1:2)
+
+!!#### REQUIRED OUTPUT
+!! @ unit vector in R^2 <xyU>
+REAL(KIND_R) :: xyU(1:2)

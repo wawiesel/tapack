@@ -1,0 +1,1 @@
+INTEGRALX = xyAVERAGEX_Ls( Ls )*xyINTEGRAL1_Ls( Ls )

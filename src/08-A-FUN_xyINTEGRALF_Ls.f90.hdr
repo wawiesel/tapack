@@ -1,0 +1,24 @@
+!!#### REQUIRED INPUT
+!! * function (see included interface)
+!! * a line segment <Ls>
+REAL(KIND_R),INTENT(IN) :: Ls( 1:2 , 1:2 ) 
+
+!!#### OPTIONAL INPUT
+!! * tolerances
+REAL(KIND_R),OPTIONAL,INTENT(IN) :: abstol,reltol
+INTEGER     ,OPTIONAL,INTENT(IN) :: nmin,nmax
+
+
+!!#### OPTIONAL OUTPUT
+REAL(KIND_R),OPTIONAL,INTENT(OUT) :: err
+INTEGER     ,OPTIONAL,INTENT(OUT) :: num_eval,ierr
+
+!!#### REQUIRED OUTPUT
+!! * integral <INTEGRALF>
+REAL(KIND_R) :: INTEGRALF
+
+
+!!#### LOCAL VARIABLES
+REAL(KIND_R)  :: epsrel,epsabs
+INTEGER       :: restar,ifail,minpts,maxpts,N
+REAL(KIND_R)  :: LENGTH,ULINE(2),p(2),tol,x,y

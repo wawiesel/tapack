@@ -1,0 +1,111 @@
+Author.
+\TAPauthor{"WAW"}
+
+Details.
+\TAPdetails{"A test of symmetry with scattering which uses
+ the low-order problem and PARABOLIC edge interpolator."}
+
+
+
+
+
+The number of energy groups (total,fast,thermal).
+\NRGinit{1}{0}{1}
+
+Initialize the Mesh structure for two dimensions.
+\MSHinit{2}
+
+Define a rectangular domain oriented on the x and y axes.
+\MSHdomain{"Rectangle"}{ 0.0,0.0 }{ 1.0,0.0 }{ 0.0,1.0 }{scale=1,1}
+
+Use a structured mesh block (the numbers following dx and dy lists
+are the vertex perturbations, numbered left to right).
+\MSHblock{"Regular"}{"B"}{ 0.0,0.0 }{ 1.0,0.0 }{ 0.0,1.0 }
+5 5
+0.10 0.15 0.50 0.15 0.10
+0.10 0.15 0.50 0.15 0.10
+
+Scale it.
+\MSHscale{10,10}
+
+
+Boundary conditions on bottom,right,top,left boundaries.
+\MCSbc{"fixed" , &
+       "fixed" , &
+       "fixed" , &
+       "fixed" }{ "infinite" , "infinite" }
+2
+2
+2
+2
+
+
+Define the red material and define the cross sections.
+\MATinit{"red"}
+
+
+\MATmact0{"red"}
+0.5
+\MATmacs0{"red"}
+0.05
+\MATmacnu0{"red"}
+0.0
+\MATmacf0{"red"}
+0.0
+
+
+Associate all cells with the red material.
+\MATassoc{"*"}{"red"}
+
+
+Set the source everywhere to 0.01
+\SRCpolygon{"W"}{0.01}{4}{T}
+-1000.0 -1000.0
+ 1000.0 -1000.0
+ 1000.0  1000.0
+-1000.0  1000.0
+ 0.0 0.0
+
+
+Exiting Current.
+\TAPcurrentexiting{5,5}{10,10}
+
+Define an integral Region.
+\TAPintegralregion{"ALL"}{4}{1.0}
+  0  0
+ 10  0
+ 10 10
+  0 10
+
+
+Set the Quadrature set.
+\DORlevquad{"LMLQ"}{12}
+\DORuniz{T}
+
+Maximum/Minimum transport iterations.
+\TAPmaxit{+100}
+\TAPminit{+1}
+
+Scalar flux and current tolerances.
+\TAPtolsf{1E-12}
+
+Use subcell balances.
+\MCSsbalance{T}
+\MCSsbedgeinterp{"Parabolic"}
+\MCScellfunction{"Gauss"}
+
+
+\QDFsystem{04}
+\QDFsolver{"Direct"}{"nspiv"}
+\QDFcellfunction{"Gauss"}
+
+
+\TAPoutput{2}
+   "ScalarFluxF"&
+   "ScalarFlux-CellRegions"
+   
+\MCSchecksym{0,0}{10,10}{"test4b-afsym.txt"}
+
+\TAPtolbalrel{1e-13}
+
+\TAPtolbalabs{1e-10}

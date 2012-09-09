@@ -1,0 +1,10 @@
+! Warn if the MESH isn't finalized.
+IF( .NOT.IsFinalized(Mesh) )THEN
+ VS = MODPROC(mod_,proc_)
+ CALL Print_Text( WarningPrompt//STR(VS)//'cannot perform this operation &
+             &until mesh object <Mesh> is finalized: <CALL FINALIZE(Mesh)>.', &
+             Unit = DEFAULT_OUTPUT_UNIT ,&
+             Columns = 70 , &
+             LineIndents = (/0,4/) )
+ VS = ""
+END IF

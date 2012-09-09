@@ -1,0 +1,11 @@
+!!#### OPTIONAL INPUT
+!! @ left-inclusive interval for the random complex [l]
+COMPLEX(KIND_C),OPTIONAL,INTENT(IN) :: l(1:2)
+
+!!#### REQUIRED OUTPUT
+!! @ random complex [y]
+COMPLEX(KIND_C),INTENT(OUT) :: x
+
+!!#### LOCAL VARIABLES
+COMPLEX(KIND_C) :: LB,UB
+REAL(KIND_C)    :: rand(1:2)

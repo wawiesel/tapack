@@ -1,0 +1,5 @@
+!#LOCAL VARIABLES
+INTEGER               :: ncol, nrow, ierr
+INTEGER, ALLOCATABLE  :: iw(:)
+REAL(KIND_R)           :: scal
+INTEGER               :: len,ii,jj,jcol,jpos,ka,kb,k,nzmax,nzactual

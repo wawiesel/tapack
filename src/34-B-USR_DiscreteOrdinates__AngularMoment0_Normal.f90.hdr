@@ -1,0 +1,24 @@
+!#PURPOSE
+! Calculate the zeroeth moment of the angular flux, subject to
+! conditional (direction .dot. normal<0).
+
+!#REQUIRED INPUT
+! @ the angular flux [AngularFlux]
+! @ the normal to restrict summation based on:
+!   only sum for (Normal dot DirCos)<=0 
+REAL(KIND_R)         ,INTENT(IN) :: AngularFlux(:,:) !g,k,m=>g,m
+REAL(KIND_DOR),INTENT(IN) :: DirCos(:,:)
+REAL(KIND_MSH)       ,INTENT(IN) :: Normal(1:SIZE(DirCos,1))
+INTEGER             ,INTENT(IN) :: m_(:,:)
+REAL(KIND_DOR),INTENT(IN) :: PolWts(1:SIZE(m_,2))
+REAL(KIND_DOR),INTENT(IN) :: AziWts(1:SIZE(m_,1))
+
+!#REQUIRED OUTPUT
+! @ partial 0-th moment (also called scalar flux) (i.e. subject
+!   to a directional constraint [Moment0]
+REAL(KIND_R) :: Moment0(1:SIZE(AngularFlux,1))
+
+!#LOCAL VARIABLES
+! @ angular dummy index (not the same as the master index)
+INTEGER :: m,mp,ma
+REAL(KIND_R) :: dot_prod

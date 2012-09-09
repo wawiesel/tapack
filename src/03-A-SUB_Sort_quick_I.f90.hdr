@@ -1,0 +1,8 @@
+!ARGUMENTS
+INTEGER(KIND_I),INTENT(INOUT)          :: list(:)
+INTEGER       ,INTENT(OUT)  ,OPTIONAL :: order(SIZE(list))
+INTEGER       ,INTENT(IN)   ,OPTIONAL :: max_simple_sort_size
+!LOCALS
+INTEGER :: i,N
+INTEGER :: order_(SIZE(list))      !local order
+INTEGER :: max_simple_sort_size_   !local maximum simple sort size

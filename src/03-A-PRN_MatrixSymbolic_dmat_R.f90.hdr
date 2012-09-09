@@ -1,0 +1,23 @@
+!!#### REQUIRED INPUT
+!! @ dense matrix <A>
+REAL(KIND_A),INTENT(IN) :: A(:,:)
+
+!!#### OPTIONAL INPUT
+!! @ unit number to output to <unit>
+!! @ whether the output of various statistics is desired <stats>
+INTEGER,INTENT(IN),OPTIONAL :: unit         
+LOGICAL,INTENT(IN),OPTIONAL :: stats
+CHARACTER,INTENT(IN),OPTIONAL :: zero
+CHARACTER,INTENT(IN),OPTIONAL :: unity
+CHARACTER,INTENT(IN),OPTIONAL :: other
+CHARACTER,INTENT(IN),OPTIONAL :: lhighlight
+CHARACTER,INTENT(IN),OPTIONAL :: rhighlight
+
+!!#### LOCAL VARIABLES
+LOGICAL           :: stats_,AlreadyCounted
+INTEGER           :: unit_
+CHARACTER         :: zero_,unity_,other_
+INTEGER           :: i,j,n_zero,n_unity,n_other,n_upper,n_lower,n_diag,n_nonzero
+CHARACTER         :: char
+CHARACTER         :: lhighlight_,rhighlight_
+CHARACTER(3)      :: outchar

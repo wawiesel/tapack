@@ -1,0 +1,168 @@
+!!# MODULE: FUNCTION  FUN_SIZEn
+MODULE FUN_SIZEn
+
+!!## PURPOSE
+!! A companion function to the <SIZEa> function.  It returns
+!! 0 if the pointer is not associated, otherwise just passes
+!! the POINTER_ARRAY to SIZEa.
+
+
+!!## USAGE
+!
+!   N = SIZEn( POINTER_ARRAY , DIM )
+!
+
+
+!!## EXTERNAL KINDS
+USE KND_IntrinsicTypes,ONLY: KIND_I,KIND_I1,KIND_I2,KIND_I4,KIND_I8,& !!((01-A-KND_IntrinsicTypes.f90))
+              KIND_R,KIND_Rsp,KIND_Rdp,&
+              KIND_C,KIND_Csp,KIND_Cdp
+USE FUN_SIZEa                                                         !!((06-B-FUN_SIZEa.f90))
+
+
+!!## DEFAULT IMPLICIT
+IMPLICIT NONE
+
+
+!!## DEFAULT ACCESS
+PRIVATE
+
+
+!!## PROCEDURE OVERLOADING
+INTERFACE SIZEn
+ MODULE PROCEDURE SIZEn_P1Csp
+ MODULE PROCEDURE SIZEn_P1Cdp
+ MODULE PROCEDURE SIZEn_P1Rsp
+ MODULE PROCEDURE SIZEn_P1Rdp
+ MODULE PROCEDURE SIZEn_P1I1
+ MODULE PROCEDURE SIZEn_P1I2
+ MODULE PROCEDURE SIZEn_P1I4
+ MODULE PROCEDURE SIZEn_P1I8
+ MODULE PROCEDURE SIZEn_P1L1
+ MODULE PROCEDURE SIZEn_P1L2
+ MODULE PROCEDURE SIZEn_P1L4
+END INTERFACE
+
+!!## PUBLIC ACCESS LIST
+PUBLIC :: SIZEn
+
+
+!!## MODULE PROCEDURES
+CONTAINS
+
+
+
+!!### PURE FUNCTION: SIZEn_P1Rsp
+PURE FUNCTION SIZEn_P1Rsp(POINTER_ARRAY , DIM ) RESULT(N)
+!!#### LOCAL KINDS
+USE KND_IntrinsicTypes,ONLY: KIND_R=>KIND_Rsp                         !!((01-A-KND_IntrinsicTypes.f90))
+INCLUDE "07-B-FUN_SIZEn_P1R.f90.hdr"
+!!--begin--
+INCLUDE "07-B-FUN_SIZEn.f90.bdy"
+!!--end--
+END FUNCTION
+
+!!### PURE FUNCTION: SIZEn_P1Rdp
+PURE FUNCTION SIZEn_P1Rdp(POINTER_ARRAY , DIM ) RESULT(N)
+!!#### LOCAL KINDS
+USE KND_IntrinsicTypes,ONLY: KIND_R=>KIND_Rdp                         !!((01-A-KND_IntrinsicTypes.f90))
+INCLUDE "07-B-FUN_SIZEn_P1R.f90.hdr"
+!!--begin--
+INCLUDE "07-B-FUN_SIZEn.f90.bdy"
+!!--end--
+END FUNCTION
+
+!!### PURE FUNCTION: SIZEn_P1Csp
+PURE FUNCTION SIZEn_P1Csp(POINTER_ARRAY , DIM ) RESULT(N)
+!!#### LOCAL KINDS
+USE KND_IntrinsicTypes,ONLY: KIND_C=>KIND_Csp                         !!((01-A-KND_IntrinsicTypes.f90))
+INCLUDE "07-B-FUN_SIZEn_P1C.f90.hdr"
+!!--begin--
+INCLUDE "07-B-FUN_SIZEn.f90.bdy"
+!!--end--
+END FUNCTION
+
+!!### PURE FUNCTION: SIZEn_P1Cdp
+PURE FUNCTION SIZEn_P1Cdp(POINTER_ARRAY , DIM ) RESULT(N)
+!!#### LOCAL KINDS
+USE KND_IntrinsicTypes,ONLY: KIND_C=>KIND_Cdp                         !!((01-A-KND_IntrinsicTypes.f90))
+INCLUDE "07-B-FUN_SIZEn_P1C.f90.hdr"
+!!--begin--
+INCLUDE "07-B-FUN_SIZEn.f90.bdy"
+!!--end--
+END FUNCTION
+
+!!### PURE FUNCTION: SIZEn_P1I1
+PURE FUNCTION SIZEn_P1I1(POINTER_ARRAY , DIM ) RESULT(N)
+!!#### LOCAL KINDS
+USE KND_IntrinsicTypes,ONLY: KIND_I=>KIND_I1                          !!((01-A-KND_IntrinsicTypes.f90))
+INCLUDE "07-B-FUN_SIZEn_P1I.f90.hdr"
+!!--begin--
+INCLUDE "07-B-FUN_SIZEn.f90.bdy"
+!!--end--
+END FUNCTION
+
+!!### PURE FUNCTION: SIZEn_P1I2
+PURE FUNCTION SIZEn_P1I2(POINTER_ARRAY , DIM ) RESULT(N)
+!!#### LOCAL KINDS
+USE KND_IntrinsicTypes,ONLY: KIND_I=>KIND_I2                          !!((01-A-KND_IntrinsicTypes.f90))
+INCLUDE "07-B-FUN_SIZEn_P1I.f90.hdr"
+!!--begin--
+INCLUDE "07-B-FUN_SIZEn.f90.bdy"
+!!--end--
+END FUNCTION
+
+!!### PURE FUNCTION: SIZEn_P1I4
+PURE FUNCTION SIZEn_P1I4(POINTER_ARRAY , DIM ) RESULT(N)
+!!#### LOCAL KINDS
+USE KND_IntrinsicTypes,ONLY: KIND_I=>KIND_I4                          !!((01-A-KND_IntrinsicTypes.f90))
+INCLUDE "07-B-FUN_SIZEn_P1I.f90.hdr"
+!!--begin--
+INCLUDE "07-B-FUN_SIZEn.f90.bdy"
+!!--end--
+END FUNCTION
+
+!!### PURE FUNCTION: SIZEn_P1I8
+PURE FUNCTION SIZEn_P1I8(POINTER_ARRAY , DIM ) RESULT(N)
+!!#### LOCAL KINDS
+USE KND_IntrinsicTypes,ONLY: KIND_I=>KIND_I8                          !!((01-A-KND_IntrinsicTypes.f90))
+INCLUDE "07-B-FUN_SIZEn_P1I.f90.hdr"
+!!--begin--
+INCLUDE "07-B-FUN_SIZEn.f90.bdy"
+!!--end--
+END FUNCTION
+
+
+!!### PURE FUNCTION: SIZEn_P1L1
+PURE FUNCTION SIZEn_P1L1(POINTER_ARRAY , DIM ) RESULT(N)
+!!#### LOCAL KINDS
+USE KND_IntrinsicTypes,ONLY: KIND_L=>KIND_L1                          !!((01-A-KND_IntrinsicTypes.f90))
+INCLUDE "07-B-FUN_SIZEn_P1L.f90.hdr"
+!!--begin--
+INCLUDE "07-B-FUN_SIZEn_P1L.f90.bdy"
+!!--end--
+END FUNCTION
+
+!!### PURE FUNCTION: SIZEn_P1L2
+PURE FUNCTION SIZEn_P1L2(POINTER_ARRAY , DIM ) RESULT(N)
+!!#### LOCAL KINDS
+USE KND_IntrinsicTypes,ONLY: KIND_L=>KIND_L2                          !!((01-A-KND_IntrinsicTypes.f90))
+INCLUDE "07-B-FUN_SIZEn_P1L.f90.hdr"
+!!--begin--
+INCLUDE "07-B-FUN_SIZEn_P1L.f90.bdy"
+!!--end--
+END FUNCTION
+
+!!### PURE FUNCTION: SIZEn_P1L4
+PURE FUNCTION SIZEn_P1L4(POINTER_ARRAY , DIM ) RESULT(N)
+!!#### LOCAL KINDS
+USE KND_IntrinsicTypes,ONLY: KIND_L=>KIND_L4                          !!((01-A-KND_IntrinsicTypes.f90))
+INCLUDE "07-B-FUN_SIZEn_P1L.f90.hdr"
+!!--begin--
+INCLUDE "07-B-FUN_SIZEn_P1L.f90.bdy"
+!!--end--
+END FUNCTION
+
+
+
+END MODULE

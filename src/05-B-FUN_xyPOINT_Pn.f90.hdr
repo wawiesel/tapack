@@ -1,0 +1,7 @@
+!!#### REQUIRED INPUT
+!! @ plane in R^2 <Pn>
+REAL(KIND_R),INTENT(IN) :: Pn(1:3)
+
+!!#### REQUIRED OUTPUT
+!! @ point on that plane <xyP>
+REAL(KIND_R) :: xyP(1:2)

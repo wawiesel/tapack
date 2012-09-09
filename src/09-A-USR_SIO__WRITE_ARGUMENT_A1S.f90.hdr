@@ -1,0 +1,8 @@
+!ARGUMENTS
+TYPE(TYPE_SIO)              ,POINTER                :: SIO
+CHARACTER(LEN=*,KIND=KIND_S),INTENT(IN)             :: X(:)
+TYPE(TYPE_FdBk)             ,INTENT(INOUT),OPTIONAL :: FdBk
+!LOCALS
+CHARACTER(*),PARAMETER :: proc_ = 'WRITE_ARGUMENT_1S'
+TYPE(varying_string) :: FMT_,VS
+INTEGER :: i,j

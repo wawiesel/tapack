@@ -1,0 +1,15 @@
+!!#### REQUIRED INPUT/OUTPUT
+REAL(KIND_R),INTENT(INOUT) :: VECS(:,:)
+
+!!#### OPTIONAL INPUT/OUTPUT
+INTEGER,OPTIONAL,INTENT(OUT) :: order(1:SIZE(VECS,2))
+
+!!#### OPTIONAL INPUT
+REAL(KIND_R),OPTIONAL,INTENT(IN) :: tol,reltol
+
+!!#### LOCAL VARIABLES
+INTEGER     :: Ndim,Npts
+INTEGER     :: order_(1:SIZE(VECS,2))
+INTEGER     :: order_dummy(1:SIZE(VECS,2))
+REAL(KIND_R) :: sort_dummy(1:SIZE(VECS,2))
+INTEGER     :: I,J,k1,k2,N

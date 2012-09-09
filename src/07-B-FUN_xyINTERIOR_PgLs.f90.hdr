@@ -1,0 +1,43 @@
+!!#### REQUIRED INPUT
+!! * polygon number of points and list of vertices <N,Pg>
+!! * line segment to check <P>
+!! * polygon centroid <P_centroid>
+INTEGER    ,INTENT(IN) :: N              
+REAL(KIND_R),INTENT(IN) :: Pg        ( 1:2 , 1:N )      
+REAL(KIND_R),INTENT(IN) :: Ls        ( 1:2 , 1:2 )          
+REAL(KIND_R),INTENT(IN) :: P_centroid( 1:2 )    
+
+
+!!#### REQUIRED OUTPUT
+!! * INTERIOR = .TRUE.  if point lies inside or on edge of polygon
+!!              .FALSE. if point lies outside polygon
+LOGICAL :: INTERIOR
+
+
+!!#### OPTIONAL INPUT
+!! * tolerance for point in polygon check <tol>
+!! * include ends of the line segment <IncludeEnds>
+REAL(KIND_R),INTENT(IN),OPTIONAL :: tol
+LOGICAL    ,INTENT(IN),OPTIONAL :: IncludeEnds(1:2)
+
+!!#### OPTIONAL OUTPUT
+!! * provide more information about where polygon lies <KEY>
+!!         KEY = 0    if INTERIOR==.FALSE.
+!!         KEY = 0    if INTERIOR==.TRUE.  and point is strictly interior to polygon
+!!         KEY = -i   if INTERIOR==.TRUE.  and end point 1 is on the polygonal path
+!!                                         between polygon vertices, i and ip
+!!         KEY = +i   if INTERIOR==.TRUE.  and end point 2 is on the polygonal path
+!!                                         between polygon vertices, i and ip
+INTEGER,INTENT(OUT),OPTIONAL :: KEY
+
+
+!!#### LOCAL PARAMETERS
+!! * include edges of the polynomial 
+LOGICAL,PARAMETER :: DEFAULT_IncludeEnds = .FALSE.
+
+
+!!#### LOCAL VARIABLES
+!! * index of polygon vertex and next vertex <k>
+INTEGER      :: k
+REAL(KIND_R) :: P1(1:2) , P2(1:2)
+LOGICAL      :: IncludeEdges1,IncludeEdges2

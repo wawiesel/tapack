@@ -1,0 +1,5 @@
+IF( id/=slice_id )THEN
+ WRITE(*,*)"cached [slice_id="//TRIM(STR(slice_id))//&
+   "] not equal to argument [id="//TRIM(STR(id))//"]."
+ STOP
+END IF

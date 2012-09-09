@@ -1,0 +1,11 @@
+!!#### REQUIRED INPUT
+REAL(KIND_R),INTENT(IN) :: Tr(2,3)
+REAL(KIND_R),INTENT(IN) :: fv(3)
+
+!!#### REQUIRED OUTPUT
+REAL(KIND_R) :: Lin2(3)
+
+!!#### LOCAL VARIABLES
+REAL(KIND_R) :: A(3,3),b(3,1)
+INTEGER      :: n,info
+

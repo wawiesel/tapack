@@ -1,0 +1,10 @@
+!!#### REQUIRED INPUT
+!! list of 3 points in R^2 <P3>
+REAL(KIND_R),INTENT(IN) :: P3( 1:2 , 1:3 )
+
+!!#### REQUIRED OUTPUT
+!! @ true if points are coplanar, false otherwise <COPLANAR>
+LOGICAL :: COPLANAR
+
+!!#### LOCAL VARIABLES
+REAL(KIND_R) :: Pn(1:3)

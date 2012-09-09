@@ -1,0 +1,5 @@
+SELECT CASE( Cstar0% KIND ) 
+ CASE(KIND_Csp) ; C = Cstar0%Csp
+ CASE(KIND_Cdp) ; C = Cstar0%Cdp
+ CASE DEFAULT  ; C = ERROR(C)
+END SELECT

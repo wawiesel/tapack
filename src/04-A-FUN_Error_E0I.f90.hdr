@@ -1,0 +1,5 @@
+!!#### REQUIRED INPUT
+INTEGER(KIND_I),INTENT(IN) :: B
+
+!!#### REQUIRED OUTPUT
+INTEGER(KIND_I)            :: A

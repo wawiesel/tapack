@@ -1,0 +1,7 @@
+!!#### REQUIRED INPUT
+INTEGER     ,INTENT(IN) :: Dim
+REAL(KIND_R),INTENT(IN) :: u(:)
+
+
+!!#### REQUIRED OUTPUT
+REAL(KIND_R) :: Moment1_DimIN

@@ -1,0 +1,6 @@
+WRITE(S,*,IOSTAT=jerr)X
+IF( jerr/=0 )THEN
+ S = REPEAT('#',LEN_S)
+ELSE
+ S = ADJUSTL(S)
+ENDIF

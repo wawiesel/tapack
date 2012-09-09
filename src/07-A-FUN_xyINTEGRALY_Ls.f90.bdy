@@ -1,0 +1,1 @@
+INTEGRALY = xyAVERAGEY_Ls( Ls )*xyINTEGRAL1_Ls( Ls )

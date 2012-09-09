@@ -1,0 +1,25 @@
+!!#### REQUIRED INPUT
+!! @ name of quadrature <Quadrature>
+!! @ order of the quadrature <Order>
+CHARACTER(*),INTENT(IN) :: Quadrature
+INTEGER     ,INTENT(IN) :: Order
+
+
+!!#### REQUIRED OUTPUT
+!! @ weights <w>
+!! @ abcissas (direction cosines) <x>
+REAL(KIND_R),POINTER :: w(:),x(:,:)
+
+
+!!#### OPTIONAL OUTPUT
+!! @ error integer ($0$ is no error, $>0$ is warning, $<0$ is error) <errint>
+!! @ corresponding error message <errmsg>
+INTEGER     ,OPTIONAL,INTENT(OUT) :: errint
+CHARACTER(*),OPTIONAL,INTENT(OUT) :: errmsg
+
+!!#### OPTIONAL INPUT
+LOGICAL,OPTIONAL,INTENT(IN) :: UniformZGeometry
+
+!#LOCAL VARIABLES
+INTEGER :: errint_,Nm,m
+REAL(KIND_R),POINTER :: x_(:,:),w_(:)

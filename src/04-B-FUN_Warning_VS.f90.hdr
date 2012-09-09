@@ -1,0 +1,4 @@
+!ARGUMENTS
+TYPE(varying_string),INTENT(IN) :: B
+!RESULT
+TYPE(varying_string)            :: A

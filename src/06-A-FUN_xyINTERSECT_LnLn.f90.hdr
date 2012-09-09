@@ -1,0 +1,23 @@
+!!#### REQUIRED INPUT
+!! @ first line in R^2 <Ln_a>
+!! @ second line in R^2 <Ln_b>
+REAL(KIND_R),INTENT(IN) :: Ln_a(1:2,1:2)
+REAL(KIND_R),INTENT(IN) :: Ln_b(1:2,1:2)
+
+!!#### REQUIRED OUTPUT
+!! @ whether or not intersection occured <INTERSECT>
+LOGICAL :: INTERSECT
+
+!!#### OPTIONAL OUTPUT
+!! @ distance to intersection along Ln_a direction <SDIST_a>
+!! @ distance to intersection along Ln_b direction <SDIST_b>
+!! @ point of intersection <P_intersect>
+REAL(KIND_R),OPTIONAL,INTENT(OUT) :: SDIST_a
+REAL(KIND_R),OPTIONAL,INTENT(OUT) :: SDIST_b
+REAL(KIND_R),OPTIONAL,INTENT(OUT) :: P_intersect(1:2)
+
+!!#### LOCAL VARIABLES
+REAL(KIND_R) :: U_aperp(1:2)
+REAL(KIND_R) :: U_bperp(1:2)
+REAL(KIND_R) :: s1,s2,s3,s4
+REAL(KIND_R) :: P_c(1:2)

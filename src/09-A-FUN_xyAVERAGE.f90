@@ -1,0 +1,134 @@
+!!# FUNCTION MODULE <<FUN_xyAVERAGE>>
+MODULE FUN_xyAVERAGE
+
+!!## PURPOSE
+!! Get averages in 2D.
+
+
+!!## AUTHORS
+!! [waw] W. A. Wieselquist
+
+
+!!## MODIFIED
+!! 14 April 2007 [waw]
+
+
+!!## EXTERNAL MODULES
+USE FUN_xyINTEGRAL                              !!((08-A-FUN_xyINTEGRAL.f90))
+USE FUN_xyINTEGRAL1                             !!((06-A-FUN_xyINTEGRAL1.f90))
+USE FUN_xyINTEGRALX                             !!((07-A-FUN_xyINTEGRALX.f90))
+USE FUN_xyINTEGRALY                             !!((07-A-FUN_xyINTEGRALY.f90))
+
+!!## DEFAULT IMPLICIT
+IMPLICIT NONE
+PRIVATE
+
+
+!!## PROCEDURE OVERLOADING
+![nocompile]!doesn't compile under ifort 9.1. why?
+!INTERFACE xyAVERAGE
+! MODULE PROCEDURE xyAVERAGE_Lin2Ls_Rsp
+! MODULE PROCEDURE xyAVERAGE_Lin2Ls_Rdp
+! MODULE PROCEDURE xyAVERAGE_Lin1Ls_Rsp
+! MODULE PROCEDURE xyAVERAGE_Lin1Ls_Rdp
+!END INTERFACE
+
+INTERFACE xyAVERAGE_Lin2Ls
+ MODULE PROCEDURE xyAVERAGE_Lin2Ls_Rsp
+ MODULE PROCEDURE xyAVERAGE_Lin2Ls_Rdp
+END INTERFACE
+
+INTERFACE xyAVERAGE_Lin2Pg
+ MODULE PROCEDURE xyAVERAGE_Lin2Pg_Rsp
+ MODULE PROCEDURE xyAVERAGE_Lin2Pg_Rdp
+END INTERFACE
+
+INTERFACE xyAVERAGE_Lin1Ls
+ MODULE PROCEDURE xyAVERAGE_Lin1Ls_Rsp
+ MODULE PROCEDURE xyAVERAGE_Lin1Ls_Rdp
+END INTERFACE
+
+!!## PUBLIC ACCESS LIST
+![nocompile]!PUBLIC :: xyAVERAGE
+PUBLIC :: xyAVERAGE_Lin2Ls
+PUBLIC :: xyAVERAGE_Lin1Ls
+PUBLIC :: xyAVERAGE_Lin2Ls_Rsp
+PUBLIC :: xyAVERAGE_Lin2Ls_Rdp
+PUBLIC :: xyAVERAGE_Lin2Pg
+PUBLIC :: xyAVERAGE_Lin2Pg_Rdp
+PUBLIC :: xyAVERAGE_Lin2Pg_Rsp
+
+!!## CONTAINED PROCEDURES
+CONTAINS
+
+
+FUNCTION xyAVERAGE_Lin2Ls_Rsp(Lin2,Ls) RESULT(AVERAGE)
+!!#### LOCAL MAPPINGS
+USE KND_IntrinsicTypes,ONLY: KIND_R => KIND_Rsp !!((01-A-KND_IntrinsicTypes.f90))
+
+INCLUDE "09-A-FUN_xyAVERAGE_Lin2Ls.f90.hdr"
+!!--begin--
+INCLUDE "09-A-FUN_xyAVERAGE_Lin2Ls.f90.bdy"
+!!--end--
+END FUNCTION
+
+
+FUNCTION xyAVERAGE_Lin2Ls_Rdp(Lin2,Ls) RESULT(AVERAGE)
+!!#### LOCAL MAPPINGS
+USE KND_IntrinsicTypes,ONLY: KIND_R => KIND_Rdp !!((01-A-KND_IntrinsicTypes.f90))
+
+INCLUDE "09-A-FUN_xyAVERAGE_Lin2Ls.f90.hdr"
+!!--begin--
+INCLUDE "09-A-FUN_xyAVERAGE_Lin2Ls.f90.bdy"
+!!--end--
+END FUNCTION
+
+
+FUNCTION xyAVERAGE_Lin2Pg_Rsp(Lin2,N,Pg) RESULT(AVERAGE)
+!!#### LOCAL MAPPINGS
+USE KND_IntrinsicTypes,ONLY: KIND_R => KIND_Rsp !!((01-A-KND_IntrinsicTypes.f90))
+
+INCLUDE "09-A-FUN_xyAVERAGE_Lin2Pg.f90.hdr"
+!!--begin--
+INCLUDE "09-A-FUN_xyAVERAGE_Lin2Pg.f90.bdy"
+!!--end--
+END FUNCTION
+
+FUNCTION xyAVERAGE_Lin2Pg_Rdp(Lin2,N,Pg) RESULT(AVERAGE)
+!!#### LOCAL MAPPINGS
+USE KND_IntrinsicTypes,ONLY: KIND_R => KIND_Rdp !!((01-A-KND_IntrinsicTypes.f90))
+
+INCLUDE "09-A-FUN_xyAVERAGE_Lin2Pg.f90.hdr"
+!!--begin--
+INCLUDE "09-A-FUN_xyAVERAGE_Lin2Pg.f90.bdy"
+!!--end--
+END FUNCTION
+
+
+
+FUNCTION xyAVERAGE_Lin1Ls_Rsp(Lin1,Ls) RESULT(AVERAGE)
+!!#### LOCAL MAPPINGS
+USE KND_IntrinsicTypes,ONLY: KIND_R => KIND_Rsp !!((01-A-KND_IntrinsicTypes.f90))
+USE PAR_Constants_Rsp                           !!((02-A-PAR_Constants_Rsp.f90))
+INCLUDE "09-A-FUN_xyAVERAGE_Lin1Ls.f90.hdr"
+!!--begin--
+INCLUDE "09-A-FUN_xyAVERAGE_Lin1Ls.f90.bdy"
+!!--end--
+END FUNCTION
+
+
+FUNCTION xyAVERAGE_Lin1Ls_Rdp(Lin1,Ls) RESULT(AVERAGE)
+!!#### LOCAL MAPPINGS
+USE KND_IntrinsicTypes,ONLY: KIND_R => KIND_Rdp !!((01-A-KND_IntrinsicTypes.f90))
+USE PAR_Constants_Rdp                           !!((02-A-PAR_Constants_Rdp.f90))
+INCLUDE "09-A-FUN_xyAVERAGE_Lin1Ls.f90.hdr"
+!!--begin--
+INCLUDE "09-A-FUN_xyAVERAGE_Lin1Ls.f90.bdy"
+!!--end--
+END FUNCTION
+
+
+END MODULE
+
+
+

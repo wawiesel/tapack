@@ -1,0 +1,2 @@
+!!#### REQUIRED OUTPUT
+COMPLEX(KIND_C),POINTER :: P(:,:,:,:)

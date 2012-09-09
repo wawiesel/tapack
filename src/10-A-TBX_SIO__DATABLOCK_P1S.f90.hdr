@@ -1,0 +1,6 @@
+!#ARGUMENTS
+TYPE(TYPE_SIO)    ,POINTER                :: SIO
+INTEGER         ,INTENT(IN)             :: N1(1:2)
+CHARACTER(KIND_S),POINTER                :: X(:)
+TYPE(TYPE_FdBk)  ,INTENT(INOUT),OPTIONAL :: FdBk
+INTEGER,INTENT(IN),OPTIONAL :: Indent

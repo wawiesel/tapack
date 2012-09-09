@@ -1,0 +1,14 @@
+!!#### REQUIRED INPUT
+COMPLEX(KIND_C),INTENT(IN) :: SCLS(:)
+
+!!#### REQUIRED OUTPUT
+INTEGER :: loc
+
+!!#### REQUIRED INPUT
+!! @ value to check SCLS for nearest neighbor
+COMPLEX(KIND_C),INTENT(IN) :: SCL
+
+!!#### LOCAL VARIABLES
+REAL(KIND_C) :: real_SCLS(2,SIZE(SCLS))
+REAL(KIND_C) :: real_SCL (2)
+INTEGER     :: N

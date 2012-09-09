@@ -1,0 +1,3 @@
+!!####REQUIRED INPUT
+!! @ the complex input array to print as row vectors <x>
+COMPLEX(KIND_C),INTENT(IN) :: x(:,:)

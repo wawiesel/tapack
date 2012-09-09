@@ -1,0 +1,6 @@
+!!#### REQUIRED INPUT
+REAL(KIND_R),INTENT(IN) :: u(:)
+
+
+!!#### REQUIRED OUTPUT
+REAL(KIND_R) :: Moment0_OUT

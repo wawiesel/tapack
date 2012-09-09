@@ -1,0 +1,1 @@
+RowNNZ =  S % JA (i+1) - S % JA (i) + 1

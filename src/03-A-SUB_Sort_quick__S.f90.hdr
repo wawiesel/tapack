@@ -1,0 +1,8 @@
+!ARGUMENTS
+CHARACTER(*,KIND_S),INTENT(INOUT) :: list(:)
+INTEGER    ,INTENT(INOUT) :: order(SIZE(list)) 
+INTEGER    ,INTENT(IN)    :: left_end, right_end
+INTEGER    ,INTENT(IN)    :: max_simple_sort_size_
+!LOCALS
+INTEGER                    :: i, j, itemp
+CHARACTER(LEN(list),KIND_S) :: reference,temp

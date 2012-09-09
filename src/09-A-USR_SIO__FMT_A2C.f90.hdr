@@ -1,0 +1,6 @@
+!#ARGUMENTS
+TYPE(TYPE_SIO)  ,POINTER                :: SIO
+COMPLEX(KIND_C),INTENT(IN)             :: X(:,:)
+CHARACTER(*)  ,INTENT(IN),OPTIONAL    :: Pre,Post
+!#RESULT
+TYPE(varying_string) :: VS

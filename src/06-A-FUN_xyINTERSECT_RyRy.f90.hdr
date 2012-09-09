@@ -1,0 +1,20 @@
+!!#### REQUIRED INPUT
+!! @ first line in R^2 [Ry_a]
+!! @ second line in R^2 [Ry_b]
+REAL(KIND_R),INTENT(IN) :: Ry_a(1:2,1:2)
+REAL(KIND_R),INTENT(IN) :: Ry_b(1:2,1:2)
+
+!!#### REQUIRED OUTPUT
+!! @ whether or not intersection occured [INTERSECT]
+LOGICAL :: INTERSECT
+
+!!#### OPTIONAL OUTPUT
+!! @ distance to intersection along Ry_a direction [DIST_a]
+!! @ distance to intersection along Ry_b direction [DIST_b]
+!! @ point of intersection [P_intersect]
+REAL(KIND_R),OPTIONAL,INTENT(OUT) :: DIST_a
+REAL(KIND_R),OPTIONAL,INTENT(OUT) :: DIST_b
+REAL(KIND_R),OPTIONAL,INTENT(OUT) :: P_intersect(1:2)
+
+!!#### LOCAL VARIABLES
+REAL(KIND_R) :: DIST0_a,DIST0_b

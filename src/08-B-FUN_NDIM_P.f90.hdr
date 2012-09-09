@@ -1,0 +1,9 @@
+!#REQUIRED INPUT
+! @ coordinate system <Coords>
+! @ point <P>
+INTEGER    ,INTENT(IN) :: Coords
+REAL(KIND_R),INTENT(IN) :: P(:)
+
+!#REQUIRED OUTPUT
+! @ number of dimensions <NDIM>
+INTEGER :: NDIM

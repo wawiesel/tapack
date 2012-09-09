@@ -1,0 +1,4 @@
+
+!!#### REQUIRED INPUT/OUTPUT
+REAL(KIND_R),POINTER    :: DenseArray(:,:)
+

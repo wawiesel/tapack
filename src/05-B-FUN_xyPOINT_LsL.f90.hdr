@@ -1,0 +1,12 @@
+!!#### REQUIRED INPUT
+!! @ plane in R^2 <Ls>
+!! @ distance along line <L>
+REAL(KIND_R),INTENT(IN) :: Ls(1:2,1:2)
+REAL(KIND_R),INTENT(IN) :: L
+
+!!#### REQUIRED OUTPUT
+!! @ point on that plane <xyP>
+REAL(KIND_R) :: xyP(1:2)
+
+!!#### LOCAL VARIABLES
+REAL(KIND_R) :: Ltot,f

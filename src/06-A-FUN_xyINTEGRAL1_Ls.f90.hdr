@@ -1,0 +1,8 @@
+!!#### REQUIRED INPUT
+!! @ line segment <Ls>
+REAL(KIND_R),INTENT(IN) :: Ls( 1:2 , 1:2 ) 
+
+!!#### REQUIRED OUTPUT
+!! @ integral of 1 <INTEGRAL1>
+REAL(KIND_R) :: INTEGRAL1
+

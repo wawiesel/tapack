@@ -1,0 +1,12 @@
+!!#### REQUIRED INPUT
+!! @ polygon <N,Pg>
+INTEGER     ,INTENT(IN) :: N         
+REAL(KIND_R),INTENT(IN) :: Pg( 1:2 , 1:N ) 
+
+!!#### REQUIRED OUTPUT
+!! @ signed area <sAREA>
+REAL(KIND_R) :: sAREA
+
+!!#### LOCAL VARIABLES
+!! @ polygon vertex index
+INTEGER :: i 

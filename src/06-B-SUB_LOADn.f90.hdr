@@ -1,0 +1,13 @@
+!!#### REQUIRED INPUT
+CHARACTER(LEN=*,KIND=KIND_S),INTENT(IN) :: SP
+
+!!#### OPTIONAL INPUT
+LOGICAL,INTENT(IN),OPTIONAL :: Unformatted 
+
+
+!!#### LOCAL VARIABLES
+LOGICAL :: Unformatted_
+INTEGER :: k,l,m,n,Unit
+CHARACTER :: char
+INTEGER :: IChars,NChars
+INTEGER :: ios

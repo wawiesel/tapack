@@ -1,0 +1,13 @@
+!#REQUIRED INPUT
+! * polygon <N,Pg>
+INTEGER    ,INTENT(IN) :: N                    
+REAL(KIND_R),INTENT(IN) :: Pg( 1:2 , 1:N ) 
+
+!#REQUIRED OUTPUT
+! * triangularization ordering of points to make $N-2$ triangles
+INTEGER :: order_Tr( 1:3 , 1:N-2 )
+
+!!#### LOCAL VARIABLES
+INTEGER        :: NTr
+REAL(KIND_Rdp) :: Pg_Rdp  ( 1:2 , 1:N )
+INTEGER        :: links_Tr( 1:3 , 1:N )

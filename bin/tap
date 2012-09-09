@@ -1,0 +1,27 @@
+#!/usr/bin/perl
+use File::Basename qw(dirname basename);
+use Cwd;
+my $pwd = getcwd();
+my $bindir = dirname($0);
+$bindir=`cd $bindir && pwd`;
+chomp($bindir);
+
+if( ! -e "$bindir/tap.exe" ){
+    die("executable $bindir/tap.exe does not exist (run script/build.sh)");
+}
+
+for my $path (@ARGV){
+    if( !-e $path ){
+        warn("file={$path} does not exist, moving on to next file");
+        next;
+    }
+    my $dir=dirname($path);
+    chdir $dir;
+    my $file=basename($path);
+    open(FH,"| $bindir/tap.exe $file") or die("problem opening command: $bindir/tap.exe $file");
+    while(<FH>){
+        print FH $_;
+    }
+    close(FH);
+    chdir $pwd;
+}

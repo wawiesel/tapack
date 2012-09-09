@@ -1,0 +1,27 @@
+!!#### REQUIRED INPUT
+!! @ list of dependent variable values <f>
+!! @ list of independent variable values <x>
+REAL(KIND_f),INTENT(IN) :: f( :       )
+REAL(KIND_x),INTENT(IN) :: x(1:SIZE(f))
+
+!!#### REQUIRED OUTPUT
+!! @ integration of <f> as a function of 
+!!   <x> from <x(1)> to <x(N)>, <integral>
+REAL(KIND_f) :: integral
+
+!!#### OPTIONAL INPUT
+!! @ list of dependent variable midpoints <fbarout>
+!! @ list of independent variable differences <delxout]
+REAL(KIND_f),INTENT(IN),OPTIONAL :: fbarin(1:SIZE(f)-1)
+REAL(KIND_x),INTENT(IN),OPTIONAL :: delxin(1:SIZE(x)-1)
+
+!!#### OPTIONAL OUTPUT
+!! @ list of dependent variable midpoints <fbarout>
+!! @ list of independent variable differences <delxout]
+REAL(KIND_f),INTENT(OUT),OPTIONAL :: fbarout(1:SIZE(f)-1)
+REAL(KIND_x),INTENT(OUT),OPTIONAL :: delxout(1:SIZE(x)-1)
+
+!!#### LOCAL VARIABLES
+INTEGER     :: i,N
+REAL(KIND_x) :: delx_(1:SIZE(f)-1)
+REAL(KIND_f) :: fbar_(1:SIZE(f)-1)

@@ -1,0 +1,2 @@
+!!#### REQUIRED OUTPUT
+TYPE(varying_string),POINTER :: P(:,:,:)

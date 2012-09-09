@@ -1,0 +1,16 @@
+!!#### REQUIRED INPUT
+!! @ three points (/P_a,P_b,P_c/) <P3>
+REAL(KIND_R),INTENT(IN) :: P3( 1:3 , 1:3 )     
+
+!!#### REQUIRED OUTPUT
+!! @ plane normal vector and constant stored as (/U,s/) <xyzPn>
+REAL(KIND_R) :: xyzPn( 1:4 )
+
+!!#### LOCAL VARIABLES
+!! @ vector from first to second point (P_a -> P_b)
+!! @ vector from first to third point (P_a -> P_c)
+!! @ vector perpendicular to plane
+REAL(KIND_R) :: V_ba( 1:3 ) 
+REAL(KIND_R) :: V_ca( 1:3 ) 
+REAL(KIND_R) :: V   ( 1:3 ) 
+

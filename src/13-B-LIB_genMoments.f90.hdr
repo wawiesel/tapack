@@ -1,0 +1,13 @@
+!!#### REQUIRED INPUT
+!! @ directions (ordinates) <x(:,m);m=1,...,Nm> with 
+!!   number of dimensions <Ndim=SIZE(x,1)> and number of 
+!!   directions <Nm=SIZE(x,2)> 
+REAL(KIND_R),INTENT(IN) :: x(:,:)
+!! @ function values <f(m);m=1,...,Nm>
+!! @ integration weights <w(m);m=1,...,Nm>
+REAL(KIND_R),INTENT(IN) :: f(SIZE(x,2))
+REAL(KIND_R),INTENT(IN) :: w(SIZE(x,2))
+
+!!#### LOCAL VARIABLES
+INTEGER :: d,m,d1,d2
+REAL(KIND_R) :: coeff,store

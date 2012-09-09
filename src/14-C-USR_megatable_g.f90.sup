@@ -1,0 +1,11 @@
+IF( megatable%g/=0 )THEN
+ 
+ g = megatable%g
+
+ELSE
+
+ g = 1 
+ ![hack] need actual function
+ !g = GET_EnergyGroup(megatable%E)
+
+END IF

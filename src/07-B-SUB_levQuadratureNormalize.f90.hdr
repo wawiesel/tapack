@@ -1,0 +1,7 @@
+REAL(KIND_R),POINTER :: xa(:,:,:),xp(:),wa(:,:),wp(:)
+REAL(KIND_R),INTENT(IN),OPTIONAL :: Norm
+
+INTEGER :: ma,mp
+REAL(KIND_R) :: sum_me_up
+
+

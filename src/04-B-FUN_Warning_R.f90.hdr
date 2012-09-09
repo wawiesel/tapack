@@ -1,0 +1,4 @@
+!ARGUMENTS
+REAL(KIND_R),INTENT(IN) :: B
+!RESULT
+REAL(KIND_R)            :: A

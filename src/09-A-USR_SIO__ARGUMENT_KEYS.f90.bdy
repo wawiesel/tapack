@@ -1,0 +1,6 @@
+SIO%currarg = SIO%currarg + 1
+IF( Reading(SIO) )THEN
+ CALL READ_ARGUMENT(SIO,ARG,FdBk,Default,Keys)
+ELSE
+ CALL WRITE_ARGUMENT(SIO,ARG,FdBk,Keys)
+ENDIF

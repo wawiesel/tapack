@@ -1,0 +1,2 @@
+!!#### REQUIRED OUTPUT
+LOGICAL(KIND_L),POINTER :: P(:,:,:)

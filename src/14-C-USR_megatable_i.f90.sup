@@ -1,0 +1,10 @@
+
+IF( megatable%i/=0 )THEN
+
+ i = megatable%i
+
+ELSE
+ 
+ !i = GET_cell(Mesh,loc=megatable%r)
+
+END IF

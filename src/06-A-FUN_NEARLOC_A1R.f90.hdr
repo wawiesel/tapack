@@ -1,0 +1,9 @@
+!!#### REQUIRED INPUT
+REAL(KIND_R),INTENT(IN) :: SCLS(:)
+
+!!#### REQUIRED OUTPUT
+INTEGER :: loc
+
+!!#### REQUIRED INPUT
+!! @ value to check <SCLS> for nearest neighbor
+REAL(KIND_R),INTENT(IN) :: SCL

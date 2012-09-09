@@ -1,0 +1,7 @@
+!!#### REQUIRED INPUT/OUTPUT
+!! @ number of dimensions
+!! @ coordinate system
+!! @ plane <Pn>
+INTEGER,INTENT(IN) :: NDim
+INTEGER,INTENT(IN) :: Coord
+REAL(KIND_R),POINTER :: Pn(:)

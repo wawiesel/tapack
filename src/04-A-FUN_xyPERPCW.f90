@@ -1,0 +1,87 @@
+MODULE FUN_xyPERPCW
+!!#### PURPOSE
+!! Construct a perpendicular vector by 90 degrees
+!! Clockwise (CW) rotation.
+
+!!#### METHOD
+!! use "PERP" function with fix-up for x=0 and y>0.
+
+!!#### EXTERNAL KINDS
+USE KND_IntrinsicTypes,ONLY: KIND_Rsp,KIND_Rdp  !!((01-A-KND_IntrinsicTypes.f90))
+
+!!#### EXTERNAL PARAMETERS
+USE PAR_Constants_Rsp,ONLY: c_0_Rsp => c_0      !!((02-A-PAR_Constants_Rsp.f90))
+USE PAR_Constants_Rdp,ONLY: c_0_Rdp => c_0      !!((02-A-PAR_Constants_Rdp.f90))
+
+!!#### EXTERNAL PROCEDURES
+USE FUN_xyPERPCCW,ONLY: xyPERPCCW_U,xyPERPCCW_V !!((03-A-FUN_xyPERPCCW.f90))
+
+!!#### DEFAULT IMPLICIT
+IMPLICIT NONE
+
+!!#### DEFAULT ACCESS
+PRIVATE
+
+!!#### PROCEDURE OVERLOADING
+INTERFACE xyPERPCW_V
+ MODULE PROCEDURE xyPERPCW_V_Rsp
+ MODULE PROCEDURE xyPERPCW_V_Rdp
+END INTERFACE
+
+INTERFACE xyPERPCW_U
+ MODULE PROCEDURE xyPERPCW_U_Rsp
+ MODULE PROCEDURE xyPERPCW_U_Rdp
+END INTERFACE
+
+!!#### PUBLIC ACCESS LIST
+PUBLIC :: xyPERPCW_V
+PUBLIC :: xyPERPCW_U
+
+CONTAINS
+
+PURE FUNCTION xyPERPCW_V_Rsp( V ) RESULT(xyV)
+!!#### LOCAL KINDS
+USE KND_IntrinsicTypes,ONLY: KIND_R=>KIND_Rsp   !!((01-A-KND_IntrinsicTypes.f90))
+!!#### LOCAL PARAMETERS
+REAL(KIND_R),PARAMETER :: c_0 = c_0_Rsp
+INCLUDE "04-A-FUN_xyPERPCW_V.f90.hdr"
+!!--begin--
+INCLUDE "04-A-FUN_xyPERPCW_V.f90.bdy"
+!!--end--
+END FUNCTION
+
+PURE FUNCTION xyPERPCW_V_Rdp( V ) RESULT(xyV)
+!!#### LOCAL KINDS
+USE KND_IntrinsicTypes,ONLY: KIND_R=>KIND_Rdp   !!((01-A-KND_IntrinsicTypes.f90))
+!!#### LOCAL PARAMETERS
+REAL(KIND_R),PARAMETER :: c_0 = c_0_Rdp
+INCLUDE "04-A-FUN_xyPERPCW_V.f90.hdr"
+!!--begin--
+INCLUDE "04-A-FUN_xyPERPCW_V.f90.bdy"
+!!--end--
+END FUNCTION
+
+
+PURE FUNCTION xyPERPCW_U_Rsp( U ) RESULT(xyU)
+!!#### LOCAL KINDS
+USE KND_IntrinsicTypes,ONLY: KIND_R=>KIND_Rsp   !!((01-A-KND_IntrinsicTypes.f90))
+!!#### LOCAL PARAMETERS
+REAL(KIND_R),PARAMETER :: c_0 = c_0_Rsp
+INCLUDE "04-A-FUN_xyPERPCW_U.f90.hdr"
+!!--begin--
+INCLUDE "04-A-FUN_xyPERPCW_U.f90.bdy"
+!!--end--
+END FUNCTION
+
+PURE FUNCTION xyPERPCW_U_Rdp( U ) RESULT(xyU)
+!!#### LOCAL KINDS
+USE KND_IntrinsicTypes,ONLY: KIND_R=>KIND_Rdp   !!((01-A-KND_IntrinsicTypes.f90))
+!!#### LOCAL PARAMETERS
+REAL(KIND_R),PARAMETER :: c_0 = c_0_Rdp
+INCLUDE "04-A-FUN_xyPERPCW_U.f90.hdr"
+!!--begin--
+INCLUDE "04-A-FUN_xyPERPCW_U.f90.bdy"
+!!--end--
+END FUNCTION
+
+END MODULE

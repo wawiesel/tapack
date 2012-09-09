@@ -1,0 +1,70 @@
+MODULE FUN_xyPERPCCW
+!!#### PURPOSE
+!! Construct a perpendicular vector by 90 degrees
+!! Counter-Clockwise (CCW) rotation.
+
+!!#### EXTERNAL KINDS
+USE KND_IntrinsicTypes,ONLY: KIND_Rsp,KIND_Rdp !!((01-A-KND_IntrinsicTypes.f90))
+
+!!#### DEFAULT IMPLICIT
+IMPLICIT NONE
+
+!!#### DEFAULT ACCESS
+PRIVATE
+
+!!#### PROCEDURE OVERLOADING
+INTERFACE xyPERPCCW_V
+ MODULE PROCEDURE xyPERPCCW_V_Rsp
+ MODULE PROCEDURE xyPERPCCW_V_Rdp
+END INTERFACE
+
+INTERFACE xyPERPCCW_U
+ MODULE PROCEDURE xyPERPCCW_U_Rsp
+ MODULE PROCEDURE xyPERPCCW_U_Rdp
+END INTERFACE
+
+!!#### PUBLIC ACCESS LIST
+PUBLIC :: xyPERPCCW_V
+PUBLIC :: xyPERPCCW_U
+
+CONTAINS
+
+PURE FUNCTION xyPERPCCW_V_Rsp( V ) RESULT(xyV)
+!!#### LOCAL KINDS
+USE KND_IntrinsicTypes,ONLY: KIND_R=>KIND_Rsp  !!((01-A-KND_IntrinsicTypes.f90))
+INCLUDE "03-A-FUN_xyPERPCCW_V.f90.hdr"
+!!--begin--
+INCLUDE "03-A-FUN_xyPERPCCW_V.f90.bdy"
+!!--end--
+ENDFUNCTION
+
+PURE FUNCTION xyPERPCCW_V_Rdp( V ) RESULT(xyV)
+!!#### LOCAL KINDS
+USE KND_IntrinsicTypes,ONLY: KIND_R=>KIND_Rdp  !!((01-A-KND_IntrinsicTypes.f90))
+INCLUDE "03-A-FUN_xyPERPCCW_V.f90.hdr"
+!!--begin--
+INCLUDE "03-A-FUN_xyPERPCCW_V.f90.bdy"
+!!--end--
+ENDFUNCTION
+
+
+PURE FUNCTION xyPERPCCW_U_Rsp( U ) RESULT(xyU)
+!!#### LOCAL KINDS
+USE KND_IntrinsicTypes,ONLY: KIND_R=>KIND_Rsp  !!((01-A-KND_IntrinsicTypes.f90))
+INCLUDE "03-A-FUN_xyPERPCCW_U.f90.hdr"
+!!--begin--
+INCLUDE "03-A-FUN_xyPERPCCW_U.f90.bdy"
+!!--end--
+ENDFUNCTION
+
+PURE FUNCTION xyPERPCCW_U_Rdp( U ) RESULT(xyU)
+!!#### LOCAL KINDS
+USE KND_IntrinsicTypes,ONLY: KIND_R=>KIND_Rdp  !!((01-A-KND_IntrinsicTypes.f90))
+INCLUDE "03-A-FUN_xyPERPCCW_U.f90.hdr"
+!!--begin--
+INCLUDE "03-A-FUN_xyPERPCCW_U.f90.bdy"
+!!--end--
+ENDFUNCTION
+
+
+END MODULE

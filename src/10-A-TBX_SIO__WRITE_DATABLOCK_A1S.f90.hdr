@@ -1,0 +1,9 @@
+!#ARGUMENTS
+TYPE(TYPE_SIO)  ,POINTER                             :: SIO
+CHARACTER(LEN=*,KIND=KIND_S),INTENT(IN)             :: X(:)
+TYPE(TYPE_FdBk)             ,INTENT(INOUT),OPTIONAL :: FdBk
+INTEGER,INTENT(IN),OPTIONAL :: Indent
+
+!#LOCALS
+INTEGER :: i,j
+TYPE(varying_string) :: VS

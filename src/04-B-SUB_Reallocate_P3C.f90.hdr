@@ -1,0 +1,9 @@
+!!#### REQUIRED INPUT/OUTPUT
+COMPLEX(KIND_C),POINTER :: data(:,:,:)
+
+!!#### OPTIONAL INPUT
+!! @ fill value of the new entries [fill]
+COMPLEX(KIND_C),OPTIONAL,INTENT(IN) :: fill
+
+!!#### LOCAL VARIABLES
+COMPLEX(KIND_C),POINTER :: p(:,:,:)

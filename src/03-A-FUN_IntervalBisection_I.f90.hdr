@@ -1,0 +1,16 @@
+!!#### REQUIRED INPUT
+!! @ list of x-values <x>
+!! @ input x-value <x0>
+INTEGER(KIND_x),INTENT(IN) :: x(:)
+INTEGER(KIND_x),INTENT(IN) :: x0
+
+!!#### OPTIONAL INPUT
+!! @ maximum number of points to include in interval <MAX_span>
+INTEGER,OPTIONAL,INTENT(IN) :: MAX_span
+
+!!#### REQUIRED OUTPUT
+!! @ lower and upper bounds <(/l(1),l(2)/)>
+INTEGER :: l(1:2)
+
+!!#### LOCAL VARIABLES
+INTEGER :: halfspan,span,N,LB,UB,i

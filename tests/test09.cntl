@@ -1,0 +1,145 @@
+\TAPauthor{"WAW"}
+\TAPdetails{"Test with sigma_t=1, c=0.5, qext=1, and the 
+  perturbation fraction pertfrac=0.3, without low-order."}
+
+
+****MESH****
+
+\DORlevquad{"LMLQ"}{12}
+\DORuniz{T}
+
+!standard seed
+!\MSHrandseed{76435219}
+
+!other seeds
+\MSHrandseed{3835457}
+!\MSHrandseed{16586373}
+!\MSHrandseed{563345321}
+
+
+\MSHinit{2}
+\MSHdomain{"Rectangle"}{ 0.0,0.0 }{ 1.0,0.0 }{ 0.0,1.0 }{scale=1,1}
+
+\MSHblock{"Uniform"}{"B"}{ 0.0,0.0 }{ 1.0,0.0 }{ 0.0,1.0 }
+ 8 8
+
+Generate a perturbed mesh.
+\MSHpertvert{"POLYREGION"}{0.01875,0.01875}{0,360}
+4
+ 0.0001  0.0001 
+ 0.9999  0.0001 
+ 0.9999  0.9999
+ 0.0001  0.9999
+
+\MSHscale{1,1}
+
+
+
+
+****DATA****
+
+\NRGinit{1}{0}{1}
+
+\MATinit{"red"}
+\MATmact0{"red"}
+1
+\MATmacs0{"red"}
+0.5
+\MATmacnu0{"red"}
+0.0
+\MATmacf0{"red"}
+0.0
+\MATassoc{"*"}{"red"}
+
+\SRCpolygon{"W"}{1}{4}{T}
+  0.0  0.0
+ 10.0  0.0
+ 10.0 10.0
+  0.0 10.0
+                0.0 0.0
+
+
+****ITERATIONS****
+
+\TAPminit{1}
+\TAPmaxit{1000}
+\TAPtolsf{1E-8}
+
+
+****HIGH ORDER TRANSPORT****
+
+\MCSbc{"fixed" , &
+       "fixed" , &
+       "fixed" , &
+       "fixed" }{ "infinite" , "infinite" } 
+0
+0
+0
+0
+
+!* long characteristics options
+\MCSlongchar{F}
+
+!* short characteristics options
+\MCSorder{2}
+\MCSsourceorder{1}
+\MCSinterpplane{"diag"}
+\MCSmonotonic{T}
+
+!* subcell balance options
+\MCSsbalance{T}
+!\MCSsbedgeinterp{"Parabolic"}
+\MCSsbedgeinterp{"ParabolicKarpov"}
+!\MCSsbedgeinterp{"Flat"}
+!\MCSsbedgeinterp{"CWENO"}
+!\MCSsbopts{CWENO_cwt=0.50}
+
+!* general options
+\MCScellfunction{"Flat"} !"Flat" or "Gauss"
+
+
+****LOW ORDER QUASIDIFFUSION****
+
+!Turn off low order.
+!\TAPloworder{"None"}
+
+!Iterative solver.
+!\QDFsolver{"Iterative"}{"SPARSKIT-BiCGstab"}
+!\QDFsparskit{lfil=40}{droptol=1e-4}{niwk=4e6}{maxmatvec=100}
+\QDFsolver{"Direct"}{"nspiv"}
+
+\QDFautoiterfix{T}
+
+\QDFdiffusionits{T,F}
+!\QDFhalfcellshape{"FaceBisect"}
+!\QDFinterfacetype{"SC+WF"}
+\QDFsystem{04}
+
+\QDFcellfunction{"Flat"}  !"Flat" or "Gauss"
+
+
+****OUTPUT****
+
+\TAPintegralregion{"ALL"}{4}{1.0}
+  0.0  0.0
+ 10.0  0.0
+ 10.0 10.0
+  0.0 10.0
+ 
+\TAPoutput{4}
+   "LO-ScalarFlux-CellRegions"&
+   "ScalarFlux-CellRegions"&
+   "TimeSummary"&              
+   "TimeTable"         
+
+
+****LOAD DATA AND ENABLE ANALYTIC TEST****
+
+\TAPloadsolution{F}
+
+\MCSanalyticwarsa{T}{sigmat=1.0}{sigmas=0.5}{"Flat"}
+
+\MCSnobalcheck{T}
+
+\TAPnoloupdate{F}
+

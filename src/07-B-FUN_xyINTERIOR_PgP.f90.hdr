@@ -1,0 +1,45 @@
+!!#### LOCAL PARAMETERS
+!! @ default tolerance <DEFAULT_tol>
+!! @ whether to include edges or not <DEFAULT_IncludeEdges>
+REAL(KIND_R),PARAMETER :: DEFAULT_tol = c_0
+LOGICAL    ,PARAMETER :: DEFAULT_IncludeEdges = .FALSE.
+
+!!#### REQUIRED INPUT
+!! @ polygon number of points and list of vertices <N,Pg>
+!! @ point to check <P>
+!! @ polygon centroid <P_centroid>
+INTEGER    ,INTENT(IN) :: N              
+REAL(KIND_R),INTENT(IN) :: Pg        ( 1:2 , 1:N )      
+REAL(KIND_R),INTENT(IN) :: P         ( 1:2 )          
+REAL(KIND_R),INTENT(IN) :: P_centroid( 1:2 )    
+
+!!#### REQUIRED OUTPUT
+!! @ INTERIOR = .TRUE.  if point lies inside or on edge of polygon
+!!              .FALSE. if point lies outside polygon
+LOGICAL :: INTERIOR
+
+!!#### OPTIONAL INPUT
+!! @ tolerance for point in polygon check <tol>
+!! @ whether or not to include the edges in the check
+REAL(KIND_R),INTENT(IN),OPTIONAL :: tol
+LOGICAL    ,INTENT(IN),OPTIONAL :: IncludeEdges
+
+!!#### OPTIONAL OUTPUT
+!! @ provide more information about where polygon lies <KEY>
+!!         KEY = 0    if INTERIOR==.FALSE.
+!!         KEY = 0    if INTERIOR==.TRUE.  and point is strictly interior to polygon
+!!         KEY = i    if INTERIOR==.TRUE.  and point is on the polygonal path
+!!                                         between polygon vertices, i and ip
+INTEGER,INTENT(OUT),OPTIONAL :: KEY
+
+!!#### LOCAL VARIABLES
+!! @ index of current polygon vertex and next vertex <i,ip>
+!! @ plane of the face <Pn>
+!! @ dot product storage <s>
+!! @ local tolerance <tol_>
+!! @ local edge inclusion <IncludeEdges_>
+INTEGER     :: i,ip          
+REAL(KIND_R) :: Pn    ( 1:3 ) 
+REAL(KIND_R) :: s             
+REAL(KIND_R) :: tol_         
+LOGICAL     :: IncludeEdges_

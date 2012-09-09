@@ -1,0 +1,11 @@
+!!#### PURPOSE
+!! Compute the AVERAGE $Y$ value over 
+!! a line segment
+
+!!#### REQUIRED INPUT
+!! @ line segment
+REAL(KIND_R),INTENT(IN) :: Ls(2,2)
+
+!!#### REQUIRED OUTPUT
+REAL(KIND_R) :: AVERAGEY
+

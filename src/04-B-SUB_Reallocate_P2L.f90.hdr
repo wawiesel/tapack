@@ -1,0 +1,9 @@
+!!#### REQUIRED INPUT/OUTPUT
+LOGICAL(KIND_L),POINTER :: data(:,:)
+
+!!#### OPTIONAL INPUT
+!! @ fill value of the new entries [fill]
+LOGICAL(KIND_L),OPTIONAL,INTENT(IN) :: fill
+
+!!#### LOCAL VARIABLES
+LOGICAL(KIND_L),POINTER :: p(:,:)

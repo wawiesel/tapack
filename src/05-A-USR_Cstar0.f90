@@ -1,0 +1,99 @@
+!!# USER MODULE: <USR_Cstar0>
+MODULE USR_Cstar0
+
+!!## PURPOSE
+!! A type which handles complex (C) variable-kind (star)
+!! scalars (0).
+
+!!## EXTERNAL KINDS
+USE KND_IntrinsicTypes,ONLY: KIND_Csp,KIND_Cdp !!((01-A-KND_IntrinsicTypes.f90))
+
+!!## EXTERNAL PROCEDURES
+USE FUN_Error                                  !!((04-A-FUN_Error.f90))
+
+!!## DEFAULT IMPLICIT
+IMPLICIT NONE
+
+!!## DEFAULT ACCESS
+PRIVATE
+
+!!## TYPE DEFINITION: TYPE_Cstar0
+TYPE TYPE_Cstar0
+ INTEGER           :: KIND = -1
+ COMPLEX(KIND_Csp) :: Csp  = ERROR_Csp
+ COMPLEX(KIND_Cdp) :: Cdp  = ERROR_Cdp
+END TYPE
+
+!!## ASSIGNMENT OPERATOR
+INTERFACE ASSIGNMENT(=)
+ MODULE PROCEDURE ASSIGN_C_Cstar0_Rsp
+ MODULE PROCEDURE ASSIGN_C_Cstar0_Rdp
+ MODULE PROCEDURE ASSIGN_Cstar0_C_Rsp
+ MODULE PROCEDURE ASSIGN_Cstar0_C_Rdp
+END INTERFACE
+
+!!## PROCEDURE OVERLOADING: IsOk
+INTERFACE IsOk
+ MODULE PROCEDURE IsOk_Cstar0
+END INTERFACE
+
+!!## PUBLIC ACCESS
+PUBLIC :: TYPE_Cstar0
+PUBLIC :: ASSIGNMENT(=)
+PUBLIC :: IsOk
+
+CONTAINS
+
+
+PURE ELEMENTAL FUNCTION IsOk_Cstar0( Cstar0 ) RESULT(IsOk)
+!!#### REQUIRED INPUT
+TYPE(TYPE_Cstar0),INTENT(IN) :: Cstar0
+!!#### REQUIRED OUTPUT
+LOGICAL :: IsOk
+!!--begin--
+IsOk = Cstar0 % KIND >= 0
+!!--end--
+END FUNCTION
+
+
+PURE ELEMENTAL SUBROUTINE ASSIGN_C_Cstar0_Rsp(C,Cstar0)
+!!#### LOCAL KINDS
+USE KND_IntrinsicTypes,ONLY: KIND_C=>KIND_Csp  !!((01-A-KND_IntrinsicTypes.f90))
+INCLUDE "05-A-USR_Cstar0__ASSIGN_C_Cstar0.f90.hdr"
+!!--begin--
+INCLUDE "05-A-USR_Cstar0__ASSIGN_C_Cstar0.f90.bdy"
+!!--end--
+END SUBROUTINE
+
+
+PURE ELEMENTAL SUBROUTINE ASSIGN_C_Cstar0_Rdp(C,Cstar0)
+!!#### LOCAL KINDS
+USE KND_IntrinsicTypes,ONLY: KIND_C=>KIND_Cdp  !!((01-A-KND_IntrinsicTypes.f90))
+INCLUDE "05-A-USR_Cstar0__ASSIGN_C_Cstar0.f90.hdr"
+!!--begin--
+INCLUDE "05-A-USR_Cstar0__ASSIGN_C_Cstar0.f90.bdy"
+!!--end--
+END SUBROUTINE
+
+
+PURE ELEMENTAL SUBROUTINE ASSIGN_Cstar0_C_Rsp(Cstar0,C)
+!!#### LOCAL KINDS
+USE KND_IntrinsicTypes,ONLY: KIND_C=>KIND_Csp  !!((01-A-KND_IntrinsicTypes.f90))
+INCLUDE "05-A-USR_Cstar0__ASSIGN_Cstar0_C.f90.hdr"
+!!--begin--
+INCLUDE "05-A-USR_Cstar0__ASSIGN_Cstar0_C.f90.bdy"
+!!--end--
+END SUBROUTINE
+
+
+PURE ELEMENTAL SUBROUTINE ASSIGN_Cstar0_C_Rdp(Cstar0,C)
+!!#### LOCAL KINDS
+USE KND_IntrinsicTypes,ONLY: KIND_C=>KIND_Cdp  !!((01-A-KND_IntrinsicTypes.f90))
+INCLUDE "05-A-USR_Cstar0__ASSIGN_Cstar0_C.f90.hdr"
+!!--begin--
+INCLUDE "05-A-USR_Cstar0__ASSIGN_Cstar0_C.f90.bdy"
+!!--end--
+END SUBROUTINE
+
+
+END MODULE

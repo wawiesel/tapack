@@ -1,0 +1,15 @@
+!#OPTIONAL INPUT
+INTEGER,OPTIONAL,INTENT(IN) :: DELTA
+
+!#LOCAL VARIABLES
+REAL(KIND_R),POINTER :: A(:)
+INTEGER    ,POINTER :: JA(:)
+INTEGER             :: NZMAX, N
+
+!#DETAILS
+!  Note that this routine assumes the start of row pointers to be
+!  in increasing order.  This should be a matter of concern only
+!  if this routine is called at an intermediate state in the
+!  construction of a matrix where the matrix data structure is not
+!  well defined as defined in is_ok (S).  If you use only routines from
+!  this library to construct the matrix, it should pose no problem.

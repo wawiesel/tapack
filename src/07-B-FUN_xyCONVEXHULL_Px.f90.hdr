@@ -1,0 +1,18 @@
+!#REQUIRED INPUT
+! @ list of points <N,Px>
+INTEGER  ,INTENT(IN) :: N                    
+REAL(KIND_R),INTENT(IN) :: Px( 1:2 , 1:N ) 
+
+!#REQUIRED OUTPUT
+! @ ordering of points to make a convex hull <order_cvh>
+!   negative orderings are discarded points
+INTEGER :: order_cvh( 1:N )
+
+!#LOCAL VARIABLES
+INTEGER                 :: i,j,k,ii,N_upper,N_lower,imin,imax,jmin,jmax
+LOGICAL                 :: mask_upper(1:N),mask_lower(1:N)
+REAL(KIND_R)             :: U_bisector(1:2)
+REAL(KIND_R)             :: t
+REAL(KIND_R)             :: Px_local(1:2,1:N)
+REAL(KIND_R),ALLOCATABLE :: Px_ws(:,:)
+INTEGER    ,ALLOCATABLE :: ilist(:),jlist(:)

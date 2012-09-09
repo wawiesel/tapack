@@ -1,0 +1,6 @@
+FC = ifort
+LD = ifort
+CPPFLAGS = -macro_expand
+FFLAGS = -fpp -CA -CB -CU -O2 -traceback 
+LDFLAGS = $(LIBS)
+LIST = -listing

@@ -1,0 +1,2 @@
+REAL(KIND_R),POINTER :: xa(:,:,:),xp(:),wa(:,:),wp(:)
+INTEGER :: Nmp,Nma,N,mp

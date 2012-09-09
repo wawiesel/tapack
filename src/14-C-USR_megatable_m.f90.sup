@@ -1,0 +1,9 @@
+IF( megatable%m/=0 )THEN
+
+ m = megatable%m
+
+ELSE
+
+ m = GET_Direction(Ordinates,megatable%Omega)
+
+END IF

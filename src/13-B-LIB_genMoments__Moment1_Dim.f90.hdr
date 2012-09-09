@@ -1,0 +1,6 @@
+!!#### REQUIRED INPUT
+INTEGER,INTENT(IN) :: Dim
+
+
+!!#### REQUIRED OUTPUT
+REAL(KIND_R) :: Moment1_Dim

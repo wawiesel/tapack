@@ -1,0 +1,22 @@
+!!#### REQUIRED INPUT
+REAL(KIND_R),INTENT(IN) :: xa(:,:),xp(:)
+REAL(KIND_R),INTENT(IN) :: wa(SIZE(xa,2)),wp(SIZE(xp))
+
+!!#### REQUIRED OUTPUT
+!! * weights <w>
+!! * abcissas (direction cosines) <x>
+INTEGER     ,POINTER :: m_map(:,:)
+REAL(KIND_R),POINTER :: x(:,:)
+REAL(KIND_R),POINTER :: w(:)
+
+
+!!#### OPTIONAL OUTPUT
+!! * error integer ($0$ is no error, $>0$ is warning, $<0$ is error) <errint>
+!! * corresponding error message <errmsg>
+
+INTEGER     ,OPTIONAL,INTENT(OUT) :: errint
+CHARACTER(*),OPTIONAL,INTENT(OUT) :: errmsg
+
+!#LOCAL VARIABLES
+INTEGER :: errint_,m,Nmp,Nma,Nm,mp,ma
+CHARACTER(100) :: errmsg_

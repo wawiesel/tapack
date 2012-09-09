@@ -1,0 +1,121 @@
+Author.
+\TAPauthor{"WAW"}
+
+Details.
+\TAPdetails{"Fixed incoming boundaries plus a flat source lead to an 
+             invariant solution."}
+
+The number of energy groups (total,fast,thermal).
+\NRGinit{1}{0}{1}
+
+Initialize the Mesh structure for two dimensions.
+\MSHinit{2}
+
+Define a rectangular domain oriented on the x and y axes.
+\MSHdomain{"Rectangle"}{ 0.0,0.0 }{ 1.0,0.0 }{ 0.0,1.0 }{scale=1,1}
+
+Use a uniform mesh block.
+\MSHblock{"Uniform"}{"B"}{ 0.0,0.0 }{ 1.0,0.0 }{ 0.0,1.0 }
+1 1
+
+Scale it.
+\MSHscale{1,1}
+ 
+
+Boundary conditions on bottom,right,top,left boundaries.
+Fixed 1/4pi boundary conditions.
+\MCSbc{"fixed" , &
+       "fixed" , &
+       "fixed" , &
+       "fixed" }{ "infinite" , "infinite" }
+1
+1
+1
+1
+
+
+Define the red material and define the cross sections.
+\MATinit{"red"}
+
+
+\MATmact0{"red"}
+1.0
+\MATmacs0{"red"}
+0.0
+\MATmacnu0{"red"}
+0.0
+\MATmacf0{"red"}
+0.0
+
+
+Associate all cells with the red material.
+\MATassoc{"*"}{"red"}
+
+
+Set the source everywhere to 4pi.
+\SRCpolygon{"W"}{12.566370614359172953850573533118}{4}{T}
+-1000.0 -1000.0
+ 1000.0 -1000.0
+ 1000.0  1000.0
+-1000.0  1000.0
+ 0.0 0.0
+
+
+Exiting Current.
+\TAPcurrentexiting{0.5,0.5}{1.0,1.0}
+
+Define an integral Region.
+\TAPintegralregion{"ALL"}{4}{1.0}
+ 0.0 0.0
+ 1.0 0.0
+ 1.0 1.0
+ 0.0 1.0
+
+
+
+Set the Quadrature set.
+\DORlevquad{"LMLQ"}{8}
+\DORuniz{T}
+
+Maximum/Minimum transport iterations.
+\TAPmaxit{+100}
+\TAPminit{+2}
+
+Scalar flux tolerances.
+\TAPtolsf{1E-12}
+
+Use subcell balances.
+\MCSsbalance{T}
+\MCSsbedgeinterp{"Parabolic"}
+\MCScellfunction{"Gauss"}
+
+Set up the low order solver.
+\TAPloworder{"None"}
+
+
+Visualization/Output options.
+
+\TAPoutput{6}
+   "ScalarFlux-CellRegions"&
+   "Current-Exiting"&
+   "ScalarFluxV"&
+   "ScalarFluxF"&
+   "ScalarFluxC"&
+   "AngularFluxC"
+
+Megatable output selector.
+\TAPmegatable{"PhiV"}{g=1}{r=0.0,0.0,0.0}{Note="BL"}
+\TAPmegatable{"PhiV"}{g=1}{r=1.0,0.0,0.0}{Note="BR"}
+\TAPmegatable{"PhiV"}{g=1}{r=1.0,1.0,0.0}{Note="TR"}
+\TAPmegatable{"PhiV"}{g=1}{r=0.0,1.0,0.0}{Note="TL"}
+\TAPmegatable{"PhiR"}{g=1}{region="ALL"}
+
+
+Solution checking.
+\TAPchecksoln{"PsiV"}{"1"}{k=0}{g=1}{m=0}{checktol=8E-16}
+  
+\TAPchecksoln{"PsiF"}{"1"}{j=0}{g=1}{m=0}{checktol=8E-16}
+
+\TAPchecksoln{"PsiC"}{"1"}{i=0}{g=1}{m=0}{checktol=8E-16}  
+  
+

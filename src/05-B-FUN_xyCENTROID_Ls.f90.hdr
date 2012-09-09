@@ -1,0 +1,7 @@
+!!#### REQUIRED INPUT
+!! @ line segment <Ls>
+REAL(KIND_R),INTENT(IN) :: Ls( xySHAPE_Ls(1) , xySHAPE_Ls(2) )
+
+!!#### REQUIRED OUTPUT
+!! @ centroid of line segment in R^2 [xyP]
+REAL(KIND_R) :: xyP( xySHAPE_P(1) )

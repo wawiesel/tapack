@@ -1,0 +1,8 @@
+!!#### REQUIRED INPUT/OUTPUT
+!! @ number of dimensions
+!! @ coordinate system
+!! @ list of line segments <Lsx>
+INTEGER     ,INTENT(IN) :: NDim
+INTEGER     ,INTENT(IN) :: Coord
+REAL(KIND_R),POINTER    :: Lsx(:,:,:)
+INTEGER     ,INTENT(IN) :: N

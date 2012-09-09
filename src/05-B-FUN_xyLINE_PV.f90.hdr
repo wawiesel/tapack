@@ -1,0 +1,9 @@
+!!#### REQUIRED INPUT
+!! @ point in R^2 <P>
+!! @ vector in R^2 <V>
+REAL(KIND_R),INTENT(IN) :: P( 1:2 ) 
+REAL(KIND_R),INTENT(IN) :: V( 1:2 ) 
+
+!!#### REQUIRED OUTPUT
+!! @ line in R^2 <xyLn>
+REAL(KIND_R) :: xyLn( 1:2 , 1:2 ) 

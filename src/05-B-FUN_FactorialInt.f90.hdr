@@ -1,0 +1,10 @@
+!!#### REQUIRED INPUT
+!! @ factorial integer [x]
+INTEGER(KIND_I),INTENT(IN) :: x
+
+!!#### REQUIRED OUTPUT
+!! @ integer value of x!! [y]
+INTEGER(KIND_I) :: y
+
+!!#### LOCAL VARIABLES
+INTEGER(KIND_I) :: j

@@ -1,0 +1,18 @@
+!#REQUIRED INPUT/OUTPUT
+! @ input/output object [IO]
+! @ integer value [val]
+TYPE(TYPE_SIO) ,POINTER       :: SIO
+INTEGER(KIND_I),INTENT(INOUT) :: val
+
+!#OPTIONAL INPUT/OUTPUT
+! @ feedback object [FDBK]
+TYPE(TYPE_FDBK),OPTIONAL,INTENT(INOUT) :: FDBK
+
+!!#### OPTIONAL INPUT
+CHARACTER(*),INTENT(IN),OPTIONAL :: KEYS(:)
+
+!!--begin--
+
+CALL BEGIN_ARGUMENTS(sio,(/'val'/),FdBk)
+CALL ARGUMENT(sio,val,FdBk,KEYS=KEYS)
+CALL END_ARGUMENTS(sio,FdBk)

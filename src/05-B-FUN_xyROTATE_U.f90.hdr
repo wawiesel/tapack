@@ -1,0 +1,17 @@
+!!#### REQUIRED INPUT
+!! @ unit vector to rotate in R^2 <U>
+!! @ the angle of rotation in radians <dt>
+REAL(KIND_R),INTENT(IN) :: U( 1:2 )
+REAL(KIND_R),INTENT(IN) :: dt
+
+!!#### REQUIRED OUTPUT
+!! @ unit vector rotated in R^2 [xyU]
+REAL(KIND_R) :: xyU( 1:2 )
+
+!!#### LOCAL VARIABLES
+REAL(KIND_R) :: cos_t      !cosine of the angle
+REAL(KIND_R) :: sin_t      !sine   of the angle
+REAL(KIND_R) :: cos_dt     !cosine of the angle of rotation
+REAL(KIND_R) :: sin_dt     !!  sine of the angle of rotation
+REAL(KIND_R) :: cos_tp     !cosine of the angle plus the angle of rotation
+REAL(KIND_R) :: sin_tp     !!  sine of the angle plus the angle of rotation

@@ -1,0 +1,9 @@
+!!#### REQUIRED INPUT
+!! first point in R^2 <P_a>
+!! second point in R^2 <P_b>
+REAL(KIND_R),INTENT(IN) :: P_a(1:2)
+REAL(KIND_R),INTENT(IN) :: P_b(1:2)
+
+!!#### REQUIRED OUTPUT
+!! @ vector <xyV>
+REAL(KIND_R) :: xyV(1:2)

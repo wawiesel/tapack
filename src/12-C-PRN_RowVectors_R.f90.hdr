@@ -1,0 +1,3 @@
+!!####REQUIRED INPUT
+!! @ the real input array to print as row vectors <x>
+REAL(KIND_R),INTENT(IN) :: x(:,:)

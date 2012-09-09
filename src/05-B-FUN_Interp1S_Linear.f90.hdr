@@ -1,0 +1,16 @@
+!!#### REQUIRED INPUT
+!! @ list of y-values [y]
+!! @ list of x-values [x]
+!! @ input x-value [x0]
+REAL(KIND_x),INTENT(IN) :: x0
+REAL(KIND_y),INTENT(IN) :: y( :       )
+REAL(KIND_x),INTENT(IN) :: x(1:SIZE(y))
+
+!!#### REQUIRED OUTPUT
+!! @ output y-value [y0]
+REAL(KIND_y) :: y0
+
+!!#### LOCAL VARIABLES
+REAL(KIND_y) :: f1,f2
+INTEGER :: k(1:2)
+

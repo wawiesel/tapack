@@ -1,0 +1,13 @@
+!!#### REQUIRED INPUT
+!! @ plane <Pn> in $R^2$ 
+!! @ point <P> in $R^2$ 
+REAL(KIND_R),INTENT(IN) :: Pn( 1:3 )
+REAL(KIND_R),INTENT(IN) :: P( 1:2 )
+
+!!#### REQUIRED OUTPUT
+!! @ reflected point <xyP> in $R^2$
+REAL(KIND_R) :: xyP( 1:2 )
+
+!!#### LOCAL VARIABLES
+REAL(KIND_R) :: s
+REAL(KIND_R) :: U(2)

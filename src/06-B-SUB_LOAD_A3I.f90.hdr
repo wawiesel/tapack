@@ -1,0 +1,2 @@
+!!#### REQUIRED OUTPUT
+INTEGER(KIND_I),INTENT(OUT) :: A(:,:,:)

@@ -1,0 +1,11 @@
+!!#### REQUIRED INPUT
+TYPE(varying_string),POINTER :: VSin
+
+!!#### OPTIONAL INPUT
+CHARACTER(LEN=*,KIND=KIND_Sfmt),INTENT(IN),OPTIONAL :: FMT
+LOGICAL                        ,INTENT(IN),OPTIONAL :: AdjustLeft
+LOGICAL                        ,INTENT(IN),OPTIONAL :: AdjustRight
+
+!!#### REQUIRED OUPUT
+CHARACTER(LEN=Switch(MAX_STRING_LENGTH,0,ASSOCIATED(VSin)),&
+  KIND=KIND_S),POINTER :: S

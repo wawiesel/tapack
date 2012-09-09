@@ -1,0 +1,14 @@
+!!#### REQUIRED INPUT
+!! @ the slices <N,Sli>
+INTEGER     ,INTENT(IN) :: N
+REAL(KIND_R),INTENT(IN) :: Sli(3,N)
+
+
+!!#### REQUIRED OUTPUT
+!! @ area of the slice
+REAL(KIND_R) :: AREA
+  
+
+!!#### LOCAL VARIABLES
+INTEGER      :: i
+REAL(KIND_R) :: Qp(2,4)

@@ -1,0 +1,106 @@
+!!# USER MODULE: <USR_Rstar0>
+MODULE USR_Rstar0
+
+!!## PURPOSE
+!! A type which handles real (R) variable-kind (star)
+!! scalars (0).
+
+!!## EXTERNAL KINDS
+USE KND_IntrinsicTypes,ONLY: KIND_Rsp,KIND_Rdp !!((01-A-KND_IntrinsicTypes.f90))
+
+!!## EXTERNAL PROCEDURES
+USE FUN_Error                                  !!((04-A-FUN_Error.f90))
+
+!!## DEFAULT IMPLICIT
+IMPLICIT NONE
+
+!!## DEFAULT ACCESS
+PRIVATE
+
+!!## TYPE DEFINITION
+TYPE TYPE_Rstar0
+ INTEGER        :: KIND = -1
+ REAL(KIND_Rsp) :: Rsp = ERROR_Rsp
+ REAL(KIND_Rdp) :: Rdp = ERROR_Rdp
+END TYPE
+
+!!## ASSIGNMENT OPERATOR
+INTERFACE ASSIGNMENT(=)
+ MODULE PROCEDURE ASSIGN_R_Rstar0_Rsp
+ MODULE PROCEDURE ASSIGN_R_Rstar0_Rdp
+ MODULE PROCEDURE ASSIGN_Rstar0_R_Rsp
+ MODULE PROCEDURE ASSIGN_Rstar0_R_Rdp
+END INTERFACE
+
+INTERFACE IsOk
+ MODULE PROCEDURE IsOk_Rstar0
+END INTERFACE
+
+
+!!## PUBLIC ACCESS
+PUBLIC :: TYPE_Rstar0
+PUBLIC :: ASSIGNMENT(=)
+PUBLIC :: IsOk
+
+
+!!## CONTAINED PROCEDURES
+CONTAINS
+
+
+!!### PURE ELEMENTAL FUNCTION: <IsOk_Rstar0>
+PURE ELEMENTAL FUNCTION IsOk_Rstar0( Rstar0 ) RESULT(IsOk)
+!!#### REQUIRED INPUT
+TYPE(TYPE_Rstar0),INTENT(IN) :: Rstar0
+!!#### REQUIRED OUTPUT
+LOGICAL :: IsOk
+!!--begin--
+IsOk = Rstar0 % KIND >= 0
+!!--end--
+END FUNCTION
+
+
+!!### PURE ELEMENTAL FUNCTION: <ASSIGN_R_Rstar0_Rsp>
+PURE ELEMENTAL SUBROUTINE ASSIGN_R_Rstar0_Rsp(R,Rstar0)
+!!#### LOCAL KINDS
+USE KND_IntrinsicTypes,ONLY: KIND_R=>KIND_Rsp  !!((01-A-KND_IntrinsicTypes.f90))
+INCLUDE "05-A-USR_Rstar0__ASSIGN_R_Rstar0.f90.hdr"
+!!--begin--
+INCLUDE "05-A-USR_Rstar0__ASSIGN_R_Rstar0.f90.bdy"
+!!--end--
+END SUBROUTINE
+
+
+!!### PURE ELEMENTAL FUNCTION: <ASSIGN_R_Rstar0_Rdp>
+PURE ELEMENTAL SUBROUTINE ASSIGN_R_Rstar0_Rdp(R,Rstar0)
+!!#### LOCAL KINDS
+USE KND_IntrinsicTypes,ONLY: KIND_R=>KIND_Rdp  !!((01-A-KND_IntrinsicTypes.f90))
+INCLUDE "05-A-USR_Rstar0__ASSIGN_R_Rstar0.f90.hdr"
+!!--begin--
+INCLUDE "05-A-USR_Rstar0__ASSIGN_R_Rstar0.f90.bdy"
+!!--end--
+END SUBROUTINE
+
+
+!!### PURE ELEMENTAL FUNCTION: <ASSIGN_Rstar0_R_Rsp>
+PURE ELEMENTAL SUBROUTINE ASSIGN_Rstar0_R_Rsp(Rstar0,R)
+!!#### LOCAL KINDS
+USE KND_IntrinsicTypes,ONLY: KIND_R=>KIND_Rsp  !!((01-A-KND_IntrinsicTypes.f90))
+INCLUDE "05-A-USR_Rstar0__ASSIGN_Rstar0_R.f90.hdr"
+!!--begin--
+INCLUDE "05-A-USR_Rstar0__ASSIGN_Rstar0_R.f90.bdy"
+!!--end--
+END SUBROUTINE
+
+
+!!### PURE ELEMENTAL FUNCTION: <ASSIGN_Rstar0_R_Rdp>
+PURE ELEMENTAL SUBROUTINE ASSIGN_Rstar0_R_Rdp(Rstar0,R)
+!!#### LOCAL KINDS
+USE KND_IntrinsicTypes,ONLY: KIND_R=>KIND_Rdp  !!((01-A-KND_IntrinsicTypes.f90))
+INCLUDE "05-A-USR_Rstar0__ASSIGN_Rstar0_R.f90.hdr"
+!!--begin--
+INCLUDE "05-A-USR_Rstar0__ASSIGN_Rstar0_R.f90.bdy"
+!!--end--
+END SUBROUTINE
+
+
+END MODULE

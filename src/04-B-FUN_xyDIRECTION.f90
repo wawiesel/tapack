@@ -1,0 +1,121 @@
+MODULE FUN_xyDIRECTION
+!!#### PURPOSE
+!! Determine a unit (direction) vector <U>, from:
+!!  @ a vector <V>,
+!!  @ two points <PP>,
+!!  @ two points in a list <P2>, or
+!!  @ the normal of a plane <Pn>.
+
+!!#### EXTERNAL KINDS
+USE KND_IntrinsicTypes,ONLY: KIND_Rsp,KIND_Rdp !!((01-A-KND_IntrinsicTypes.f90))
+
+!!#### EXTERNAL PROCEDURES
+USE FUN_xyNORM,ONLY: xyNORM_V                  !!((03-A-FUN_xyNORM.f90))
+
+!!#### DEFAULT IMPLICIT
+IMPLICIT NONE
+
+!!#### DEFAULT ACCESS
+PRIVATE
+
+!!#### PROCEDURE OVERLOADING
+INTERFACE xyDIRECTION_V
+ MODULE PROCEDURE xyDIRECTION_V_Rsp
+ MODULE PROCEDURE xyDIRECTION_V_Rdp
+END INTERFACE
+
+INTERFACE xyDIRECTION_PP
+ MODULE PROCEDURE xyDIRECTION_PP_Rsp
+ MODULE PROCEDURE xyDIRECTION_PP_Rdp
+END INTERFACE
+
+INTERFACE xyDIRECTION_P2
+ MODULE PROCEDURE xyDIRECTION_P2_Rsp
+ MODULE PROCEDURE xyDIRECTION_P2_Rdp
+END INTERFACE
+
+INTERFACE xyDIRECTION_Pn
+ MODULE PROCEDURE xyDIRECTION_Pn_Rsp
+ MODULE PROCEDURE xyDIRECTION_Pn_Rdp
+END INTERFACE
+
+
+!!#### PUBLIC ACCESS LIST
+PUBLIC :: xyDIRECTION_V
+PUBLIC :: xyDIRECTION_PP
+PUBLIC :: xyDIRECTION_P2
+PUBLIC :: xyDIRECTION_Pn
+
+
+CONTAINS
+
+
+PURE FUNCTION xyDIRECTION_PP_Rsp( P_a , P_b ) RESULT( xyU )
+USE KND_IntrinsicTypes,ONLY: KIND_R=>KIND_Rsp  !!((01-A-KND_IntrinsicTypes.f90))
+INCLUDE "04-B-FUN_xyDIRECTION_PP.f90.hdr"
+!!--begin--
+INCLUDE "04-B-FUN_xyDIRECTION_PP.f90.bdy"
+!!--end--
+END FUNCTION
+
+PURE FUNCTION xyDIRECTION_PP_Rdp( P_a , P_b ) RESULT( xyU )
+USE KND_IntrinsicTypes,ONLY: KIND_R=>KIND_Rdp  !!((01-A-KND_IntrinsicTypes.f90))
+INCLUDE "04-B-FUN_xyDIRECTION_PP.f90.hdr"
+!!--begin--
+INCLUDE "04-B-FUN_xyDIRECTION_PP.f90.bdy"
+!!--end--
+END FUNCTION
+
+
+PURE FUNCTION xyDIRECTION_P2_Rsp( P2 ) RESULT( xyU )
+USE KND_IntrinsicTypes,ONLY: KIND_R=>KIND_Rsp  !!((01-A-KND_IntrinsicTypes.f90))
+INCLUDE "04-B-FUN_xyDIRECTION_P2.f90.hdr"
+!!--begin--
+INCLUDE "04-B-FUN_xyDIRECTION_P2.f90.bdy"
+!!--end--
+END FUNCTION
+
+PURE FUNCTION xyDIRECTION_P2_Rdp( P2 ) RESULT( xyU )
+USE KND_IntrinsicTypes,ONLY: KIND_R=>KIND_Rdp  !!((01-A-KND_IntrinsicTypes.f90))
+INCLUDE "04-B-FUN_xyDIRECTION_P2.f90.hdr"
+!!--begin--
+INCLUDE "04-B-FUN_xyDIRECTION_P2.f90.bdy"
+!!--end--
+END FUNCTION
+
+
+PURE FUNCTION xyDIRECTION_V_Rsp( V ) RESULT( xyU )
+USE KND_IntrinsicTypes,ONLY: KIND_R=>KIND_Rsp  !!((01-A-KND_IntrinsicTypes.f90))
+INCLUDE "04-B-FUN_xyDIRECTION_V.f90.hdr"
+!!--begin--
+INCLUDE "04-B-FUN_xyDIRECTION_V.f90.bdy"
+!!--end--
+END FUNCTION
+
+PURE FUNCTION xyDIRECTION_V_Rdp( V ) RESULT( xyU )
+USE KND_IntrinsicTypes,ONLY: KIND_R=>KIND_Rdp  !!((01-A-KND_IntrinsicTypes.f90))
+INCLUDE "04-B-FUN_xyDIRECTION_V.f90.hdr"
+!!--begin--
+INCLUDE "04-B-FUN_xyDIRECTION_V.f90.bdy"
+!!--end--
+END FUNCTION
+
+
+PURE FUNCTION xyDIRECTION_Pn_Rsp( Pn ) RESULT( xyU )
+USE KND_IntrinsicTypes,ONLY: KIND_R=>KIND_Rsp  !!((01-A-KND_IntrinsicTypes.f90))
+INCLUDE "04-B-FUN_xyDIRECTION_Pn.f90.hdr"
+!!--begin--
+INCLUDE "04-B-FUN_xyDIRECTION_Pn.f90.bdy"
+!!--end--
+END FUNCTION
+
+PURE FUNCTION xyDIRECTION_Pn_Rdp( Pn ) RESULT( xyU )
+USE KND_IntrinsicTypes,ONLY: KIND_R=>KIND_Rdp  !!((01-A-KND_IntrinsicTypes.f90))
+INCLUDE "04-B-FUN_xyDIRECTION_Pn.f90.hdr"
+!!--begin--
+INCLUDE "04-B-FUN_xyDIRECTION_Pn.f90.bdy"
+!!--end--
+END FUNCTION
+
+
+END MODULE

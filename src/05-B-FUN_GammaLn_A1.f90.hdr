@@ -1,0 +1,4 @@
+INTEGER(I4B) :: i
+REAL(KIND_R), DIMENSION(:), INTENT(IN) :: x
+REAL(DP), DIMENSION(size(x)) :: LOG_gamma
+REAL(DP), DIMENSION(size(x)) :: ser,tmp,x_,y

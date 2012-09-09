@@ -1,0 +1,30 @@
+!*******************************************************************************
+!
+!!! xyAREA_Elps returns the area of an ellipse in 2D.
+!
+!!  Integration region:
+!
+!!    ( ( X - CENTER(1) ) / R1 )**2 + ( ( Y - CENTER(2) ) / R2 )**2 <= 1
+!
+!!  Modified:
+!
+!!    16 November 2000 [original]
+!!    22 July     2005 [William A. Wieselquist]
+!
+!!  Author:
+!
+!!    John Burkardt
+!
+!!  Parameters:
+
+!
+!!    Input, real   El(:,1) = (/CENTER(1),CENTER(2)/), the center coordinates
+!!                  El(:,2) = (/R1,R2/), the major and minor semi-axes.
+!
+real ( kind = KIND_R ),INTENT(IN) :: El(1:2,1:2)
+
+!
+!!    Output, real  AREA, the area of the ellipse.
+!
+  real ( kind = KIND_R ) :: AREA
+  

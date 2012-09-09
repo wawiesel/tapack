@@ -1,0 +1,113 @@
+
+!! @ real numbers 1-10
+REAL(KIND_R),PARAMETER :: c_0  =  0.0_KIND_R
+REAL(KIND_R),PARAMETER :: c_1  =  1.0_KIND_R
+REAL(KIND_R),PARAMETER :: c_2  =  2.0_KIND_R
+REAL(KIND_R),PARAMETER :: c_3  =  3.0_KIND_R
+REAL(KIND_R),PARAMETER :: c_4  =  4.0_KIND_R
+REAL(KIND_R),PARAMETER :: c_5  =  5.0_KIND_R
+REAL(KIND_R),PARAMETER :: c_6  =  6.0_KIND_R
+REAL(KIND_R),PARAMETER :: c_7  =  7.0_KIND_R
+REAL(KIND_R),PARAMETER :: c_8  =  8.0_KIND_R
+REAL(KIND_R),PARAMETER :: c_9  =  9.0_KIND_R
+REAL(KIND_R),PARAMETER :: c_10 = 10.0_KIND_R
+REAL(KIND_R),PARAMETER :: c_11 = 11.0_KIND_R
+REAL(KIND_R),PARAMETER :: c_12 = 12.0_KIND_R
+REAL(KIND_R),PARAMETER :: c_13 = 13.0_KIND_R
+REAL(KIND_R),PARAMETER :: c_24 = 24.0_KIND_R
+REAL(KIND_R),PARAMETER :: c_90 = 90.0_KIND_R
+REAL(KIND_R),PARAMETER :: c_100= 100.0_KIND_R
+REAL(KIND_R),PARAMETER :: c_120= 120.0_KIND_R
+REAL(KIND_R),PARAMETER :: c_180= 180.0_KIND_R
+REAL(KIND_R),PARAMETER :: c_270= 270.0_KIND_R
+
+!! @ inverse of real numbers 1-10
+REAL(KIND_R),PARAMETER :: c_1_by_0  = HUGE(c_1)
+REAL(KIND_R),PARAMETER :: c_1_by_2  = c_1 / c_2
+REAL(KIND_R),PARAMETER :: c_1_by_3  = c_1 / c_3
+REAL(KIND_R),PARAMETER :: c_1_by_4  = c_1 / c_4
+REAL(KIND_R),PARAMETER :: c_5_by_24 = c_5 / c_24
+REAL(KIND_R),PARAMETER :: c_1_by_5  = c_1 / c_5
+REAL(KIND_R),PARAMETER :: c_1_by_6  = c_1 / c_6
+REAL(KIND_R),PARAMETER :: c_1_by_7  = c_1 / c_7
+REAL(KIND_R),PARAMETER :: c_1_by_8  = c_1 / c_8
+REAL(KIND_R),PARAMETER :: c_1_by_9  = c_1 / c_9
+REAL(KIND_R),PARAMETER :: c_1_by_10 = c_1 / c_10
+REAL(KIND_R),PARAMETER :: c_1_by_11 = c_1 / c_11
+REAL(KIND_R),PARAMETER :: c_1_by_12 = c_1 / c_12
+REAL(KIND_R),PARAMETER :: c_1_by_13 = c_1 / c_13
+REAL(KIND_R),PARAMETER :: c_1_by_24 = c_1 / c_24
+REAL(KIND_R),PARAMETER :: c_1_by_120 = c_1 / c_120
+
+!! @ some more numbers
+REAL(KIND_R),PARAMETER :: c_3_by_2  = c_3 / c_2
+REAL(KIND_R),PARAMETER :: c_4_by_3  = c_4 / c_3
+REAL(KIND_R),PARAMETER :: c_5_by_4  = c_5 / c_4
+REAL(KIND_R),PARAMETER :: c_6_by_5  = c_6 / c_5
+
+!! @ square roots of numbers 2,3,5,6,7,10,11,13
+REAL(KIND_R),PARAMETER :: c_sqrt_2   = 1.4142135623730950488016887242097_KIND_R
+REAL(KIND_R),PARAMETER :: c_sqrt_3   = 1.7320508075688772935274463415059_KIND_R
+REAL(KIND_R),PARAMETER :: c_sqrt_5   = 2.2360679774997896964091736687313_KIND_R
+REAL(KIND_R),PARAMETER :: c_sqrt_6   = 2.4494897427831780981972840747059_KIND_R
+REAL(KIND_R),PARAMETER :: c_sqrt_7   = 2.6457513110645905905016157536393_KIND_R
+REAL(KIND_R),PARAMETER :: c_sqrt_10  = 3.1622776601683793319988935444327_KIND_R
+REAL(KIND_R),PARAMETER :: c_sqrt_11  = 3.3166247903553998491149327366707_KIND_R
+REAL(KIND_R),PARAMETER :: c_sqrt_13  = 3.6055512754639892931192212674705_KIND_R
+REAL(KIND_R),PARAMETER :: c_sqrt_2_by_2 = c_sqrt_2/c_2
+
+!! @ inverse of square roots of numbers
+REAL(KIND_R),PARAMETER :: c_1_by_sqrt_2  = c_1 / c_sqrt_2
+REAL(KIND_R),PARAMETER :: c_1_by_sqrt_3  = c_1 / c_sqrt_3
+REAL(KIND_R),PARAMETER :: c_1_by_sqrt_5  = c_1 / c_sqrt_5
+REAL(KIND_R),PARAMETER :: c_1_by_sqrt_6  = c_1 / c_sqrt_6
+REAL(KIND_R),PARAMETER :: c_1_by_sqrt_7  = c_1 / c_sqrt_7
+REAL(KIND_R),PARAMETER :: c_1_by_sqrt_10 = c_1 / c_sqrt_10
+REAL(KIND_R),PARAMETER :: c_1_by_sqrt_11 = c_1 / c_sqrt_11
+REAL(KIND_R),PARAMETER :: c_1_by_sqrt_13 = c_1 / c_sqrt_13
+
+
+!! @ named constant PI
+REAL(KIND_R),PARAMETER :: c_PI              = 3.1415926535897932384626433832795_KIND_R
+REAL(KIND_R),PARAMETER :: c_sqr_PI          = c_PI**2
+REAL(KIND_R),PARAMETER :: c_PI_by_2         = c_PI/c_2
+REAL(KIND_R),PARAMETER :: c_PI_by_3         = c_PI/c_3
+REAL(KIND_R),PARAMETER :: c_PI_by_4         = c_PI/c_4
+REAL(KIND_R),PARAMETER :: c_PI_by_6         = c_PI/c_6
+
+REAL(KIND_R),PARAMETER :: c_2_times_PI      = c_2*c_PI
+REAL(KIND_R),PARAMETER :: c_3_times_PI      = c_2*c_PI
+REAL(KIND_R),PARAMETER :: c_4_times_PI      = c_4*c_PI
+
+REAL(KIND_R),PARAMETER :: c_2_times_PI_by_3 = c_2_times_PI/c_3
+REAL(KIND_R),PARAMETER :: c_4_times_PI_by_3 = c_4_times_PI/c_3
+
+REAL(KIND_R),PARAMETER :: c_sqrt_PI         = 1.772453850905516027298167483341_KIND_R
+REAL(KIND_R),PARAMETER :: c_180_by_PI       = c_180/c_PI
+REAL(KIND_R),PARAMETER :: c_PI_by_180       = c_PI/c_180
+
+REAL(KIND_R),PARAMETER :: c_1_by_4_times_PI = c_1/c_4_times_PI
+
+REAL(KIND_R),PARAMETER :: c_1_minus_EPS     = c_1 - EPSILON(c_1)
+REAL(KIND_R),PARAMETER :: c_1_minus_10_times_EPS = c_1 - c_10*EPSILON(c_1)
+
+!! @ origins in R^3 and R^2 spaces
+REAL(KIND_R),PARAMETER :: P2_origin(1:2) = c_0
+REAL(KIND_R),PARAMETER :: P3_origin(1:3) = c_0
+
+!! @ x-axis in R^3 and R^2 spaces
+REAL(KIND_R),PARAMETER :: U2_x(1:2) = (/c_1,c_0/)
+REAL(KIND_R),PARAMETER :: U3_x(1:3) = (/c_1,c_0,c_0/)
+
+!! @ y-axis in R^3 and R^2 spaces
+REAL(KIND_R),PARAMETER :: U2_y(1:2) = (/c_0,c_1/)
+REAL(KIND_R),PARAMETER :: U3_y(1:3) = (/c_0,c_1,c_0/)
+
+!! @ z-axis in R^3 space
+REAL(KIND_R),PARAMETER :: U3_z(1:3) = (/c_0,c_0,c_1/)
+
+!! @ the number e
+REAL(KIND_R),PARAMETER :: c_E = 2.71828182845904523536028747135_KIND_R
+
+!! @ the Euler-Mascheroni constant
+REAL(KIND_R),PARAMETER :: c_GAMMA = 0.577215664901532860606512090082402431042159335_KIND_R

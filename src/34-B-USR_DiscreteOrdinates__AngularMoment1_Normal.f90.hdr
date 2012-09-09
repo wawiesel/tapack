@@ -1,0 +1,25 @@
+!#PURPOSE
+! Calculate the surface integral subject to 
+! conditional (direction .dot. normal<0).
+
+!#REQUIRED INPUT
+! @ the angular flux [AngularFlux]
+REAL(KIND_R)         ,INTENT(IN) :: AngularFlux(:,:) !g,k,m=>g,m
+REAL(KIND_DOR),INTENT(IN) :: DirCos(:,:)
+REAL(KIND_MSH)       ,INTENT(IN) :: Normal(1:SIZE(DirCos,1))
+INTEGER             ,INTENT(IN) :: m_(:,:)
+REAL(KIND_DOR),INTENT(IN) :: PolWts(1:SIZE(m_,2))
+REAL(KIND_DOR),INTENT(IN) :: AziWts(1:SIZE(m_,1))
+
+!#REQUIRED OUTPUT
+! @ partial 1-st moment (also called current) (i.e. subject to 
+!   a directional constraint) [Moment1]
+REAL(KIND_R) :: Moment1(1:SIZE(AngularFlux,1))
+
+REAL(KIND_DOR),INTENT(IN),OPTIONAL :: AziSin(:)
+
+
+!#LOCAL VARIABLES
+! @ angular dummy index (not the same as the master index)
+INTEGER :: m,mp,ma,g
+REAL(KIND_R) :: dot_prod

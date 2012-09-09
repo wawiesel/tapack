@@ -1,0 +1,6 @@
+
+!!#### REQUIRED INPUT/OUTPUT
+REAL(KIND_R),POINTER    :: DenseArray(:,:)
+
+!!#### REQUIRED INPUT
+INTEGER,INTENT(IN) :: N(2)

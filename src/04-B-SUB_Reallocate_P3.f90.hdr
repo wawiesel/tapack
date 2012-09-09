@@ -1,0 +1,14 @@
+!!#### REQUIRED INPUT
+!! @ increase in upperbound <dn>
+INTEGER,INTENT(IN) :: dn(3)
+
+!!#### OPTIONAL INPUT
+!! @ increase in lower bound <dnl>
+INTEGER,INTENT(IN),OPTIONAL :: dnl(3)
+LOGICAL,INTENT(IN),OPTIONAL :: noisy
+
+!!#### LOCAL VARIABLES
+INTEGER :: lb1,ub1,lbo1,ubo1,lf1,uf1,lc1,uc1
+INTEGER :: lb2,ub2,lbo2,ubo2,lf2,uf2,lc2,uc2
+INTEGER :: lb3,ub3,lbo3,ubo3,lf3,uf3,lc3,uc3
+INTEGER :: dnl_(3),dn_(3)

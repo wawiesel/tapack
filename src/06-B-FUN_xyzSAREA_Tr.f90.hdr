@@ -1,0 +1,19 @@
+!#LOCAL PARAMETERS
+! @ number of vertices for a triangle <N_>
+INTEGER,PARAMETER :: N_ = 3 
+
+!#REQUIRED INPUT
+! @ triangle in R^3 <Tr>
+! @ transformation matrix <M32_transform>
+REAL(KIND_R),INTENT(IN) :: Tr( 1:3 , 1:N_ )
+REAL(KIND_R),INTENT(IN) :: M32_transform( 1:3 , 1:2 )
+
+!#REQUIRED OUTPUT
+! @ signed area of the triangle <sAREA>
+REAL(KIND_R) :: sAREA
+
+!#LOCAL VARIABLES
+! @ triangle in R^2 <Tr_local>
+REAL(KIND_R) :: Tr_local( 1:2 , 1:N_ )  
+
+

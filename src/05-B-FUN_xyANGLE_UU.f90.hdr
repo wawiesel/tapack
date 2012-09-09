@@ -1,0 +1,14 @@
+!!#### REQUIRED INPUT
+!! @ first unit vector <U_a>
+!! @ second unit vector <U_b>
+REAL(KIND_R),INTENT(IN) :: U_a(1:2)
+REAL(KIND_R),INTENT(IN) :: U_b(1:2)
+
+!!#### REQUIRED OUTPUT
+!! @ angle from U_a to U_b <t>
+REAL(KIND_R) :: t
+
+!!#### LOCAL VARIABLES
+REAL(KIND_R) :: c
+
+

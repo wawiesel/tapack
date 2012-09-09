@@ -1,0 +1,17 @@
+!!#### PURPOSE
+!! Compute the AVERAGE of a planar
+!! surface over a polygon
+
+!!#### REQUIRED INPUT
+!! * plane coefficients $a+bx+cy$
+REAL(KIND_R),INTENT(IN) :: Lin2(3)
+!! * polygon
+INTEGER     ,INTENT(IN) :: N
+REAL(KIND_R),INTENT(IN) :: Pg(2,N)
+
+!!#### REQUIRED OUTPUT
+REAL(KIND_R) :: AVERAGE
+
+!!#### LOCAL VARIABLES
+REAL(KIND_R) :: AREA
+

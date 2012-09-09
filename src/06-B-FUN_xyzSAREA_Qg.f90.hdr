@@ -1,0 +1,21 @@
+!#METHOD
+! Project quadrilateral to R^2 and calculate via 
+! procedure xySAREA_Qg.
+
+!#LOCAL PARAMETERS
+! @ number of vertices for quadrilateral <N_>
+INTEGER,PARAMETER :: N_=4 
+
+!#REQUIRED INPUT
+! @ general quadrilateral <Qg>
+! @ transformation matrix <M32_transform>
+REAL(KIND_R),INTENT(IN) :: Qg( 1:3 , 1:N_ )
+REAL(KIND_R),INTENT(IN) :: M32_transform( 1:3 , 1:2 )
+
+!#REQUIRED OUTPUT
+! @ signed area of the quadrilateral <SAREA>
+REAL(KIND_R) :: SAREA
+
+!#LOCAL VARIABLES
+! @ quadrilateral projected to R^2 <Qg_local>
+REAL(KIND_R) :: Qg_local( 1:2 , 1:N_ ) 

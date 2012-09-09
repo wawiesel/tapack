@@ -1,0 +1,10 @@
+!#REQUIRED INPUT
+! @ integer to get the factorial of [x]
+INTEGER(KIND_I),INTENT(IN) :: x
+
+!#REQUIRED OUTPUT
+! @ x! [y]
+REAL(KIND_R) :: y
+
+!#LOCAL VARIABLES
+INTEGER(KIND_I) :: j

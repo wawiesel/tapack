@@ -1,0 +1,15 @@
+!!#### PURPOSE
+!! Compute the INTEGRAL of a linear function
+!! over a line segment
+
+!!#### REQUIRED INPUT
+!! * linear function $a+bx$
+REAL(KIND_R),INTENT(IN) :: Lin1(2)
+!! * line segment
+REAL(KIND_R),INTENT(IN) :: Ls(2,2)
+
+!!#### REQUIRED OUTPUT
+REAL(KIND_R) :: INTEGRAL
+
+!!#### LOCAL VARIABLES
+REAL(KIND_R) :: L

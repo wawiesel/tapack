@@ -1,0 +1,10 @@
+!determine number of points
+N = SIZE(x)
+
+IF( x0<x(1) )THEN
+ l = (/0,1/)
+ RETURN
+ELSE IF( x0>=x(N) )THEN
+ l = (/N,N+1/)
+ RETURN
+END IF

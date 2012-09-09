@@ -1,0 +1,135 @@
+Author.
+\TAPauthor{"WAW"}
+
+Details.
+\TAPdetails{"The waterfall test."}
+
+Label and Output File.
+
+
+
+\MSHinit{2}
+
+Define a rectangular domain oriented on the x and y axes.
+\MSHdomain{"Rectangle"}{ 0.0,0.0 }{ 1.0,0.0 }{ 0.0,1.0 }{ scale=11.0,10.0 }
+
+\MSHblock{"Regular"}{"B"}{ 0.0,0.0 }{ 1.0,0.0 }{ 0.0,1.0 }{ scale=11.0,10.0 }
+40 20
+0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5
+0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 
+
+
+The number of energy groups (total,fast,thermal).
+\NRGinit{1}{0}{1}
+
+Boundary conditions.
+\MCSbc{"vacuum" , &
+       "vacuum" , &
+       "vacuum" , &
+       "fixed"   }{ "infinite" , "infinite" }
+0.15915494309189533576888376337251
+
+\DORlevquad{"LMLQ"}{12}
+\DORuniz{T}
+
+\TAPoutput{7}
+   "LO-ScalarFlux-CellRegions"&
+   "ScalarFlux-CellRegions"&
+   "ScalarFluxC"&
+   "ScalarFluxF"&
+   "ScalarFluxV"&
+   "LO-ScalarFluxC"&
+   "LO-ScalarFluxF"
+
+Scalar flux tolerance.
+\TAPtolsf{1E-4}
+
+Maximum transport iterations.
+\TAPmaxit{20}
+
+Define materials.
+
+\MATinit{"blue"}
+
+\MATmact0{"blue"}
+2.00
+\MATmacs0{"blue"}
+0.00
+\MATmacnu0{"blue"}
+0.00
+\MATmacf0{"blue"}
+0.00
+
+\MATpolygon{"blue"}{4}
+ 0.0  0.0
+ 1.0  0.0
+ 1.0 10.0
+ 0.0 10.0
+
+\TAPintegralregion{"Ileft"}{4}{1.0}
+ 0.0  0.0
+ 1.0  0.0
+ 1.0 10.0
+ 0.0 10.0
+
+
+Top and hat material.
+\MATinit{"red"}
+
+\MATmact0{"red"}
+100
+\MATmacs0{"red"}
+100
+\MATmacnu0{"red"}
+0.0
+\MATmacf0{"red"}
+0.0
+
+\MATpolygon{"red"}{4}
+  1.0  0.0
+ 11.0  0.0
+ 11.0 10.0
+  1.0 10.0
+
+\TAPintegralregion{"Iright"}{4}{1.0}
+  1.0  0.0
+ 11.0  0.0
+ 11.0 10.0
+  1.0 10.0
+
+
+Source
+\SRCpolygon{"Q"}{0.0}{4} 
+ 0.0 0.0
+11.0 0.0  
+11.0 10.0  
+ 0.0 10.0
+
+!* subcell balance options
+\MCSsbalance{T}
+!\MCSsbedgeinterp{"Parabolic"}
+\MCSsbedgeinterp{"ParabolicKarpov"}
+!\MCSsbedgeinterp{"Flat"}
+!\MCSsbedgeinterp{"CWENO"}
+!\MCSsbopts{CWENO_cwt=0.50}
+
+!* general options
+\MCScellfunction{"Flat"} 
+
+\QDFsystem{04}
+\QDFcellfunction{"Flat"}
+
+"Iterative" | "SMLIB-GMRES","SMLIB-BiCGStab","SPARSKIT-BiCGstab","Botchev-BiCGstab2"
+"Direct"    | "SMLIB-BandedGauss","LAPACK-DenseGauss"
+
+\QDFsolver{"Direct"}{"nspiv"}
+
+!\QDFsparskit{lfil=10}{droptol=0.01}{niwk=4e6}{maxmatvec=100}&
+!   {PrecSpec="ILUD"}{EvalCond=F}{RowScale=T}{ColScale=T}{StdScale=F}{colnorm=0}{rownorm=0}
+
+\QDFautoiterfix{T}
+
+\TAPvisualizenow{F}
+
+
+\TAPprinteachit{T}

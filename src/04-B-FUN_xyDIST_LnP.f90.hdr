@@ -1,0 +1,10 @@
+!!#### REQUIRED INPUT
+!! @ the line <Ln>
+!! @ the point <P>
+REAL(KIND_R),INTENT(IN) :: Ln( 1:2 , 1:2 )
+REAL(KIND_R),INTENT(IN) :: P ( 1:2 )
+
+!!#### REQUIRED OUTPUT
+!! @ shortest distance between line and point <DIST>
+REAL(KIND_R) :: DIST
+REAL(KIND_R) :: W(1:2)

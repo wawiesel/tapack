@@ -1,0 +1,9 @@
+!!#### REQUIRED INPUT
+!! @ plane in R^2 <Pn>
+!! @ vector in R^2 <V>
+REAL(KIND_R),INTENT(IN) :: Pn( 1:3 )
+REAL(KIND_R),INTENT(IN) :: V( 1:2 )
+
+!!#### REQUIRED OUTPUT
+!! @ reflected vector in R^2 [xyV]
+REAL(KIND_R) :: xyV( 1:2 )

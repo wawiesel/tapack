@@ -1,0 +1,10 @@
+
+IF( megatable%k/=0 )THEN
+
+ k = megatable%k
+
+ELSE
+ 
+ k = GET_vert(Mesh,vert=megatable%r)
+
+END IF

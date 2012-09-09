@@ -1,0 +1,2 @@
+!!#### REQUIRED INPUT/OUTPUT
+TYPE(varying_string),INTENT(INOUT) :: ARRAY(:)

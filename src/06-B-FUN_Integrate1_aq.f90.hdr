@@ -1,0 +1,31 @@
+!#REQUIRED INPUT
+! @ function interface <f>
+! @ limits of integration <p>
+REAL(KIND_R),INTENT(IN) :: p(1:2) 
+! @ tolerance of limit approximation <tol>
+! @ maximum number of levels <N>
+REAL(KIND_R),INTENT(IN) :: tol  
+INTEGER     ,INTENT(IN) :: N      
+
+!#REQUIRED OUTPUT
+! @ approximate value of integral <result>
+REAL(KIND_R) :: result   
+
+!#LOCAL VARIABLES
+! @ current level <i>
+! @ default number of levels <N__>
+! @ tolerance at current level, i <TOLER>
+! @ left endpoint, a, at current level, i <A>
+! @ interval width at current level, i <H>
+! @ sum, sum1, sum2 <S,S1,S2>
+! @ length <L>
+! @ variable record <v>
+INTEGER                   :: i     
+REAL(KIND_R),DIMENSION(N) :: TOLER
+REAL(KIND_R),DIMENSION(N) :: A,H
+REAL(KIND_R),DIMENSION(N) :: FA,FB,FC
+REAL(KIND_R),DIMENSION(N) :: S
+INTEGER     ,DIMENSION(N) :: L
+REAL(KIND_R)                       :: S1,S2,FD,FE
+REAL(KIND_R),DIMENSION(8)          :: v     
+LOGICAL :: Allocated

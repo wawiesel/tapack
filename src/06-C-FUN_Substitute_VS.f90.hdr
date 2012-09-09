@@ -1,0 +1,14 @@
+
+!!#### REQUIRED INPUT
+TYPE(varying_string)        ,INTENT(IN) :: A
+CHARACTER(LEN=*,KIND=KIND_S),INTENT(IN) :: var(:)
+INTEGER                     ,INTENT(IN) :: int(SIZE(var))
+
+!!#### REQUIRED OUTPUT
+TYPE(varying_string) :: B
+
+!!#### OPTIONAL INPUT
+CHARACTER(LEN=*,KIND=KIND_S),OPTIONAL,INTENT(IN) :: fmt(SIZE(var))
+
+!!#### LOCAL VARIABLES
+INTEGER :: s

@@ -1,0 +1,7 @@
+!!#### REQUIRED INPUT
+!! @ rank 1 array of values that make a line segment <ARRAY>
+REAL(KIND_R),INTENT(IN) :: ARRAY(4) 
+
+!!#### REQUIRED OUTPUT
+!! @ line segment in R^2 <xyLs>
+REAL(KIND_R) :: xyLs(2,2) 

@@ -1,0 +1,10 @@
+!!#### OPTIONAL INPUT
+!! @ left-inclusive interval for the random real [l]
+REAL(KIND_R),OPTIONAL,INTENT(IN) :: l(1:2)
+
+!!#### REQUIRED OUTPUT
+!! @ random real [y]
+REAL(KIND_R),INTENT(OUT) :: x
+
+!!#### LOCAL VARIABLES
+REAL(KIND_R) :: LB,UB

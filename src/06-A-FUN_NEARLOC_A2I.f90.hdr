@@ -1,0 +1,17 @@
+!!#### REQUIRED INPUT
+INTEGER(KIND_I),INTENT(IN) :: VECS(:,:)
+
+!!#### REQUIRED OUTPUT
+INTEGER :: loc
+
+!!#### REQUIRED INPUT
+!! @ vector to check VECS for nearest neighbor
+INTEGER(KIND_I),INTENT(IN) :: VEC(1:SIZE(VECS,1))
+
+!!#### OPTIONAL INPUT
+!! @ norm touse<NormSpec>
+CHARACTER(*),OPTIONAL,INTENT(IN) :: NormSpec
+
+!!#### LOCAL VARIABLES
+REAL(KIND_R) :: real_VECS(2*SIZE(VECS,1),SIZE(VECS,2))
+REAL(KIND_R) :: real_VEC (2*SIZE(VECS,1))

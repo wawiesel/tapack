@@ -1,0 +1,11 @@
+IF( .NOT.IsCellBased(MESH) )THEN
+ 
+ CALL PRINT_Text(s="In order to use <"//proc_//"> the mesh must be cell-based!")
+ 
+ IF( Interactive )THEN
+  CALL Pause(s="Press <ENTER> to continue despite error.")
+ ELSE
+  CALL Stop (s="Fatal error")
+ END IF
+
+END IF

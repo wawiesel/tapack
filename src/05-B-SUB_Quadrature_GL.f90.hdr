@@ -1,0 +1,24 @@
+!!#### PARAMETERS
+INTEGER,PARAMETER :: MAXIT=10
+
+!!#### REQUIRED OUTPUT
+!! @ abcissas of quadrature set <abcissas>
+!! @ weights of quadrature set <weights>
+REAL(KIND_R),INTENT(OUT) :: abcissas(:)
+REAL(KIND_R),INTENT(OUT) :: weights(1:SIZE(abcissas))
+
+!!#### OPTIONAL INPUT
+!! @ interval to get quadrature for <domain>
+REAL(KIND_R),INTENT(IN),OPTIONAL :: domain(1:2)
+
+!!#### OPTIONAL OUTPUT
+INTEGER     ,OPTIONAL,INTENT(OUT) :: errint
+CHARACTER(*),OPTIONAL,INTENT(OUT) :: errmsg
+
+!!#### LOCAL VARIABLES
+REAL(KIND_Rdp) :: domain_(1:2)
+INTEGER        :: errint_
+INTEGER        :: its,j,m,n
+REAL(KIND_Rdp) :: xl,xm
+REAL(KIND_Rdp),DIMENSION((size(abcissas)+1)/2) :: p1,p2,p3,pp,z,z1
+LOGICAL ,DIMENSION((size(abcissas)+1)/2) :: unfinished

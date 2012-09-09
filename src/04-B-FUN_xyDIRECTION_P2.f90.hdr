@@ -1,0 +1,7 @@
+!!#### REQUIRED INPUT
+!! two points in R^2 <P2>
+REAL(KIND_R),INTENT(IN) :: P2(1:2,1:2)
+
+!!#### REQUIRED OUTPUT
+!! @ unit vector <xyU>
+REAL(KIND_R) :: xyU(1:2)

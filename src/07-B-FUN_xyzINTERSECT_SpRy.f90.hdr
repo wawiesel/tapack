@@ -1,0 +1,28 @@
+!!#### PURPOSE
+!! Determine if sphere and ray intersect and optionally return
+!! some information about the intersection.
+
+!!#### REQUIRED INPUT
+!! @ sphere in R^3 of the form (/P,r**2/) <Sp>
+!! @ ray in R^3 of the form (/P,U/) <Ry>
+REAL(KIND_R),INTENT(IN) :: Sp( 1:4 ) 
+REAL(KIND_R),INTENT(IN) :: Ry( 1:6 )
+
+!!#### OPTIONAL OUTPUT
+!! @ distance to intersection <DIST>
+!! @ intersection point <P_intersect>
+REAL(KIND_R),INTENT(OUT),OPTIONAL :: DIST             
+REAL(KIND_R),INTENT(OUT),OPTIONAL :: P_intersect( 1:3 )
+
+!!#### REQUIRED OUTPUT
+!! @ whether ray intersects sphere or not [INTERSECT]
+!!   INTERSECT = .FALSE. if ray does not intersect
+!!             = .TRUE.  if ray does intersect
+LOGICAL :: INTERSECT       
+
+!!#### LOCAL VARIABLES
+REAL(KIND_R) :: d         !local distance variable
+REAL(KIND_R) :: d_hcsqr   !half chord distance squared
+REAL(KIND_R) :: P0( 1:3 ) !point from ray base to sphere center
+REAL(KIND_R) :: d_sqr     !distance from ray base to sphere center squared
+

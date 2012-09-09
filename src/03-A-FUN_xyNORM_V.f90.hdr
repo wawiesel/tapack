@@ -1,0 +1,7 @@
+!!#### REQUIRED INPUT
+!! @ vector in R^2 <V>
+REAL(KIND_R),INTENT(IN) :: V( 1:2 )
+
+!!#### REQUIRED OUTPUT
+!! @ normalization constant
+REAL(KIND_R) :: NORM

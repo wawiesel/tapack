@@ -1,0 +1,8 @@
+Pass = ( resid_<=tol_ )
+
+IF( PRESENT(resid) )THEN
+ resid = resid_
+END IF
+IF( PRESENT(tol) )THEN
+ tol = tol_
+END IF

@@ -1,0 +1,12 @@
+!!#### REQUIRED INPUT
+!! @ list of line segments in $R^2$ <N,Lsx>
+INTEGER    ,INTENT(IN) :: N
+REAL(KIND_R),INTENT(IN) :: Lsx(1:2,1:2,1:N)
+
+!!#### REQUIRED OUTPUT
+!! @ polygon formed by a contiguous ordering of line segments <xyPg>
+REAL(KIND_R) :: xyPg(1:2,1:N)
+
+!!#### LOCAL VARIABLES
+INTEGER :: order(1:N),k
+REAL(KIND_R) :: Px(1:2,1:N)

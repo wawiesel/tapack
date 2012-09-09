@@ -1,0 +1,13 @@
+!!#### REQUIRED INPUT
+!! @ a line in R^2 <Ln>
+!! @ one point in R^2 <P>
+REAL(KIND_R),INTENT(IN) :: Ln( 1:2 , 1:2 )
+REAL(KIND_R),INTENT(IN) :: P( 1:2 )
+
+!!#### OPTIONAL INPUT/OUTPUT
+REAL(KIND_R),INTENT(IN) ,OPTIONAL :: tol
+REAL(KIND_R),INTENT(OUT),OPTIONAL :: err
+
+!!#### REQUIRED OUTPUT
+!! @ true if point is on the line, false otherwise <COLINEAR>
+LOGICAL :: COLINEAR

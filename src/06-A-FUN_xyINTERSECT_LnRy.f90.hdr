@@ -1,0 +1,20 @@
+!!#### REQUIRED INPUT
+!! @ line in R^2 [Ln]
+!! @ ray in R^2 [Ry]
+REAL(KIND_R),INTENT(IN) :: Ln(1:2,1:2)
+REAL(KIND_R),INTENT(IN) :: Ry(1:2,1:2)
+
+!!#### REQUIRED OUTPUT
+!! @ whether or not intersection occured [INTERSECT]
+LOGICAL :: INTERSECT
+
+!!#### OPTIONAL OUTPUT
+!! @ distance to intersection along Ln [SDIST_Ln]
+!! @ distance to intersection along Ry [DIST_Ry]
+!! @ point of intersection [P_intersect]
+REAL(KIND_R),OPTIONAL,INTENT(OUT) :: SDIST_Ln
+REAL(KIND_R),OPTIONAL,INTENT(OUT) :: DIST_Ry
+REAL(KIND_R),OPTIONAL,INTENT(OUT) :: P_intersect(1:2)
+
+!!#### LOCAL VARIABLES
+REAL(KIND_R) :: DIST

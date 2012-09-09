@@ -1,0 +1,19 @@
+!!#### PURPOSE
+!! Determine a plane from 2 points.
+
+!!#### METHOD
+!! Use cross products to get the vector out of the plane.  Then
+!! call the point and normal vector procedure, PLANExy_PV.
+
+!!#### REQUIRED INPUT
+!! @ two points (/P_a,P_b/) <P2>
+REAL(KIND_R),INTENT(IN) :: P2( 1:2 , 1:2 )     
+
+!!#### REQUIRED OUTPUT
+!! @ plane normal vector and constant stored as (/U,s/) <Pn>
+REAL(KIND_R) :: Pn( 1:3 )
+
+!!#### LOCAL VARIABLES
+!! @ vector in R^2 <V>
+REAL(KIND_R) :: V( 1:2 ) 
+

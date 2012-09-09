@@ -1,0 +1,10 @@
+!!#### REQUIRED INPUT
+INTEGER(KIND_I),INTENT(IN) :: first,increment
+INTEGER(KIND_I),INTENT(IN) :: n
+
+!!#### REQUIRED OUTPUT
+INTEGER(KIND_I),POINTER :: y(:)
+
+!!#### LOCAL VARIABLES
+INTEGER :: k,k2,temp
+

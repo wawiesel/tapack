@@ -1,0 +1,7 @@
+
+!!#### REQUIRED INPUT/OUTPUT
+REAL(KIND_R),POINTER :: SparseArray(:)
+INTEGER     ,POINTER :: IndexArray(:)
+
+!!#### REQUIRED INPUT
+INTEGER,INTENT(IN) :: N(2)

@@ -1,0 +1,13 @@
+!!#### OPTIONAL INPUT
+!! @ left-inclusive interval for the random integer [l]
+INTEGER(KIND_I),OPTIONAL,INTENT(IN) :: l(1:2)
+
+!!#### REQUIRED OUTPUT
+!! @ random integer [y]
+INTEGER(KIND_I),INTENT(OUT) :: y(:,:)
+
+!!#### LOCAL VARIABLES
+INTEGER(KIND_I) :: x
+INTEGER(KIND_I) :: LB,UB
+REAL(4)        :: rand
+INTEGER        :: i,j

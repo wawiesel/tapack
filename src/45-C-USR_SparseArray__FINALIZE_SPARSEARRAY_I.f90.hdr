@@ -1,0 +1,7 @@
+
+!!#### REQUIRED INPUT/OUTPUT
+INTEGER(KIND_I),POINTER :: SparseArray(:)
+INTEGER        ,POINTER :: IndexArray(:)
+
+!!#### LOCAL VARIABLES
+INTEGER :: N(2),N2,N1,i

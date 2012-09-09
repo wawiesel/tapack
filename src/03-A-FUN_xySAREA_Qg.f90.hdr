@@ -1,0 +1,15 @@
+!!#### METHOD
+!! Add the signed area of two triangles.
+
+!!#### PARAMETERS
+!! @ number of vertices on a quadrilateral <N_>
+INTEGER,PARAMETER :: N_ = 4 
+
+!!#### REQUIRED INPUT
+!! @ quadrilateral <Qd>
+REAL(KIND_R),INTENT(IN) :: Qg( 1:2 , 1:N_ )
+
+!!#### REQUIRED OUTPUT
+!! @ signed area <sAREA>
+REAL(KIND_R) :: sAREA
+

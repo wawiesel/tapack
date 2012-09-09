@@ -1,0 +1,20 @@
+!!#### REQUIRED INPUT
+!! @ order of the azimuthal quadrature <aOrder>
+INTEGER,INTENT(IN) :: aOrder
+
+!!#### REQUIRED OUTPUT
+!! @ azimuthal angle weights <wa>
+!! @ azimuthal angle abcissas (directions of travel in the x-y plane) <xa>
+REAL(KIND_R),INTENT(OUT) :: wa(1:aOrder)
+REAL(KIND_R),INTENT(OUT) :: xa(1:2,1:aOrder)
+
+!!#### OPTIONAL OUTPUT
+!! @ error integer ($0$ is no error, $>0$ is warning, $<0$ is error) <errint>
+!! @ corresponding error message <errmsg>
+INTEGER     ,OPTIONAL,INTENT(OUT) :: errint
+CHARACTER(*),OPTIONAL,INTENT(OUT) :: errmsg
+
+!#LOCAL VARIABLES
+INTEGER :: errint_,Q1
+REAL(KIND_R) :: weights(1:aOrder/4)
+REAL(KIND_R) :: abcissas(1:aOrder/4)

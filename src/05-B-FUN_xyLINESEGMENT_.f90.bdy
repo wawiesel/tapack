@@ -1,0 +1,5 @@
+!xyLs = RESHAPE( ARRAY , xySHAPE_Ls )
+xyLs(1,1) = ARRAY(1)
+xyLs(2,1) = ARRAY(2)
+xyLs(1,2) = ARRAY(3)
+xyLs(2,2) = ARRAY(4)

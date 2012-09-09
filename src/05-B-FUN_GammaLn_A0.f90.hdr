@@ -1,0 +1,3 @@
+REAL(KIND_R),INTENT(IN) :: x
+REAL(DP) :: LOG_gamma
+REAL(DP) :: tmp,x_

@@ -1,0 +1,16 @@
+!!#### METHOD
+!! The signed area is given by the formula
+!!   sAREA = 0.5*{ (x2-x1)*(y3-y1) - (x3-x1)*(y2-y1) }.
+
+!!#### PARAMETERS
+!! @ number of verts on a triangle <N_>
+INTEGER,PARAMETER :: N_ = 3 
+
+!!#### REQUIRED INPUT
+!! @ triangle in R^2 <Tr>
+REAL(KIND_R),INTENT(IN) :: Tr( 1:2 , 1:N_ )
+
+!!#### REQUIRED OUTPUT
+!! @ signed area <sAREA>
+REAL(KIND_R) :: sAREA 
+

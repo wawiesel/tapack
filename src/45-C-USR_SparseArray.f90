@@ -1,0 +1,696 @@
+!!# USER MODULE: <<USR_SparseArray>>
+
+MODULE USR_SparseArray
+
+!!## PURPOSE
+!! Construct and access a dynamically allocated, sparse 2D array.
+
+
+!!## DETAILS
+!! When considering storing and accessing multiple 1D arrays of
+!! data, one can use the intrinsic 2D array, <ARRAY(1:Ni,j)>, for
+!! data set <j>, where <Ni> is known from the data itself (e.g.
+!! initialize to the <Error> number for that type and use <SIZEa>
+!! function) or stored separately.  If <Ni(j)> is not constant
+!! with respect to <j> entries not be used and some space is
+!! wasted.  This is probably fine for many applications.  If not,
+!! considering using these procedures for manipulating sparse
+!! 2D arrays consisting of a 1D array of values <SparseArray>
+!! and 1D array of indices <IndexArray>.
+
+
+
+!!## NOTES
+!! Routines for dense 2D arrays are provided also, although trivial,
+!! with dynamic allocation and the same error checking as the
+!! sparse case in order to compare the storage savings and
+!! speed of the two variants for your test.  See the testing function
+!! <TEST_SparseArray> for details on usage.
+
+
+!!## AUTHOR
+!! William Wieselquist
+
+
+!!## VERSION
+!! 0.1
+
+
+!!## LAST MODIFIED
+!! 150.2007
+
+
+!!## CONTACT
+!! william.wieselquist AT gmail.com
+
+
+!!## MODULES
+!! @ function to return the index of a string in an array of strings
+!! @ function to return the trimmed length (really trimmed SIZE) of an array of strings
+!! @ reallocation routine
+!! @ string clearing routine
+USE FUN_INDEXa                                         !!((08-B-FUN_INDEXa.f90))
+USE FUN_LEN_TRIMa                                      !!((03-A-FUN_LEN_TRIMa.f90))
+USE SUB_Reallocate                                     !!((04-B-SUB_Reallocate.f90))
+USE SUB_CLEAR                                          !!((04-A-SUB_CLEAR.f90))
+USE FUN_SIZEa                                          !!((06-B-FUN_SIZEa.f90))
+USE FUN_Error                                          !!((04-A-FUN_Error.f90))
+USE FUN_EQUILOC                                        !!((03-A-FUN_EQUILOC.f90))
+USE ISO_varying_string                                 !!((03-A-ISO_varying_string.f90))
+USE SUB_CLEARn                                         !!((04-A-SUB_CLEARn.f90))
+USE FUN_Random                                         !!((03-A-FUN_Random.f90))
+USE SUB_Randomize                                      !!((03-A-SUB_Randomize.f90))
+USE FUN_Sentence                                       !!((04-B-FUN_Sentence.f90))
+USE FUN_STR                                            !!((05-B-FUN_STR.f90))
+
+!!## DEFAULT IMPLICIT
+IMPLICIT NONE
+
+
+!!## DEFAULT ACCESS
+PRIVATE
+
+
+!!## INTERFACES
+
+INTERFACE INIT_SPARSEARRAY
+! MODULE PROCEDURE INIT_SPARSEARRAY_Rsp
+ MODULE PROCEDURE INIT_SPARSEARRAY_Rdp
+! MODULE PROCEDURE INIT_SPARSEARRAY_Csp
+! MODULE PROCEDURE INIT_SPARSEARRAY_Cdp
+! MODULE PROCEDURE INIT_SPARSEARRAY_I1
+! MODULE PROCEDURE INIT_SPARSEARRAY_I2
+ MODULE PROCEDURE INIT_SPARSEARRAY_I4
+! MODULE PROCEDURE INIT_SPARSEARRAY_I8
+! MODULE PROCEDURE INIT_SPARSEARRAY_L1
+! MODULE PROCEDURE INIT_SPARSEARRAY_L2
+! MODULE PROCEDURE INIT_SPARSEARRAY_L4
+END INTERFACE
+
+INTERFACE NUM_Entry_SPARSEARRAY
+! MODULE PROCEDURE NUM_Entry_SPARSEARRAY_Rsp
+ MODULE PROCEDURE NUM_Entry_SPARSEARRAY_Rdp
+! MODULE PROCEDURE NUM_Entry_SPARSEARRAY_Csp
+! MODULE PROCEDURE NUM_Entry_SPARSEARRAY_Cdp
+! MODULE PROCEDURE NUM_Entry_SPARSEARRAY_I1
+! MODULE PROCEDURE NUM_Entry_SPARSEARRAY_I2
+ MODULE PROCEDURE NUM_Entry_SPARSEARRAY_I4
+! MODULE PROCEDURE NUM_Entry_SPARSEARRAY_I8
+! MODULE PROCEDURE NUM_Entry_SPARSEARRAY_L1
+! MODULE PROCEDURE NUM_Entry_SPARSEARRAY_L2
+! MODULE PROCEDURE NUM_Entry_SPARSEARRAY_L4
+END INTERFACE
+
+
+INTERFACE SIZE_Entry_SPARSEARRAY
+! MODULE PROCEDURE SIZE_Entry_SPARSEARRAY_Rsp
+ MODULE PROCEDURE SIZE_Entry_SPARSEARRAY_Rdp
+! MODULE PROCEDURE SIZE_Entry_SPARSEARRAY_Csp
+! MODULE PROCEDURE SIZE_Entry_SPARSEARRAY_Cdp
+! MODULE PROCEDURE SIZE_Entry_SPARSEARRAY_I1
+! MODULE PROCEDURE SIZE_Entry_SPARSEARRAY_I2
+ MODULE PROCEDURE SIZE_Entry_SPARSEARRAY_I4
+! MODULE PROCEDURE SIZE_Entry_SPARSEARRAY_I8
+! MODULE PROCEDURE SIZE_Entry_SPARSEARRAY_L1
+! MODULE PROCEDURE SIZE_Entry_SPARSEARRAY_L2
+! MODULE PROCEDURE SIZE_Entry_SPARSEARRAY_L4
+END INTERFACE
+
+
+
+INTERFACE ASSIGN_SPARSEARRAY
+! MODULE PROCEDURE ASSIGN_SPARSEARRAY_Rsp
+ MODULE PROCEDURE ASSIGN_SPARSEARRAY_Rdp
+! MODULE PROCEDURE ASSIGN_SPARSEARRAY_Csp
+! MODULE PROCEDURE ASSIGN_SPARSEARRAY_Cdp
+! MODULE PROCEDURE ASSIGN_SPARSEARRAY_I1
+! MODULE PROCEDURE ASSIGN_SPARSEARRAY_I2
+ MODULE PROCEDURE ASSIGN_SPARSEARRAY_I4
+! MODULE PROCEDURE ASSIGN_SPARSEARRAY_I8
+! MODULE PROCEDURE ASSIGN_SPARSEARRAY_L1
+! MODULE PROCEDURE ASSIGN_SPARSEARRAY_L2
+! MODULE PROCEDURE ASSIGN_SPARSEARRAY_L4
+END INTERFACE
+
+INTERFACE ACCESS_SPARSEARRAY
+! MODULE PROCEDURE ACCESS_SPARSEARRAY_Rsp
+ MODULE PROCEDURE ACCESS_SPARSEARRAY_1_Rdp
+ MODULE PROCEDURE ACCESS_SPARSEARRAY_2_Rdp
+! MODULE PROCEDURE ACCESS_SPARSEARRAY_Csp
+! MODULE PROCEDURE ACCESS_SPARSEARRAY_Cdp
+! MODULE PROCEDURE ACCESS_SPARSEARRAY_I1
+! MODULE PROCEDURE ACCESS_SPARSEARRAY_I2
+ MODULE PROCEDURE ACCESS_SPARSEARRAY_1_I4
+ MODULE PROCEDURE ACCESS_SPARSEARRAY_2_I4
+! MODULE PROCEDURE ACCESS_SPARSEARRAY_I8
+! MODULE PROCEDURE ACCESS_SPARSEARRAY_L1
+! MODULE PROCEDURE ACCESS_SPARSEARRAY_L2
+! MODULE PROCEDURE ACCESS_SPARSEARRAY_L4
+END INTERFACE
+
+
+INTERFACE FREE_SPARSEARRAY
+! MODULE PROCEDURE FREE_SPARSEARRAY_Rsp
+ MODULE PROCEDURE FREE_SPARSEARRAY_Rdp
+! MODULE PROCEDURE FREE_SPARSEARRAY_Csp
+! MODULE PROCEDURE FREE_SPARSEARRAY_Cdp
+! MODULE PROCEDURE FREE_SPARSEARRAY_I1
+! MODULE PROCEDURE FREE_SPARSEARRAY_I2
+ MODULE PROCEDURE FREE_SPARSEARRAY_I4
+! MODULE PROCEDURE FREE_SPARSEARRAY_I8
+! MODULE PROCEDURE FREE_SPARSEARRAY_L1
+! MODULE PROCEDURE FREE_SPARSEARRAY_L2
+! MODULE PROCEDURE FREE_SPARSEARRAY_L4
+END INTERFACE
+
+
+INTERFACE FINALIZE_SPARSEARRAY
+! MODULE PROCEDURE FINALIZE_SPARSEARRAY_Rsp
+ MODULE PROCEDURE FINALIZE_SPARSEARRAY_Rdp
+! MODULE PROCEDURE FINALIZE_SPARSEARRAY_Csp
+! MODULE PROCEDURE FINALIZE_SPARSEARRAY_Cdp
+! MODULE PROCEDURE FINALIZE_SPARSEARRAY_I1
+! MODULE PROCEDURE FINALIZE_SPARSEARRAY_I2
+ MODULE PROCEDURE FINALIZE_SPARSEARRAY_I4
+! MODULE PROCEDURE FINALIZE_SPARSEARRAY_I8
+! MODULE PROCEDURE FINALIZE_SPARSEARRAY_L1
+! MODULE PROCEDURE FINALIZE_SPARSEARRAY_L2
+! MODULE PROCEDURE FINALIZE_SPARSEARRAY_L4
+END INTERFACE
+
+INTERFACE ASSIGN_DENSEARRAY
+! MODULE PROCEDURE ASSIGN_DENSEARRAY_Rsp
+ MODULE PROCEDURE ASSIGN_DENSEARRAY_Rdp
+! MODULE PROCEDURE ASSIGN_DENSEARRAY_Csp
+! MODULE PROCEDURE ASSIGN_DENSEARRAY_Cdp
+! MODULE PROCEDURE ASSIGN_DENSEARRAY_I1
+! MODULE PROCEDURE ASSIGN_DENSEARRAY_I2
+ MODULE PROCEDURE ASSIGN_DENSEARRAY_I4
+! MODULE PROCEDURE ASSIGN_DENSEARRAY_I8
+! MODULE PROCEDURE ASSIGN_DENSEARRAY_L1
+! MODULE PROCEDURE ASSIGN_DENSEARRAY_L2
+! MODULE PROCEDURE ASSIGN_DENSEARRAY_L4
+END INTERFACE
+
+
+INTERFACE SIZE_Entry_DENSEARRAY
+! MODULE PROCEDURE SIZE_Entry_DENSEARRAY_Rsp
+ MODULE PROCEDURE SIZE_Entry_DENSEARRAY_Rdp
+! MODULE PROCEDURE SIZE_Entry_DENSEARRAY_Csp
+! MODULE PROCEDURE SIZE_Entry_DENSEARRAY_Cdp
+! MODULE PROCEDURE SIZE_Entry_DENSEARRAY_I1
+! MODULE PROCEDURE SIZE_Entry_DENSEARRAY_I2
+ MODULE PROCEDURE SIZE_Entry_DENSEARRAY_I4
+! MODULE PROCEDURE SIZE_Entry_DENSEARRAY_I8
+! MODULE PROCEDURE SIZE_Entry_DENSEARRAY_L1
+! MODULE PROCEDURE SIZE_Entry_DENSEARRAY_L2
+! MODULE PROCEDURE SIZE_Entry_DENSEARRAY_L4
+END INTERFACE
+
+
+INTERFACE NUM_Entry_DENSEARRAY
+! MODULE PROCEDURE NUM_Entry_DENSEARRAY_Rsp
+ MODULE PROCEDURE NUM_Entry_DENSEARRAY_Rdp
+! MODULE PROCEDURE NUM_Entry_DENSEARRAY_Csp
+! MODULE PROCEDURE NUM_Entry_DENSEARRAY_Cdp
+! MODULE PROCEDURE NUM_Entry_DENSEARRAY_I1
+! MODULE PROCEDURE NUM_Entry_DENSEARRAY_I2
+ MODULE PROCEDURE NUM_Entry_DENSEARRAY_I4
+! MODULE PROCEDURE NUM_Entry_DENSEARRAY_I8
+! MODULE PROCEDURE NUM_Entry_DENSEARRAY_L1
+! MODULE PROCEDURE NUM_Entry_DENSEARRAY_L2
+! MODULE PROCEDURE NUM_Entry_DENSEARRAY_L4
+END INTERFACE
+
+
+INTERFACE FREE_DENSEARRAY
+! MODULE PROCEDURE FREE_DENSEARRAY_Rsp
+ MODULE PROCEDURE FREE_DENSEARRAY_Rdp
+! MODULE PROCEDURE FREE_DENSEARRAY_Csp
+! MODULE PROCEDURE FREE_DENSEARRAY_Cdp
+! MODULE PROCEDURE FREE_DENSEARRAY_I1
+! MODULE PROCEDURE FREE_DENSEARRAY_I2
+ MODULE PROCEDURE FREE_DENSEARRAY_I4
+! MODULE PROCEDURE FREE_DENSEARRAY_I8
+! MODULE PROCEDURE FREE_DENSEARRAY_L1
+! MODULE PROCEDURE FREE_DENSEARRAY_L2
+! MODULE PROCEDURE FREE_DENSEARRAY_L4
+END INTERFACE
+
+
+INTERFACE INIT_DENSEARRAY
+! MODULE PROCEDURE INIT_DENSEARRAY_Rsp
+ MODULE PROCEDURE INIT_DENSEARRAY_Rdp
+! MODULE PROCEDURE INIT_DENSEARRAY_Csp
+! MODULE PROCEDURE INIT_DENSEARRAY_Cdp
+! MODULE PROCEDURE INIT_DENSEARRAY_I1
+! MODULE PROCEDURE INIT_DENSEARRAY_I2
+ MODULE PROCEDURE INIT_DENSEARRAY_I4
+! MODULE PROCEDURE INIT_DENSEARRAY_I8
+! MODULE PROCEDURE INIT_DENSEARRAY_L1
+! MODULE PROCEDURE INIT_DENSEARRAY_L2
+! MODULE PROCEDURE INIT_DENSEARRAY_L4
+END INTERFACE
+
+
+INTERFACE ACCESS_DENSEARRAY
+! MODULE PROCEDURE ACCESS_DENSEARRAY_Rsp
+ MODULE PROCEDURE ACCESS_DENSEARRAY_1_Rdp
+ MODULE PROCEDURE ACCESS_DENSEARRAY_2_Rdp
+! MODULE PROCEDURE ACCESS_DENSEARRAY_Csp
+! MODULE PROCEDURE ACCESS_DENSEARRAY_Cdp
+! MODULE PROCEDURE ACCESS_DENSEARRAY_I1
+! MODULE PROCEDURE ACCESS_DENSEARRAY_I2
+ MODULE PROCEDURE ACCESS_DENSEARRAY_1_I4
+ MODULE PROCEDURE ACCESS_DENSEARRAY_2_I4
+! MODULE PROCEDURE ACCESS_DENSEARRAY_I8
+! MODULE PROCEDURE ACCESS_DENSEARRAY_L1
+! MODULE PROCEDURE ACCESS_DENSEARRAY_L2
+! MODULE PROCEDURE ACCESS_DENSEARRAY_L4
+END INTERFACE
+
+
+INTERFACE FINALIZE_DENSEARRAY
+! MODULE PROCEDURE FINALIZE_DENSEARRAY_Rsp
+ MODULE PROCEDURE FINALIZE_DENSEARRAY_Rdp
+! MODULE PROCEDURE FINALIZE_DENSEARRAY_Csp
+! MODULE PROCEDURE FINALIZE_DENSEARRAY_Cdp
+! MODULE PROCEDURE FINALIZE_DENSEARRAY_I1
+! MODULE PROCEDURE FINALIZE_DENSEARRAY_I2
+ MODULE PROCEDURE FINALIZE_DENSEARRAY_I4
+! MODULE PROCEDURE FINALIZE_DENSEARRAY_I8
+! MODULE PROCEDURE FINALIZE_DENSEARRAY_L1
+! MODULE PROCEDURE FINALIZE_DENSEARRAY_L2
+! MODULE PROCEDURE FINALIZE_DENSEARRAY_L4
+END INTERFACE
+
+
+!!#### PUBLIC ACCESS LIST
+PUBLIC :: INIT_DENSEARRAY
+PUBLIC :: ASSIGN_DENSEARRAY
+PUBLIC :: FINALIZE_DENSEARRAY
+PUBLIC :: ACCESS_DENSEARRAY
+PUBLIC :: FREE_DENSEARRAY
+
+PUBLIC :: SIZE_Entry_DENSEARRAY
+PUBLIC :: NUM_Entry_DENSEARRAY
+
+PUBLIC :: INIT_SPARSEARRAY
+PUBLIC :: ASSIGN_SPARSEARRAY
+PUBLIC :: FREE_SPARSEARRAY
+PUBLIC :: FINALIZE_SPARSEARRAY
+PUBLIC :: ACCESS_SPARSEARRAY
+
+PUBLIC :: SIZE_Entry_SPARSEARRAY
+PUBLIC :: NUM_Entry_SPARSEARRAY
+
+PUBLIC :: TEST_SPARSEARRAY
+
+!!#### LOCAL PARAMETERS
+!! @ reallocation factor (arrays are reallocate to be SIZE()*Factor)
+REAL   ,PARAMETER :: Factor = 1.4
+!INTEGER,SAVE :: ilast=0
+
+CONTAINS
+
+
+
+SUBROUTINE INIT_DENSEARRAY_I4( DenseArray , N )
+USE KND_IntrinsicTypes,ONLY: KIND_I => KIND_I4         !!((01-A-KND_IntrinsicTypes.f90))
+USE FUN_Error         ,ONLY: Error_ => Error_I4        !!((04-A-FUN_Error.f90))
+INCLUDE "45-C-USR_SparseArray__INIT_DENSEARRAY_I.f90.hdr"
+!!--begin--
+INCLUDE "45-C-USR_SparseArray__INIT_DENSEARRAY.f90.bdy"
+!!--end--
+END SUBROUTINE
+
+
+SUBROUTINE FINALIZE_DENSEARRAY_I4( DenseArray )
+USE KND_IntrinsicTypes,ONLY: KIND_I=>KIND_I4           !!((01-A-KND_IntrinsicTypes.f90))
+USE FUN_Error         ,ONLY: Error_=>Error_I4          !!((04-A-FUN_Error.f90))
+INCLUDE "45-C-USR_SparseArray__FINALIZE_DENSEARRAY_I.f90.hdr"
+!!--begin--
+INCLUDE "45-C-USR_SparseArray__FINALIZE_DENSEARRAY.f90.bdy"
+!!--end--
+END SUBROUTINE
+
+
+SUBROUTINE FREE_DENSEARRAY_I4( DenseArray )
+USE KND_IntrinsicTypes,ONLY: KIND_I=>KIND_I4           !!((01-A-KND_IntrinsicTypes.f90))
+USE FUN_Error         ,ONLY: Error_=>Error_I4          !!((04-A-FUN_Error.f90))
+INCLUDE "45-C-USR_SparseArray__FREE_DENSEARRAY_I.f90.hdr"
+!!--begin--
+INCLUDE "45-C-USR_SparseArray__FREE_DENSEARRAY.f90.bdy"
+!!--end--
+END SUBROUTINE
+
+
+
+SUBROUTINE ASSIGN_DENSEARRAY_I4( DenseArray , i , Entry )
+USE KND_IntrinsicTypes,ONLY: KIND_I=>KIND_I4           !!((01-A-KND_IntrinsicTypes.f90))
+USE FUN_Error         ,ONLY: Error_=>Error_I4          !!((04-A-FUN_Error.f90))
+USE FUN_Warning       ,ONLY: WARNING_=>WARNING_I4      !!((04-B-FUN_Warning.f90))
+INCLUDE "45-C-USR_SparseArray__ASSIGN_DENSEARRAY_I.f90.hdr"
+!!--begin--
+INCLUDE "45-C-USR_SparseArray__ASSIGN_DENSEARRAY.f90.bdy"
+!!--end--
+END SUBROUTINE
+
+
+FUNCTION NUM_Entry_DENSEARRAY_I4( DenseArray ) RESULT(NUM_Entry)
+USE KND_IntrinsicTypes,ONLY: KIND_I=>KIND_I4           !!((01-A-KND_IntrinsicTypes.f90))
+INCLUDE "45-C-USR_SparseArray__NUM_Entry_DENSEARRAY_I.f90.hdr"
+!!--begin--
+INCLUDE "45-C-USR_SparseArray__NUM_Entry_DENSEARRAY.f90.bdy"
+!!--end--
+END FUNCTION
+
+
+FUNCTION SIZE_Entry_DENSEARRAY_I4( DenseArray , i ) RESULT(SIZE_Entry)
+USE KND_IntrinsicTypes,ONLY: KIND_I=>KIND_I4           !!((01-A-KND_IntrinsicTypes.f90))
+USE FUN_Warning       ,ONLY: WARNING_=>WARNING_I4      !!((04-B-FUN_Warning.f90))
+INCLUDE "45-C-USR_SparseArray__SIZE_Entry_DENSEARRAY_I.f90.hdr"
+!!--begin--
+INCLUDE "45-C-USR_SparseArray__SIZE_Entry_DENSEARRAY.f90.bdy"
+!!--end--
+END FUNCTION
+
+
+
+SUBROUTINE ACCESS_DENSEARRAY_1_I4( DenseArray , i , Entry , &
+  NUM_Entry )
+USE KND_IntrinsicTypes,ONLY: KIND_I=>KIND_I4           !!((01-A-KND_IntrinsicTypes.f90))
+USE FUN_Error         ,ONLY: Error_=>Error_I4          !!((04-A-FUN_Error.f90))
+INCLUDE "45-C-USR_SparseArray__ACCESS_DENSEARRAY_1_I.f90.hdr"
+!!--begin--
+INCLUDE "45-C-USR_SparseArray__ACCESS_DENSEARRAY_1.f90.bdy"
+!!--end--
+END SUBROUTINE
+
+
+
+SUBROUTINE ACCESS_DENSEARRAY_2_I4( DenseArray , j , i , Entry )
+USE KND_IntrinsicTypes,ONLY: KIND_I=>KIND_I4           !!((01-A-KND_IntrinsicTypes.f90))
+USE FUN_Error         ,ONLY: Error_=>Error_I4          !!((04-A-FUN_Error.f90))
+INCLUDE "45-C-USR_SparseArray__ACCESS_DENSEARRAY_2_I.f90.hdr"
+!!--begin--
+INCLUDE "45-C-USR_SparseArray__ACCESS_DENSEARRAY_2.f90.bdy"
+!!--end--
+END SUBROUTINE
+
+
+
+
+
+SUBROUTINE INIT_SPARSEARRAY_I4( SparseArray , IndexArray , N )
+USE KND_IntrinsicTypes,ONLY: KIND_I => KIND_I4         !!((01-A-KND_IntrinsicTypes.f90))
+USE FUN_Error         ,ONLY: Error_ => Error_I4,Error  !!((04-A-FUN_Error.f90))
+INCLUDE "45-C-USR_SparseArray__INIT_SPARSEARRAY_I.f90.hdr"
+!!--begin--
+INCLUDE "45-C-USR_SparseArray__INIT_SPARSEARRAY.f90.bdy"
+!!--end--
+END SUBROUTINE
+
+
+SUBROUTINE FINALIZE_SPARSEARRAY_I4( SparseArray , IndexArray )
+USE KND_IntrinsicTypes,ONLY: KIND_I=>KIND_I4           !!((01-A-KND_IntrinsicTypes.f90))
+USE FUN_Error         ,ONLY: Error_=>Error_I4          !!((04-A-FUN_Error.f90))
+INCLUDE "45-C-USR_SparseArray__FINALIZE_SPARSEARRAY_I.f90.hdr"
+!!--begin--
+INCLUDE "45-C-USR_SparseArray__FINALIZE_SPARSEARRAY.f90.bdy"
+!!--end--
+END SUBROUTINE
+
+
+
+SUBROUTINE FREE_SPARSEARRAY_I4( SparseArray , IndexArray )
+USE KND_IntrinsicTypes,ONLY: KIND_I=>KIND_I4           !!((01-A-KND_IntrinsicTypes.f90))
+USE FUN_Error         ,ONLY: Error_=>Error_I4          !!((04-A-FUN_Error.f90))
+INCLUDE "45-C-USR_SparseArray__FREE_SPARSEARRAY_I.f90.hdr"
+!!--begin--
+INCLUDE "45-C-USR_SparseArray__FREE_SPARSEARRAY.f90.bdy"
+!!--end--
+END SUBROUTINE
+
+
+
+SUBROUTINE ASSIGN_SPARSEARRAY_I4( SparseArray , IndexArray , i , Entry )
+USE KND_IntrinsicTypes,ONLY: KIND_I=>KIND_I4           !!((01-A-KND_IntrinsicTypes.f90))
+USE FUN_Error         ,ONLY: Error_=>Error_I4,Error_I  !!((04-A-FUN_Error.f90))
+INCLUDE "45-C-USR_SparseArray__ASSIGN_SPARSEARRAY_I.f90.hdr"
+!!--begin--
+INCLUDE "45-C-USR_SparseArray__ASSIGN_SPARSEARRAY.f90.bdy"
+!!--end--
+END SUBROUTINE
+
+
+FUNCTION NUM_Entry_SPARSEARRAY_I4( SparseArray , IndexArray ) RESULT(NUM_Entry)
+USE KND_IntrinsicTypes,ONLY: KIND_I=>KIND_I4           !!((01-A-KND_IntrinsicTypes.f90))
+INCLUDE "45-C-USR_SparseArray__NUM_Entry_SPARSEARRAY_I.f90.hdr"
+!!--begin--
+INCLUDE "45-C-USR_SparseArray__NUM_Entry_SPARSEARRAY.f90.bdy"
+!!--end--
+END FUNCTION
+
+
+FUNCTION SIZE_Entry_SPARSEARRAY_I4( SparseArray , IndexArray , i ) RESULT(SIZE_Entry)
+USE KND_IntrinsicTypes,ONLY: KIND_I=>KIND_I4           !!((01-A-KND_IntrinsicTypes.f90))
+INCLUDE "45-C-USR_SparseArray__SIZE_Entry_SPARSEARRAY_I.f90.hdr"
+!!--begin--
+INCLUDE "45-C-USR_SparseArray__SIZE_Entry_SPARSEARRAY.f90.bdy"
+!!--end--
+END FUNCTION
+
+
+
+SUBROUTINE ACCESS_SPARSEARRAY_1_I4( SparseArray , IndexArray , i , Entry , &
+  NUM_Entry )
+USE KND_IntrinsicTypes,ONLY: KIND_I=>KIND_I4           !!((01-A-KND_IntrinsicTypes.f90))
+USE FUN_Error         ,ONLY: Error_=>Error_I4          !!((04-A-FUN_Error.f90))
+INCLUDE "45-C-USR_SparseArray__ACCESS_SPARSEARRAY_1_I.f90.hdr"
+!!--begin--
+INCLUDE "45-C-USR_SparseArray__ACCESS_SPARSEARRAY_1.f90.bdy"
+!!--end--
+END SUBROUTINE
+
+
+
+SUBROUTINE ACCESS_SPARSEARRAY_2_I4( SparseArray , IndexArray , j , i , Entry )
+USE KND_IntrinsicTypes,ONLY: KIND_I=>KIND_I4           !!((01-A-KND_IntrinsicTypes.f90))
+USE FUN_Error         ,ONLY: Error_=>Error_I4          !!((04-A-FUN_Error.f90))
+INCLUDE "45-C-USR_SparseArray__ACCESS_SPARSEARRAY_2_I.f90.hdr"
+!!--begin--
+INCLUDE "45-C-USR_SparseArray__ACCESS_SPARSEARRAY_2.f90.bdy"
+!!--end--
+END SUBROUTINE
+
+
+
+
+
+
+SUBROUTINE INIT_DENSEARRAY_Rdp( DenseArray , N )
+USE KND_IntrinsicTypes,ONLY: KIND_R => KIND_Rdp        !!((01-A-KND_IntrinsicTypes.f90))
+USE FUN_Error         ,ONLY: Error_ => Error_Rdp       !!((04-A-FUN_Error.f90))
+INCLUDE "45-C-USR_SparseArray__INIT_DENSEARRAY_R.f90.hdr"
+!!--begin--
+INCLUDE "45-C-USR_SparseArray__INIT_DENSEARRAY.f90.bdy"
+!!--end--
+END SUBROUTINE
+
+
+SUBROUTINE FINALIZE_DENSEARRAY_Rdp( DenseArray )
+USE KND_IntrinsicTypes,ONLY: KIND_R=>KIND_Rdp          !!((01-A-KND_IntrinsicTypes.f90))
+USE FUN_Error         ,ONLY: Error_=>Error_Rdp         !!((04-A-FUN_Error.f90))
+INCLUDE "45-C-USR_SparseArray__FINALIZE_DENSEARRAY_R.f90.hdr"
+!!--begin--
+INCLUDE "45-C-USR_SparseArray__FINALIZE_DENSEARRAY.f90.bdy"
+!!--end--
+END SUBROUTINE
+
+
+SUBROUTINE FREE_DENSEARRAY_Rdp( DenseArray )
+USE KND_IntrinsicTypes,ONLY: KIND_R=>KIND_Rdp          !!((01-A-KND_IntrinsicTypes.f90))
+USE FUN_Error         ,ONLY: Error_=>Error_Rdp         !!((04-A-FUN_Error.f90))
+INCLUDE "45-C-USR_SparseArray__FREE_DENSEARRAY_R.f90.hdr"
+!!--begin--
+INCLUDE "45-C-USR_SparseArray__FREE_DENSEARRAY.f90.bdy"
+!!--end--
+END SUBROUTINE
+
+
+
+SUBROUTINE ASSIGN_DENSEARRAY_Rdp( DenseArray , i , Entry )
+USE KND_IntrinsicTypes,ONLY: KIND_R=>KIND_Rdp          !!((01-A-KND_IntrinsicTypes.f90))
+USE FUN_Error         ,ONLY: Error_=>Error_Rdp         !!((04-A-FUN_Error.f90))
+USE FUN_Warning       ,ONLY: WARNING_=>WARNING_Rdp     !!((04-B-FUN_Warning.f90))
+INCLUDE "45-C-USR_SparseArray__ASSIGN_DENSEARRAY_R.f90.hdr"
+!!--begin--
+INCLUDE "45-C-USR_SparseArray__ASSIGN_DENSEARRAY.f90.bdy"
+!!--end--
+END SUBROUTINE
+
+
+FUNCTION NUM_Entry_DENSEARRAY_Rdp( DenseArray ) RESULT(NUM_Entry)
+USE KND_IntrinsicTypes,ONLY: KIND_R=>KIND_Rdp          !!((01-A-KND_IntrinsicTypes.f90))
+INCLUDE "45-C-USR_SparseArray__NUM_Entry_DENSEARRAY_R.f90.hdr"
+!!--begin--
+INCLUDE "45-C-USR_SparseArray__NUM_Entry_DENSEARRAY.f90.bdy"
+!!--end--
+END FUNCTION
+
+
+FUNCTION SIZE_Entry_DENSEARRAY_Rdp( DenseArray , i ) RESULT(SIZE_Entry)
+USE KND_IntrinsicTypes,ONLY: KIND_R=>KIND_Rdp          !!((01-A-KND_IntrinsicTypes.f90))
+USE FUN_Warning       ,ONLY: WARNING_=>WARNING_Rdp     !!((04-B-FUN_Warning.f90))
+INCLUDE "45-C-USR_SparseArray__SIZE_Entry_DENSEARRAY_R.f90.hdr"
+!!--begin--
+INCLUDE "45-C-USR_SparseArray__SIZE_Entry_DENSEARRAY.f90.bdy"
+!!--end--
+END FUNCTION
+
+
+
+SUBROUTINE ACCESS_DENSEARRAY_1_Rdp( DenseArray , i , Entry , &
+  NUM_Entry )
+USE KND_IntrinsicTypes,ONLY: KIND_R=>KIND_Rdp          !!((01-A-KND_IntrinsicTypes.f90))
+USE FUN_Error         ,ONLY: Error_=>Error_Rdp         !!((04-A-FUN_Error.f90))
+INCLUDE "45-C-USR_SparseArray__ACCESS_DENSEARRAY_1_R.f90.hdr"
+!!--begin--
+INCLUDE "45-C-USR_SparseArray__ACCESS_DENSEARRAY_1.f90.bdy"
+!!--end--
+END SUBROUTINE
+
+
+
+SUBROUTINE ACCESS_DENSEARRAY_2_Rdp( DenseArray , j , i , Entry )
+USE KND_IntrinsicTypes,ONLY: KIND_R=>KIND_Rdp          !!((01-A-KND_IntrinsicTypes.f90))
+USE FUN_Error         ,ONLY: Error_=>Error_Rdp         !!((04-A-FUN_Error.f90))
+INCLUDE "45-C-USR_SparseArray__ACCESS_DENSEARRAY_2_R.f90.hdr"
+!!--begin--
+INCLUDE "45-C-USR_SparseArray__ACCESS_DENSEARRAY_2.f90.bdy"
+!!--end--
+END SUBROUTINE
+
+
+
+
+
+SUBROUTINE INIT_SPARSEARRAY_Rdp( SparseArray , IndexArray , N )
+USE KND_IntrinsicTypes,ONLY: KIND_R => KIND_Rdp        !!((01-A-KND_IntrinsicTypes.f90))
+USE FUN_Error         ,ONLY: Error_ => Error_Rdp,Error !!((04-A-FUN_Error.f90))
+INCLUDE "45-C-USR_SparseArray__INIT_SPARSEARRAY_R.f90.hdr"
+!!--begin--
+INCLUDE "45-C-USR_SparseArray__INIT_SPARSEARRAY.f90.bdy"
+!!--end--
+END SUBROUTINE
+
+
+SUBROUTINE FINALIZE_SPARSEARRAY_Rdp( SparseArray , IndexArray )
+USE KND_IntrinsicTypes,ONLY: KIND_R=>KIND_Rdp          !!((01-A-KND_IntrinsicTypes.f90))
+USE FUN_Error         ,ONLY: Error_=>Error_Rdp         !!((04-A-FUN_Error.f90))
+INCLUDE "45-C-USR_SparseArray__FINALIZE_SPARSEARRAY_R.f90.hdr"
+!!--begin--
+INCLUDE "45-C-USR_SparseArray__FINALIZE_SPARSEARRAY.f90.bdy"
+!!--end--
+END SUBROUTINE
+
+
+
+SUBROUTINE FREE_SPARSEARRAY_Rdp( SparseArray , IndexArray )
+USE KND_IntrinsicTypes,ONLY: KIND_R=>KIND_Rdp          !!((01-A-KND_IntrinsicTypes.f90))
+USE FUN_Error         ,ONLY: Error_=>Error_Rdp         !!((04-A-FUN_Error.f90))
+INCLUDE "45-C-USR_SparseArray__FREE_SPARSEARRAY_R.f90.hdr"
+!!--begin--
+INCLUDE "45-C-USR_SparseArray__FREE_SPARSEARRAY.f90.bdy"
+!!--end--
+END SUBROUTINE
+
+
+
+SUBROUTINE ASSIGN_SPARSEARRAY_Rdp( SparseArray , IndexArray , i , Entry )
+USE KND_IntrinsicTypes,ONLY: KIND_R=>KIND_Rdp          !!((01-A-KND_IntrinsicTypes.f90))
+USE FUN_Error         ,ONLY: Error_=>Error_Rdp,Error_I !!((04-A-FUN_Error.f90))
+INCLUDE "45-C-USR_SparseArray__ASSIGN_SPARSEARRAY_R.f90.hdr"
+!!--begin--
+INCLUDE "45-C-USR_SparseArray__ASSIGN_SPARSEARRAY.f90.bdy"
+!!--end--
+END SUBROUTINE
+
+
+FUNCTION NUM_Entry_SPARSEARRAY_Rdp( SparseArray , IndexArray ) RESULT(NUM_Entry)
+USE KND_IntrinsicTypes,ONLY: KIND_R=>KIND_Rdp          !!((01-A-KND_IntrinsicTypes.f90))
+INCLUDE "45-C-USR_SparseArray__NUM_Entry_SPARSEARRAY_R.f90.hdr"
+!!--begin--
+INCLUDE "45-C-USR_SparseArray__NUM_Entry_SPARSEARRAY.f90.bdy"
+!!--end--
+END FUNCTION
+
+
+FUNCTION SIZE_Entry_SPARSEARRAY_Rdp( SparseArray , IndexArray , i ) RESULT(SIZE_Entry)
+USE KND_IntrinsicTypes,ONLY: KIND_R=>KIND_Rdp          !!((01-A-KND_IntrinsicTypes.f90))
+INCLUDE "45-C-USR_SparseArray__SIZE_Entry_SPARSEARRAY_R.f90.hdr"
+!!--begin--
+INCLUDE "45-C-USR_SparseArray__SIZE_Entry_SPARSEARRAY.f90.bdy"
+!!--end--
+END FUNCTION
+
+
+
+SUBROUTINE ACCESS_SPARSEARRAY_1_Rdp( SparseArray , IndexArray , i , Entry , &
+  NUM_Entry )
+USE KND_IntrinsicTypes,ONLY: KIND_R=>KIND_Rdp          !!((01-A-KND_IntrinsicTypes.f90))
+USE FUN_Error         ,ONLY: Error_=>Error_Rdp         !!((04-A-FUN_Error.f90))
+INCLUDE "45-C-USR_SparseArray__ACCESS_SPARSEARRAY_1_R.f90.hdr"
+!!--begin--
+INCLUDE "45-C-USR_SparseArray__ACCESS_SPARSEARRAY_1.f90.bdy"
+!!--end--
+END SUBROUTINE
+
+
+
+SUBROUTINE ACCESS_SPARSEARRAY_2_Rdp( SparseArray , IndexArray , j , i , Entry )
+USE KND_IntrinsicTypes,ONLY: KIND_R=>KIND_Rdp          !!((01-A-KND_IntrinsicTypes.f90))
+USE FUN_Error         ,ONLY: Error_=>Error_Rdp         !!((04-A-FUN_Error.f90))
+INCLUDE "45-C-USR_SparseArray__ACCESS_SPARSEARRAY_2_R.f90.hdr"
+!!--begin--
+INCLUDE "45-C-USR_SparseArray__ACCESS_SPARSEARRAY_2.f90.bdy"
+!!--end--
+END SUBROUTINE
+
+
+
+
+
+
+
+
+
+FUNCTION TEST_SparseArray_I4(irng,jrng,preall,Rseed,Rseed_out) RESULT(Pass)
+USE KND_IntrinsicTypes,ONLY: KIND_I=>KIND_I4           !!((01-A-KND_IntrinsicTypes.f90))
+INCLUDE "45-C-USR_SparseArray__TEST_SparseArray.f90.hdr"
+INCLUDE "45-C-USR_SparseArray__TEST_SparseArray_I.f90.hdr"
+!!--begin--
+INCLUDE "45-C-USR_SparseArray__TEST_SparseArray.f90.bdy"
+!!--end-
+END FUNCTION
+
+FUNCTION TEST_SparseArray_Rdp(irng,jrng,preall,Rseed,Rseed_out) RESULT(Pass)
+USE KND_IntrinsicTypes,ONLY: KIND_R=>KIND_Rdp          !!((01-A-KND_IntrinsicTypes.f90))
+INCLUDE "45-C-USR_SparseArray__TEST_SparseArray.f90.hdr"
+INCLUDE "45-C-USR_SparseArray__TEST_SparseArray_R.f90.hdr"
+!!--begin--
+INCLUDE "45-C-USR_SparseArray__TEST_SparseArray.f90.bdy"
+!!--end-
+END FUNCTION
+
+FUNCTION TEST_SparseArray(irng,jrng,preall,Rseed,Rseed_out) RESULT(Pass)
+INCLUDE "45-C-USR_SparseArray__TEST_SparseArray.f90.hdr"
+!!--begin--
+!just run the double precision test
+Pass = TEST_SparseArray_Rdp(irng,jrng,preall,Rseed,Rseed_out)
+!!--end-
+END FUNCTION
+
+
+END MODULE

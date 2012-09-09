@@ -1,0 +1,9 @@
+!!#### REQUIRED INPUT
+!! @ polygon <N,Pg>
+INTEGER     ,INTENT(IN) :: N         
+REAL(KIND_R),INTENT(IN) :: Pg( 1:2 , 1:N ) 
+
+!!#### REQUIRED OUTPUT
+!! @ signed area <INTEGRAL1>
+REAL(KIND_R) :: INTEGRAL1
+

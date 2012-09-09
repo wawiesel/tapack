@@ -1,0 +1,17 @@
+INTERFACE 
+ FUNCTION f( x , y )
+ 
+ !!#### PARAMETERS
+ USE KND_IntrinsicTypes,ONLY: KIND_Rsp
+
+ !!#### REQUIRED INPUT
+ !! @ independent variables <x,y>
+ REAL(KIND_Rsp),INTENT(IN) :: x,y
+
+ !!#### REQUIRED OUTPUT
+ !! @ dependent variable <f>
+ REAL(KIND_Rsp) :: f
+ 
+ END FUNCTION
+
+END INTERFACE

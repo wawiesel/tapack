@@ -1,0 +1,17 @@
+!!#### REQUIRED INPUT
+COMPLEX(KIND_C),INTENT(IN) :: list(:)
+
+!!#### REQUIRED OUTPUT
+INTEGER :: loc
+
+!!#### REQUIRED INPUT
+!! * value to check list for equality
+COMPLEX(KIND_C),INTENT(IN) :: val
+
+!!#### OPTIONAL INPUT
+!! * tolerance to allow <tol>
+REAL(KIND_C),OPTIONAL,INTENT(IN) :: tol
+
+!!#### LOCAL VARIABLES
+INTEGER        :: i
+COMPLEX(KIND_C) :: s

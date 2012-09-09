@@ -1,0 +1,2 @@
+!!#### REQUIRED INPUT
+REAL(KIND_R),POINTER :: P(:,:)

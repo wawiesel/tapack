@@ -1,0 +1,7 @@
+!#LOCAL VARIABLES
+INTEGER                 :: i, j, ncol, nrow
+REAL(KIND_R),ALLOCATABLE :: t(:)
+INTEGER                 :: ka,kb,nzmax,kc,ja,jb,nzrow
+LOGICAL    ,ALLOCATABLE :: w(:)
+INTEGER    ,ALLOCATABLE :: iw(:)
+REAL(KIND_R),PARAMETER   :: ZERO = 0._KIND_R

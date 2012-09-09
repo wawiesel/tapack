@@ -1,0 +1,12 @@
+!!#### REQUIRED INPUT
+COMPLEX(KIND_C),INTENT(IN) :: old_list(:)
+
+!!#### REQUIRED OUTPUT
+COMPLEX(KIND_C) :: new_list(1:SIZE(old_list))
+
+!!#### REQUIRED INPUT
+!! @ reordering [order]
+INTEGER,INTENT(IN) :: order(1:SIZE(old_list))
+
+!!#### LOCAL VARIABLES
+INTEGER     :: i

@@ -1,0 +1,1 @@
+xyV = V - c_2*( xyDOT_VV( V , Pn(1:2) ) )*Pn(1:2)

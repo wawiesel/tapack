@@ -1,0 +1,2 @@
+!!#### REQUIRED INPUT
+TYPE(varying_string),POINTER :: P(:)

@@ -1,0 +1,32 @@
+!if the option array is present then choose an option
+!either explicitly or by the metrics
+IF( PRESENT(OPTION_ARRAY) )THEN
+ 
+ IF( PRESENT(INDEX) )THEN
+ 
+  IF( INDEX>SIZE(OPTION_ARRAY) )THEN
+   OPTION = OPTION_ARRAY(SIZE(OPTION_ARRAY))
+  ELSE IF( INDEX<1 )THEN
+   OPTION = OPTION_ARRAY(1)
+  ELSE
+   OPTION = OPTION_ARRAY(INDEX)
+  END IF
+
+ ELSE IF( PRESENT(METRIC_ARRAY) )THEN
+ 
+  IF( PRESENT(METRIC) )THEN
+   INDEX_ = NEARLOC( METRIC_ARRAY , METRIC )
+  ELSE
+   INDEX_ = MINLOC( METRIC_ARRAY,1 )
+  END IF
+  OPTION = OPTION_ARRAY(INDEX_)
+
+ END IF
+
+!if it is not present then choose an option based on the
+!default
+ELSE
+ 
+ OPTION = LOCAL_DEFAULT
+
+END IF

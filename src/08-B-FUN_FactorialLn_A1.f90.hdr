@@ -1,0 +1,7 @@
+!#REQUIRED INPUT
+! @ factorial integer [x]
+INTEGER(KIND_I),INTENT(IN) :: x
+
+!#REQUIRED OUTPUT
+! @ real value of LOG(x!) [y]
+REAL(KIND_R) :: y

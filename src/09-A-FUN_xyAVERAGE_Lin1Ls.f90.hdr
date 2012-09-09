@@ -1,0 +1,13 @@
+!!#### PURPOSE
+!! Compute the AVERAGE of a planar
+!! surface over a line segment
+
+!!#### REQUIRED INPUT
+!! * linear function $a+bx$
+!! * line segment
+REAL(KIND_R),INTENT(IN) :: Lin1(2)
+REAL(KIND_R),INTENT(IN) :: Ls(2,2)
+
+!!#### REQUIRED OUTPUT
+REAL(KIND_R) :: AVERAGE
+

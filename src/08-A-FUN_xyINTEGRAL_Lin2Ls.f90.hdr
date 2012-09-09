@@ -1,0 +1,15 @@
+!!#### PURPOSE
+!! Compute the INTEGRAL of a planar
+!! surface over a line segment
+
+!!#### REQUIRED INPUT
+!! @ plane coefficients $ax+by+c$
+REAL(KIND_R),INTENT(IN) :: Lin2(3)
+!! @ line segment
+REAL(KIND_R),INTENT(IN) :: Ls(2,2)
+
+!!#### REQUIRED OUTPUT
+REAL(KIND_R) :: INTEGRAL
+
+!!#### LOCAL VARIABLES
+REAL(KIND_R) :: ix,iy,i1

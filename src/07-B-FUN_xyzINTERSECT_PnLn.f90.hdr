@@ -1,0 +1,21 @@
+!!#### REQUIRED INPUT
+!! @ plane <Pln>
+!! @ line <Ln>
+REAL(KIND_R),INTENT(IN) :: Pn( 1:4 )
+REAL(KIND_R),INTENT(IN) :: Ln( 1:6 )
+
+!!#### OPTIONAL OUTPUT
+!! @ signed distance to intersection <SDIST>
+!! @ intersection point <P_intersect>
+REAL(KIND_R),INTENT(OUT),OPTIONAL :: SDIST             
+REAL(KIND_R),INTENT(OUT),OPTIONAL :: P_intersect( 1:3 )
+
+!!#### REQUIRED OUTPUT
+!! @ whether line intersects plane or not <INTERSECT>
+!!   INTERSECT = .FALSE. if line does not intersect
+!!             = .TRUE.  if line does intersect
+LOGICAL :: INTERSECT       
+
+
+!!#### LOCAL VARIABLES
+REAL(KIND_R) :: s0,s2,d

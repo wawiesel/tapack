@@ -1,0 +1,12 @@
+!!#### REQUIRED INPUT
+!! @ plane <Pn>
+!! @ point <P>
+REAL(KIND_R),INTENT(IN) :: Pn( 1:3 )
+REAL(KIND_R),INTENT(IN) :: P ( 1:2 )
+
+!!#### REQUIRED OUTPUT
+!! @ signed distance <SDIST>
+REAL(KIND_R) :: SDIST
+
+!!#### LOCAL VARIABLES
+REAL(KIND_R) :: d !dot product of point and plane normal

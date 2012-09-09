@@ -1,0 +1,10 @@
+
+!!#### REQUIRED INPUT
+INTEGER(KIND_I),POINTER    :: DenseArray(:,:)
+INTEGER        ,INTENT(IN) :: i,j
+
+!!#### REQUIRED OUTPUT
+INTEGER(KIND_I),INTENT(OUT) :: Entry
+
+!!#### LOCAL VARIABLES
+INTEGER :: NE

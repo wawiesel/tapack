@@ -1,0 +1,9 @@
+!!#### REQUIRED INPUT/OUTPUT
+CHARACTER(LEN=*,KIND=KIND_S),POINTER :: data(:,:,:)
+
+!!#### OPTIONAL INPUT
+!! @ fill value of the new entries [fill]
+CHARACTER(LEN=LEN(data),KIND=KIND_S),OPTIONAL,INTENT(IN) :: fill
+
+!!#### LOCAL VARIABLES
+CHARACTER(LEN=LEN(data),KIND=KIND_S),POINTER :: p(:,:,:)

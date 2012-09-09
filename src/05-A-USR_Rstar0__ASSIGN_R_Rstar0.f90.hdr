@@ -1,0 +1,6 @@
+!!#### REQUIRED OUTPUT
+REAL(KIND_R),INTENT(OUT)  :: R
+
+!!#### REQUIRED INPUT
+TYPE(TYPE_Rstar0),INTENT(IN)  :: Rstar0
+

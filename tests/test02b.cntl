@@ -1,0 +1,155 @@
+Author.
+\TAPauthor{"WAW"}
+
+Details.
+Details.
+\TAPdetails{"A pure streaming test with total cross section of 0 and
+             incoming fluxes on the bottom and left of 2, source of 20$/pi$.
+             This test (test2b.cntl) is just like test2a.cntl but with a 4x4 
+             randomized (instead of orthogonal) mesh."}
+
+
+
+
+
+
+The number of energy groups (total,fast,thermal).
+\NRGinit{1}{0}{1}
+
+Initialize the Mesh structure for two dimensions.
+\MSHinit{2}
+
+Define a rectangular domain oriented on the x and y axes.
+\MSHdomain{"Rectangle"}{ 0.0,0.0 }{ 1.0,0.0 }{ 0.0,1.0 }{scale=1,1}
+
+Use this random seed to initialize number generator.
+!standard seed
+\MSHrandseed{76435219}
+!other seeds
+!\MSHrandseed{3835457}
+!\MSHrandseed{16586373}
+!\MSHrandseed{563345321}
+
+Use a uniform mesh block.
+\MSHblock{"Uniform"}{"B"}{ 0.0,0.0 }{ 1.0,0.0 }{ 0.0,1.0 }
+4 4
+
+\MSHpertvert{"POLYREGION"}{5.0e-2,5.0e-2}{0,360}
+4
+ 0.0001  0.0001 
+ 0.9999  0.0001 
+ 0.9999  0.9999
+ 0.0001  0.9999
+
+Scale it.
+\MSHscale{1,1}
+ 
+
+Boundary conditions on bottom,right,top,left boundaries.
+\MCSbc{"fixed" , &
+       "fixed" , &
+       "fixed" , &
+       "fixed" }{ "infinite" , "infinite" }
+2
+0
+0
+2
+
+
+Define the red material and define the cross sections.
+\MATinit{"red"}
+
+
+\MATmact0{"red"}
+0.0
+\MATmacs0{"red"}
+0.0
+\MATmacnu0{"red"}
+0.0
+\MATmacf0{"red"}
+0.0
+
+
+Associate all cells with the red material.
+\MATassoc{"*"}{"red"}
+
+
+Set the source everywhere to 5*4Pi, which each element of the 
+angular flux sees a value of 5.
+\SRCpolygon{"W"}{62.83185307179586476925286766559}{4}{T}
+-1000.0 -1000.0
+ 1000.0 -1000.0
+ 1000.0  1000.0
+-1000.0  1000.0
+ 0.0 0.0
+
+
+Exiting Current.
+\TAPcurrentexiting{0.5,0.5}{1.0,1.0}
+
+Define an integral Region.
+\TAPintegralregion{"ALL"}{4}{1.0}
+ 0.0 0.0
+ 1.0 0.0
+ 1.0 1.0
+ 0.0 1.0
+
+
+
+Set the Quadrature set.
+\DORlevquad{"LMLQ"}{8}
+\DORuniz{T}
+
+Maximum/Minimum transport iterations.
+\TAPmaxit{+100}
+\TAPminit{+2}
+
+Scalar flux and current tolerances.
+\TAPtolsf{1E-12}
+
+
+Use subcell balances.
+\MCSsbalance{T}
+\MCSsbedgeinterp{"ParabolicKarpov"}
+!\MCSsbedgeinterp{"Parabolic"}
+!\MCSsbedgeinterp{"Flat"}
+!\MCSsbedgeinterp{"LinearEdges"}
+!\MCSsbedgeinterp{"LinearAverage"}
+!\MCSsbedgeinterp{"CWENO"}
+!\MCSsbopts{CWENO_cwt=0.10}
+\MCScellfunction{"Gauss"}
+
+Set up the low order solver.
+\TAPloworder{"None"}
+
+Visualization/Output options.
+
+\TAPinputedit{1}
+   "QuadratureSet"
+   
+\TAPoutput{3}
+   "AngularFluxV"&
+   "AngularFluxF"&
+   "AngularFluxC"
+
+Megatable output selector.
+\TAPmegatable{"PhiV"}{g=1}{r=0,0,0}{Note="BL"}
+\TAPmegatable{"PhiV"}{g=1}{r=1,0,0}{Note="BR"}
+\TAPmegatable{"PhiV"}{g=1}{r=1,1,0}{Note="TR"}
+\TAPmegatable{"PhiV"}{g=1}{r=0,1,0}{Note="TL"}
+\TAPmegatable{"PhiR"}{g=1}{region="ALL"}
+
+
+At the top right corner, if $/Omega_y//Omega_x >1 $, then
+the ray is hitting the bottom boundary.  Otherwise, it hits the
+left boundary.  Therefore, in the first case, the solution is
+given by $2 + 5//Omega_y$.  In the second case, it is 
+$2 + 5//Omega_x$.
+
+Top right corner, with a hacked AND by multiplying two ifs.  If the checkbnd
+statement is numeric but converted to boolean based on the simple rule,
+if the value>0 then true, else false.
+\TAPchecksoln{"PsiV"}{"2+5*min(y/Oy,x/Ox)"}&
+  {k=0}{g=1}{m=0}{checktol=0.1}{checkbnd="if(Ox>0,1,0)*if(Oy>0,1,0)"}   
+
+\MCSdiscorner{T}

@@ -1,0 +1,12 @@
+!!#### REQUIRED INPUT
+REAL(KIND_R),INTENT(IN) :: old_list(:)
+
+!!#### REQUIRED OUTPUT
+REAL(KIND_R) :: new_list(1:SIZE(old_list))
+
+!!#### REQUIRED INPUT
+!! @ reordering [order]
+INTEGER,INTENT(IN) :: order(1:SIZE(old_list))
+
+!!#### LOCAL VARIABLES
+INTEGER     :: i

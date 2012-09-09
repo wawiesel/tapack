@@ -1,0 +1,2 @@
+INTEGER(KIND_I),POINTER    :: DenseArray(:,:)
+INTEGER :: NUM_Entry

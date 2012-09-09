@@ -1,0 +1,7 @@
+DO n=LBOUND(A,3),UBOUND(A,3)
+ DO m=LBOUND(A,2),UBOUND(A,2) 
+  DO l=LBOUND(A,1),UBOUND(A,1)
+   WRITE(Unit,*)A(l,m,n)
+  END DO
+ END DO
+END DO

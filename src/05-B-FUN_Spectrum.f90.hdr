@@ -1,0 +1,10 @@
+!!#### REQUIRED INPUT
+REAL(KIND_R) ,INTENT(IN) :: X
+CHARACTER(*),INTENT(IN) :: Method
+
+!!#### OPTIONAL INPUT
+CHARACTER(*),INTENT(IN),OPTIONAL :: Scheme
+REAL(KIND_R) ,INTENT(IN),OPTIONAL :: ro(:) , gamma(:) , beta(:) , alpha(:)
+
+!!#### REQUIRED OUTPUT
+REAL(KIND_R) :: RGBA(1:4)

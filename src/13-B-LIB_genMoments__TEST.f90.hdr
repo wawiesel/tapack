@@ -1,0 +1,28 @@
+USE LIB_Norm
+USE SUB_Randomize
+
+!!#### REQUIRED INPUT
+!! @ abcissas,function values,weights
+REAL(KIND_R),INTENT(IN) :: x(:,:),w(SIZE(x,2)),f(SIZE(x,2))
+
+!!#### REQUIRED OUTPUT
+!! @ true or false
+LOGICAL :: Pass
+
+!!#### OPTIONAL INPUT/OUTPUT
+!! @ send in negative value of <tol> and the default will be
+!!   used and returned as output
+REAL(KIND_R),INTENT(INOUT),OPTIONAL :: tol
+
+!!#### OPTIONAL OUTPUT
+!! @ value of the residual for the test <resid>
+REAL(KIND_R),INTENT(OUT),OPTIONAL :: resid
+
+
+!!#### LOCAL VARIABLES
+INTEGER,PARAMETER :: Nk=100
+INTEGER :: k,d,d1,d2
+REAL(KIND_R),DIMENSION(((SIZE(x,1)+1)*SIZE(x,1))/2) :: t1,t2
+REAL(KIND_R),DIMENSION(SIZE(x,1)) :: u,n,n_IN,n_OUT,n1,n2
+REAL(KIND_R)                      ::   m,m_IN,m_OUT,m1,m2
+REAL(KIND_R) :: tol_,resid_

@@ -1,0 +1,13 @@
+!!#### OPTIONAL INPUT
+INTEGER,INTENT(IN) ,OPTIONAL :: irng(2),jrng(2),preall(2)
+INTEGER,INTENT(IN) ,OPTIONAL :: Rseed(2)
+
+!!#### OPTIONAL OUTPUT
+INTEGER,INTENT(OUT),OPTIONAL :: Rseed_out(2)
+
+!!#### REQUIRED OUTPUT
+LOGICAL :: Pass
+
+!!#### LOCAL VARIABLES 1
+INTEGER                     :: i,j,Ni1,Ni2,Nj1,Nj2,Ni,Nj
+INTEGER                     :: irng_(2),jrng_(2),preall_(2)

@@ -1,0 +1,11 @@
+!!#### REQUIRED INPUT
+!! @ coefficients of the equation (/a,b,c,d/) <C>
+REAL(KIND_R),INTENT(IN) :: C( 1:4 )
+
+!!#### REQUIRED OUTPUT
+!! @ plane normal vector and constant stored as (/U,s/) <xyzPn>
+REAL(KIND_R) :: xyzPn( 1:4 )
+
+!!#### LOCAL VARIABLES
+!! @ normalization factor
+REAL(KIND_R) :: norm 

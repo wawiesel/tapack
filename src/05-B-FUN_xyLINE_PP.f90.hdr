@@ -1,0 +1,9 @@
+!!#### REQUIRED INPUT
+!! @ first point in R^2 <P_a>
+!! @ second point in R*^2 <P_b>
+REAL(KIND_R),INTENT(IN) :: P_a( 1:2 ) 
+REAL(KIND_R),INTENT(IN) :: P_b( 1:2 ) 
+
+!!#### REQUIRED OUTPUT
+!! @ line in R^2 <xyLn>
+REAL(KIND_R) :: xyLn( 1:2 , 1:2 ) 

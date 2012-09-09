@@ -1,0 +1,3 @@
+!!####REQUIRED INPUT
+!! @ the logical input array to print as row vectors <x>
+LOGICAL(KIND_L),INTENT(IN) :: x(:,:)

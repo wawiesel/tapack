@@ -1,0 +1,22 @@
+!#PURPOSE
+! Calculate the first moment of the angular flux.
+
+!#REQUIRED INPUT
+! @ the angular flux [AngularFlux]
+REAL(KIND_R)         ,INTENT(IN) :: AngularFlux(:,:,:)
+REAL(KIND_DOR),INTENT(IN) :: DirCos(:,:)
+INTEGER             ,INTENT(IN) :: m_(:,:)
+REAL(KIND_DOR),INTENT(IN) :: PolWts(1:SIZE(m_,2))
+REAL(KIND_DOR),INTENT(IN) :: AziWts(1:SIZE(m_,1))
+
+!#REQUIRED OUTPUT
+! @ 0-th moment (also called scalar flux) [Moment0]
+REAL(KIND_R) :: Moment1(1:SIZE(DirCos,1),&
+                       1:SIZE(AngularFlux,1),&
+                       1:SIZE(AngularFlux,2))
+REAL(KIND_DOR),INTENT(IN),OPTIONAL :: AziSin(:)
+
+!#LOCAL VARIABLES
+! @ angular dummy index (not the same as the master index)
+INTEGER :: m,mp,ma,k,g
+

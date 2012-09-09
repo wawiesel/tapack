@@ -1,0 +1,5 @@
+!!#### REQUIRED INPUT
+COMPLEX(KIND_C),INTENT(IN) :: B
+
+!!#### REQUIRED OUTPUT
+COMPLEX(KIND_C)            :: A

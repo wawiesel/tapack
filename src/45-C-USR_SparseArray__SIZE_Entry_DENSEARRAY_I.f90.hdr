@@ -1,0 +1,3 @@
+INTEGER(KIND_I),POINTER    :: DenseArray(:,:)
+INTEGER,INTENT(IN) :: i
+INTEGER :: SIZE_Entry

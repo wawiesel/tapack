@@ -1,0 +1,9 @@
+!#REQUIRED INPUT
+REAL(KIND_R),INTENT(IN) :: x(A%N)
+
+!#REQUIRED OUTPUT
+REAL(KIND_R) :: y(A%N)
+
+!#LOCAL VARIABLES
+REAL(KIND_R) :: t(A % IA (A % N + 1) - 1)
+INTEGER     :: i, nnz

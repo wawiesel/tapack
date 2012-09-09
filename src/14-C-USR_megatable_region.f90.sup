@@ -1,0 +1,11 @@
+n = 0
+CALL CLEAR(region)
+DO l=1,SIZE(IntegralRegions)
+ 
+ IF( TRIM(IntegralRegions(l) % label) == &
+     TRIM(megatable % region) )THEN
+  region = megatable % region
+  n = l
+ END IF
+
+END DO

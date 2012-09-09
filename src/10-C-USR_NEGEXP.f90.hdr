@@ -1,0 +1,10 @@
+
+!!#### REQUIRED INPUT
+REAL(KIND_R),INTENT(IN) :: s
+
+!!#### REQUIRED OUTPUT
+REAL(KIND_R) :: val
+
+!!#### LOCAL VARIABLES
+INTEGER :: i,LB,UB
+REAL(KIND_R) :: f1,f2

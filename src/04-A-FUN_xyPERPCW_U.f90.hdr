@@ -1,0 +1,7 @@
+!!#### REQUIRED INPUT
+!! @ unit vector <U>
+REAL(KIND_R),INTENT(IN) :: U( 1:2 )
+
+!!#### REQUIRED OUTPUT
+!! @ perpendicular unit vector <xyU>
+REAL(KIND_R) :: xyU( 1:2 )

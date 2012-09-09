@@ -1,0 +1,10 @@
+!!#### REQUIRED INPUT
+!! @ rank 1 array of values that make a polygon of <N> points
+REAL(KIND_R),INTENT(IN) :: ARRAY(:) 
+
+!!#### REQUIRED OUTPUT
+!! @ unpacked polygon in $R^2$ <xyPg>
+REAL(KIND_R) :: xyPg( 2 , SIZE(ARRAY)/2 ) 
+
+!!#### LOCAL VARIABLES
+INTEGER :: N

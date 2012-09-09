@@ -1,0 +1,9 @@
+!#REQUIRED INPUT
+! @ coordinate system <Coords>
+! @ ray <Ry>
+INTEGER    ,INTENT(IN) :: Coords
+REAL(KIND_R),INTENT(IN) :: Ry(:,:)
+
+!#REQUIRED OUTPUT
+! @ number of dimensions <NDIM>
+INTEGER :: NDIM

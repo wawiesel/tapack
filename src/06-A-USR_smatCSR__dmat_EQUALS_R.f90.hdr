@@ -1,0 +1,6 @@
+!#REQUIRED OUTPUT
+REAL(KIND_R),INTENT(OUT) :: A(:,:)
+
+!#LOCAL VARIABLES
+INTEGER                 :: i, k ,nrow , ncol 
+REAL(KIND_R),PARAMETER   :: ZERO = 0._KIND_R

@@ -1,0 +1,12 @@
+!!#### REQUIRED INPUT
+!! @ required interval for the random integer <l>
+INTEGER(KIND_I),INTENT(IN) :: l(1:2)
+
+!!#### REQUIRED OUTPUT
+!! @ random integer in the interval (inclusive) <x>
+INTEGER(KIND_I) :: x
+
+!!#### LOCAL VARIABLES
+INTEGER(KIND_I) :: LB,UB
+REAL(KIND_R)    :: rand
+

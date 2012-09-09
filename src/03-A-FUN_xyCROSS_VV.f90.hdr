@@ -1,0 +1,9 @@
+!!#### REQUIRED INPUT
+!! @ first vector <V_a>
+!! @ second vector <V_b>
+REAL(KIND_R),INTENT(IN) :: V_a(1:2)
+REAL(KIND_R),INTENT(IN) :: V_b(1:2)
+
+!!#### REQUIRED OUTPUT
+!! @ resultant cross product <V_c>
+REAL(KIND_R) :: V_c

@@ -1,0 +1,128 @@
+********************************
+
+
+********************************
+
+
+********************************
+*** Discretization Parameters
+********************************
+\MSHinit{2}
+\MSHdomain{"Rectangle"}{ 0.0,0.0 }{ 1.0,0.0 }{ 0.0,1.0 }{ scale=10.0,10.0 }
+\MSHblock{"Uniform"}{"B"}{ 0.0,0.0 }{ 1.0,0.0 }{ 0.0,1.0 }{ scale=10.0,10.0 }
+2 2
+
+\NRGinit{1}{0}{1}
+
+\MCSbc{"reflective" , &
+       "vacuum" , &
+       "vacuum" , &
+       "reflective" }{ "infinite" , "infinite" }
+
+\MCSdiscorner{T}
+
+\DORlevquad{"LMLQ"}{8}
+\DORuniz{T}
+********************************
+
+
+********************************
+*** Integral Regions
+********************************
+Upper Right Region
+\TAPintegralregion{"I_UR"}{4}{1.0}
+ 5.0  5.0
+10.0  5.0
+10.0 10.0
+ 5.0 10.0
+
+Right Region
+\TAPintegralregion{"I_R"}{4}{1.0}
+ 5.0 0.0
+10.0 0.0
+10.0 5.0
+ 5.0 5.0
+
+Lower Left Region
+\TAPintegralregion{"I_LL"}{4}{1.0}
+0.0 0.0
+5.0 0.0
+5.0 5.0
+0.0 5.0
+
+ALL Regions
+\TAPintegralregion{"I_ALL"}{4}{1.0}
+ 0.0  0.0
+10.0  0.0
+10.0 10.0
+ 0.0 10.0
+********************************
+
+
+********************************
+*** Sink Region
+********************************
+\MATinit{"blue"}
+\MATmact0{"blue"}
+2.0
+\MATmacs0{"blue"}
+0.1
+\MATmacnu0{"blue"}
+0.00
+\MATmacf0{"blue"}
+0.00
+\MATassoc{"*"}{"blue"}
+********************************
+
+
+********************************
+*** Source Region 
+********************************
+\MATinit{"red"}
+\MATmact0{"red"}
+1.00
+\MATmacs0{"red"}
+0.90
+\MATmacnu0{"red"}
+0.00
+\MATmacf0{"red"}
+0.00
+\MATpolygon{"red"}{4}
+0.0 0.0
+5.0 0.0
+5.0 5.0
+0.0 5.0
+********************************
+
+
+********************************
+*** Region Lower Left Source 
+********************************
+\SRCpolygon{"QLL"}{1.0}{4}
+0.0 0.0
+5.0 0.0
+5.0 5.0
+0.0 5.0
+********************************
+
+
+********************************
+*** Calculation Options 
+********************************
+\MCSsbalance{T}
+\MCSsbedgeinterp{"ParabolicKarpov"}
+\MCScellfunction{"Gauss"} 
+\QDFsystem{04}
+\QDFcellfunction{"Gauss"}
+\QDFsolver{"Direct"}{"nspiv"}
+\QDFnonlinearfixup{"TauDN"}
+\TAPtolsf{1E-5}
+\TAPmaxit{20}
+********************************
+
+
+\TAPoutput{4}
+   "LO-ScalarFlux-CellRegions"&
+   "ScalarFlux-CellRegions"&
+   "TimeSummary"&              
+   "TimeTable"         

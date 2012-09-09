@@ -1,0 +1,16 @@
+!!#### REQUIRED INPUT
+REAL(KIND_R),INTENT(IN) :: list(:)
+
+!!#### REQUIRED OUTPUT
+INTEGER :: loc
+
+!!#### REQUIRED INPUT
+!! * value to check list for equality
+REAL(KIND_R),INTENT(IN) :: val
+
+!!#### OPTIONAL INPUT
+!! * tolerance to allow <tol>
+REAL(KIND_R),OPTIONAL,INTENT(IN) :: tol
+
+!!#### LOCAL VARIABLES
+INTEGER     :: i

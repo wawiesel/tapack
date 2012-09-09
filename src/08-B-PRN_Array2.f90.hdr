@@ -1,0 +1,16 @@
+!#OPTIONAL INPUT
+CHARACTER(*),INTENT(IN),OPTIONAL :: FMT
+INTEGER     ,INTENT(IN),OPTIONAL :: UNIT
+INTEGER     ,INTENT(IN),OPTIONAL :: NPER
+INTEGER     ,INTENT(IN),OPTIONAL :: NSEP
+CHARACTER(*),INTENT(IN),OPTIONAL :: xHDR(1:SIZE(A,1))
+CHARACTER(*),INTENT(IN),OPTIONAL :: yHDR(0:SIZE(A,2))
+
+!#LOCAL VARIABLES
+INTEGER       :: IX,IY,Line,Unit_,NX,NY,NPerLine
+INTEGER       :: Ispace,NSpace
+LOGICAL       :: writeyheader,writexheader
+INTEGER       :: NumFullLines,NumPartialLineA,AddLine,CurrVar,EndLine,AExpected
+INTEGER       :: ynum
+CHARACTER(LEN_N  ) :: nstr,wstr,ystr
+CHARACTER(LEN_FMT) :: FMT_

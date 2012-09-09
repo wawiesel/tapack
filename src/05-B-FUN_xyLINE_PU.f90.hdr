@@ -1,0 +1,9 @@
+!!#### REQUIRED INPUT
+!! @ point in R^2 <P>
+!! @ direction in R^2 <U>
+REAL(KIND_R),INTENT(IN) :: P( 1:2 ) 
+REAL(KIND_R),INTENT(IN) :: U( 1:2 ) 
+
+!!#### REQUIRED OUTPUT
+!! @ line in R^2 [xyLn]
+REAL(KIND_R) :: xyLn( 1:2 , 1:2 ) 

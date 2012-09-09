@@ -1,0 +1,13 @@
+!!#### REQUIRED INPUT
+!! * polygon <N,Pg>
+!! * centroid <P_centroid>
+INTEGER     ,INTENT(IN) :: N                    
+REAL(KIND_R),INTENT(IN) :: Pg( 1:2 , 1:N ) 
+REAL(KIND_R),INTENT(IN) :: P_centroid(1:2)
+
+!!#### REQUIRED OUTPUT
+!! * triangularization including center
+INTEGER :: order_Tr( 1:3 , 1:N )
+
+!!#### LOCAL VARIABLES
+INTEGER        :: i

@@ -1,0 +1,136 @@
+\TAPdetails{"Test with sigma_t=1, c=0.5, q=0.079577471545947667884441881686257, and the 
+  perturbation fraction pertfrac=0.3 ."}
+
+
+
+
+
+
+****MESH****
+
+\DORlevquad{"LMLQ"}{8}
+\DORuniz{T}
+
+!standard seed
+\MSHrandseed{76435219}
+
+!other seeds
+!\MSHrandseed{3835457}
+!\MSHrandseed{16586373}
+!\MSHrandseed{563345321}
+
+
+\MSHinit{2}
+\MSHdomain{"Rectangle"}{ 0.0,0.0 }{ 1.0,0.0 }{ 0.0,1.0 }{scale=1,1}
+
+\MSHblock{"Uniform"}{"B"}{ 0.0,0.0 }{ 1.0,0.0 }{ 0.0,1.0 }
+32 32
+
+Generate a perturbed mesh.
+\MSHpertvert{"POLYREGION"}{0.009375,0.009375}{0,360}
+4
+ 0.0001  0.0001 
+ 0.9999  0.0001 
+ 0.9999  0.9999
+ 0.0001  0.9999
+
+\MSHscale{1e-3,1e-3}
+
+
+
+
+****DATA****
+
+\NRGinit{1}{0}{1}
+
+\MATinit{"red"}
+\MATmact0{"red"}
+1
+\MATmacs0{"red"}
+0.5
+\MATmacnu0{"red"}
+0.0
+\MATmacf0{"red"}
+0.0
+\MATassoc{"*"}{"red"}
+
+\SRCpolygon{"W"}{0.079577471545947667884441881686257}{4}{T}
+  0.0  0.0
+ 10.0  0.0
+ 10.0 10.0
+  0.0 10.0
+                0.0 0.0
+
+
+****ITERATIONS****
+
+\TAPminit{1}
+\TAPmaxit{1000}
+\TAPtolsf{1E-8}
+
+
+****HIGH ORDER TRANSPORT****
+
+\MCSbc{"fixed" , &
+       "fixed" , &
+       "fixed" , &
+       "fixed" }{ "infinite" , "infinite" } 
+0
+0
+0
+0
+
+\MCSsbalance{T}
+!\MCSsbedgeinterp{"Parabolic"}
+\MCSsbedgeinterp{"ParabolicKarpov"}
+!\MCSsbedgeinterp{"CWENO"}
+!\MCSsbopts{CWENO_cwt=0.50}
+\MCScellfunction{"Gauss"}
+
+
+****LOW ORDER QUASIDIFFUSION****
+
+!Turn off low order.
+!\TAPloworder{"None"}
+
+!Iterative solver.
+!\QDFsolver{"Direct"}{"nspiv"}
+\QDFsolver{"Iterative"}{"SPARSKIT-BiCGstab"}
+\QDFsparskit{lfil=20}{droptol=1e-5}{niwk=4e6}{nkryss=20}{maxmatvec=100}
+\QDFautoiterfix{T}
+
+\QDFdiffusionits{T,F}
+\QDFhalfcellshape{"FaceBisect"}
+\QDFinterfacetype{"SC+WF"}
+\QDFsystem{04}
+
+!\QDFcellfunction{"Gauss"}
+\QDFcellfunction{"Flat"}
+
+
+
+****OUTPUT****
+
+\TAPintegralregion{"ALL"}{4}{1.0}
+  0.0  0.0
+ 10.0  0.0
+ 10.0 10.0
+  0.0 10.0
+ 
+\TAPmegatable{"Identifier"}{Note="test-CVG-N32-p0.30"}
+\TAPmegatable{"NumIts"}
+
+ If low-order is on.
+ \TAPoutput{10}
+    "LO-ScalarFlux-CellRegions"&
+    "ScalarFlux-CellRegions"&
+    "ScalarFluxV"&
+    "ScalarFluxF"&
+    "ScalarFluxC"&
+    "LO-ScalarFluxV"&
+    "LO-ScalarFluxF"&
+    "LO-ScalarFluxC"&
+    "TimeSummary"&              
+    "TimeTable"         
+
+

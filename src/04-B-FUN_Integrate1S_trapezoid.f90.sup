@@ -1,0 +1,31 @@
+!determine number of points 
+N = SIZE(x)
+
+!get delta x-values
+IF( PRESENT(delxin) )THEN
+ 
+ delx_ = delxin
+
+ELSE
+ 
+ DO i = 1 , N-1
+  delx_(i) = x(i+1)-x(i)
+ END DO
+
+END IF
+
+!get average f-values
+IF( PRESENT(fbarin) )THEN
+
+ fbar_ = fbarin
+
+ELSE 
+
+ DO i = 1 , N-1
+  fbar_(i) = 0.5_KIND_f*( f(i) + f(i+1) )
+ END DO
+
+END IF
+
+!initialize value of integration
+integral = 0._KIND_f

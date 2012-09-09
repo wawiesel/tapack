@@ -1,0 +1,12 @@
+!!#### REQUIRED INPUT
+CHARACTER(LEN=*,KIND=KIND_S),INTENT(IN) :: old_list(:)
+
+!!#### REQUIRED OUTPUT
+TYPE(varying_string) :: new_list(SIZE(old_list))
+
+!!#### REQUIRED INPUT
+!! @ reordering array <order>
+INTEGER,INTENT(IN) :: order(SIZE(old_list))
+
+!!#### LOCAL VARIABLES
+INTEGER     :: i

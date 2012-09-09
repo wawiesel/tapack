@@ -1,0 +1,21 @@
+!!#### REQUIRED INPUT
+REAL(KIND_R),INTENT(IN) :: r(:,:)
+
+!!#### REQUIRED OUTPUT
+INTEGER,INTENT(OUT) :: NUM_Unique
+INTEGER,INTENT(OUT) :: order(1:SIZE(r,2))
+
+!!#### OPTIONAL OUTPUT
+!! @ pointer to the unique vectors, reordered
+REAL(KIND_R),OPTIONAL,POINTER :: r_unique(:,:)
+
+!!#### OPTIONAL INPUT
+REAL(KIND_R),OPTIONAL,INTENT(IN) :: tol,reltol
+INTEGER    ,OPTIONAL,INTENT(IN) :: Unit
+LOGICAL    ,OPTIONAL,INTENT(IN) :: Interactive
+
+!!#### LOCAL VARIABLES
+INTEGER                 :: NUM_Dups
+LOGICAL    ,ALLOCATABLE :: unique(:)
+REAL(KIND_R),POINTER     :: r2(:,:)
+INTEGER                 :: Nd,Nv

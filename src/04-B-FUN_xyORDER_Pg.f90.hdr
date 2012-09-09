@@ -1,0 +1,13 @@
+!!#### REQUIRED INPUT
+!! @ list of points describing a CCW polygon 
+!!   in R^2 <N,Pg>
+INTEGER    ,INTENT(IN) :: N
+REAL(KIND_R),INTENT(IN) :: Pg(1:2,1:N)
+
+!!#### REQUIRED OUTPUT
+!! @ standard reordering with first point 
+!!   the lower-left <order_Pg>
+INTEGER :: order_Pg(1:N)
+
+!!#### LOCAL VARIABLES
+INTEGER :: i,j,imin

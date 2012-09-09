@@ -1,0 +1,17 @@
+!!#### REQUIRED INPUT
+!! @ polygon <N,Pg>
+!! @ area of polygon (positive) <AREA>
+INTEGER    ,INTENT(IN) :: N           
+REAL(KIND_R),INTENT(IN) :: Pg( xySHAPE_Pg(1,N) , xySHAPE_Pg(2,N) )   
+REAL(KIND_R),INTENT(IN) :: AREA        
+
+!!#### REQUIRED OUTPUT
+!! @ centroid of polygon in R^2 [xyP]
+REAL(KIND_R) :: xyP( xySHAPE_P(1) )
+
+!!#### LOCAL VARIABLES
+!! @ polygon vertex index <i>
+!! @ factor used in the x and y centroid locations <a>
+INTEGER     :: i 
+REAL(KIND_R) :: a
+

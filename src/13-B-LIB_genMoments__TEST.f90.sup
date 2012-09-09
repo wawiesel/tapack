@@ -1,0 +1,10 @@
+IF( PRESENT(tol) )THEN
+ IF( tol<0._KIND_R )THEN
+  tol_ = EPSILON(resid_)
+ ELSE
+  tol_ = tol
+ END IF
+ELSE
+ tol_ = EPSILON(resid_)
+END IF
+resid_ = 0._KIND_R

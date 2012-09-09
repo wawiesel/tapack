@@ -1,0 +1,6 @@
+!#REQUIRED INPUT
+REAL(KIND_R),INTENT(IN) :: A(:,:)
+
+!#LOCAL VARIABLES
+INTEGER                 :: i, k ,nrow , ncol , nzmax , j
+REAL(KIND_R),PARAMETER   :: ZERO = 0._KIND_R

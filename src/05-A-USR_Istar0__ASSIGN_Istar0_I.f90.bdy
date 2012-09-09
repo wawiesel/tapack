@@ -1,0 +1,7 @@
+SELECT CASE(KIND_I) 
+ CASE(KIND_I1) ; Istar0% KIND = KIND_I ; Istar0%I1 = I
+ CASE(KIND_I2) ; Istar0% KIND = KIND_I ; Istar0%I2 = I
+ CASE(KIND_I4) ; Istar0% KIND = KIND_I ; Istar0%I4 = I
+ CASE(KIND_I8) ; Istar0% KIND = KIND_I ; Istar0%I4 = I
+ CASE DEFAULT ; Istar0% KIND = -1
+END SELECT

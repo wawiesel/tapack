@@ -1,0 +1,9 @@
+!!#### REQUIRED INPUT
+!! @ first point in R^2 <P_a>
+!! @ first point in R^2 <P_b>
+REAL(KIND_R),INTENT(IN) :: P_a( xySHAPE_P(1) ) 
+REAL(KIND_R),INTENT(IN) :: P_b( xySHAPE_P(1) ) 
+
+!!#### REQUIRED OUTPUT
+!! @ line segment in R^2 <xyLs>
+REAL(KIND_R) :: xyLs( xySHAPE_Ls(1) , xySHAPE_Ls(2) ) 

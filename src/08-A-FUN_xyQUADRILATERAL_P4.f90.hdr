@@ -1,0 +1,10 @@
+!!#### REQUIRED INPUT
+!! @ list of four points <P4>
+REAL(KIND_R),INTENT(IN) :: P4( xySHAPE_P(1) , 4 ) 
+
+!!#### REQUIRED OUTPUT
+!! @ general quadrilateral in <xyQg>
+REAL(KIND_R) :: xyQg( xySHAPE_Qg(1) , xySHAPE_Qg(2) ) 
+
+!!#### LOCAL VARIABLES
+INTEGER :: k,order_cvh(4)

@@ -1,0 +1,155 @@
+Author.
+\TAPauthor{"WAW"}
+
+Details.
+\TAPdetails{"A test of the variation when the center vert is moved."}
+
+
+
+
+
+The number of energy groups (total,fast,thermal).
+\NRGinit{1}{0}{1}
+
+Initialize the Mesh structure for two dimensions.
+\MSHinit{2}
+
+Define a rectangular domain oriented on the x and y axes.
+\MSHdomain{"Rectangle"}{ 0.0,0.0 }{ 1.0,0.0 }{ 0.0,1.0 }{scale=1,1}
+
+
+A) *** analytic case ***
+\MSHblock{"Uniform"}{"B"}{ 0.0,0.0 }{ 1.0,0.0 }{ 0.0,1.0 }
+1 1
+
+split top face to get analytic face averages for the top 2 faces
+\MSHsplitface{"f2B"}
+0.5 0.9
+0.5 1.1
+
+\MSHfinalize{T}
+
+!
+!B) *** orthogonal case ***
+!\MSHblock{"Uniform"}{"B"}{ 0.0,0.0 }{ 1.0,0.0 }{ 0.0,1.0 }
+!2 2
+!
+
+!
+!C) *** perturbed case ***
+!\MSHblock{"Uniform"}{"B"}{ 0.0,0.0 }{ 1.0,0.0 }{ 0.0,1.0 }
+!2 2
+!
+!move the center vert to create 4 oblique cells
+!\MSHmovevert{"v5B"}{-0.3,-0.1}
+!
+
+
+
+Scale it.
+\MSHscale{10,10}
+
+\TAPvisualizenow{F}
+
+
+Boundary conditions on bottom,right,top,left boundaries.
+\MCSbc{"fixed" , &
+       "fixed" , &
+       "fixed" , &
+       "fixed" }{ "infinite" , "infinite" }
+2
+0
+0
+2
+
+
+Define the red material and define the cross sections.
+\MATinit{"red"}
+
+
+\MATmact0{"red"}
+1.0
+\MATmacs0{"red"}
+0.0
+\MATmacnu0{"red"}
+0.0
+\MATmacf0{"red"}
+0.0
+
+
+Associate all cells with the red material.
+\MATassoc{"*"}{"red"}
+
+
+Set the source everywhere to 0.
+\SRCpolygon{"W"}{0}{4}{T}
+-1000.0 -1000.0
+ 1000.0 -1000.0
+ 1000.0  1000.0
+-1000.0  1000.0
+ 0.0 0.0
+
+
+Exiting Current.
+\TAPcurrentexiting{5,5}{10,10}
+
+Define an integral Region.
+\TAPintegralregion{"ALL"}{4}{1.0}
+  0  0
+ 10  0
+ 10 10
+  0 10
+
+
+Set the Quadrature set.
+\DORlevquad{"LMLQ"}{12}
+\DORuniz{T}
+
+Maximum/Minimum transport iterations.
+\TAPmaxit{+100}
+\TAPminit{+2}
+
+Scalar flux and current tolerances.
+\TAPtolsf{1E-12}
+
+Use subcell balances.
+\MCSsbalance{T}
+\MCSsbedgeinterp{"ParabolicKarpov"}
+!\MCSsbedgeinterp{"Parabolic"}
+!\MCSsbedgeinterp{"Flat"}
+!\MCSsbedgeinterp{"LinearEdges"}
+!\MCSsbedgeinterp{"LinearAverage"}
+!\MCSsbedgeinterp{"CWENO"}
+!\MCSsbopts{CWENO_cwt=0.90}
+
+Use interp line.
+\MCSinterpplane{"diag"}
+\MCSorder{1}
+\MCSmonotonic{T}
+\MCScellfunction{"Gauss"}
+
+
+Set up the low order solver.
+\TAPloworder{"None"}
+
+
+Megatable output selector.
+\TAPmegatable{"PhiV"}{g=1}{r=10,10,0}{Note="TR"}
+
+\TAPoutput{2}
+   "ScalarFluxF"&
+   "ScalarFlux-CellRegions"
+   
+At the top right corner, if $/Omega_y//Omega_x >1 $, then
+the ray is hitting the bottom boundary.  Otherwise, it hits the
+left boundary.  Therefore, in the first case, the solution is
+given by $2*exp(-10//Omega_y)$.  In the second case, it is 
+$2*exp(-10//Omega_x)$.
+
+Top right corner, with a hacked AND by multiplying two ifs.  If the checkbnd
+statement is numeric but converted to boolean based on the simple rule,
+if the value>0 then true, else false.
+\TAPchecksoln{"PsiV"}{"if( Oy/Ox>1 , 2*exp(-10/Oy) , 2*exp(-10/Ox) )"}&
+  {r=10,10,0}{g=1}{m=0}{checktol=1E-7}{checkbnd="if(Ox>0,1,0)*if(Oy>0,1,0)"} 
+
+\MCSdiscorner{T}

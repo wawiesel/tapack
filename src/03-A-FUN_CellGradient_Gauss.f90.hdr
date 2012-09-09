@@ -1,0 +1,12 @@
+!!#### REQUIRED INPUT
+INTEGER     ,INTENT(IN) :: Nd,Na
+REAL(KIND_R),INTENT(IN) :: Vc
+REAL(KIND_R),INTENT(IN) :: A(Nd,Na)
+REAL(KIND_R),INTENT(IN) :: Fa(Na)
+
+!!#### REQUIRED OUTPUT
+REAL(KIND_R) :: CellGradient(Nd)
+
+!!#### LOCAL VARIABLES
+INTEGER :: j,d
+

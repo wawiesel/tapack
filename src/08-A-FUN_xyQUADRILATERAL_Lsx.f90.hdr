@@ -1,0 +1,13 @@
+!!#### REQUIRED INPUT
+!! @ ordered line segments <N,Lsx>
+INTEGER    ,INTENT(IN) :: N
+REAL(KIND_R),INTENT(IN) :: Lsx( xySHAPE_Ls(1) , xySHAPE_Ls(2) , N ) 
+
+!!#### REQUIRED OUTPUT
+!! @ general quadrilateral in R^2 <xyQg>
+REAL(KIND_R) :: xyQg( xySHAPE_Qg(1) , xySHAPE_Qg(2) )
+
+!!#### LOCAL VARIABLES
+INTEGER :: i,j,k
+INTEGER :: order(4)
+

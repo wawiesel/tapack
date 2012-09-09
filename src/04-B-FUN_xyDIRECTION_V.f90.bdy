@@ -1,0 +1,1 @@
+xyU = V/xyNORM_V( V )

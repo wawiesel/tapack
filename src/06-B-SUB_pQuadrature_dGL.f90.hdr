@@ -1,0 +1,20 @@
+!!#### REQUIRED INPUT
+!! @ order of the polar quadrature <pOrder>
+INTEGER,INTENT(IN) :: pOrder
+
+!!#### REQUIRED OUTPUT
+!! @ Gauss-Legendre polar angle abcissas (cosine of direction of travel 
+!!   perpendicular to xy-plane) <xp>
+!! @ Gauss-Legendre polar angle weights <wp>
+REAL(KIND_R),INTENT(OUT) :: xp(1:pOrder)
+REAL(KIND_R),INTENT(OUT) :: wp(1:pOrder)
+
+!!#### OPTIONAL OUTPUT
+!! @ error integer ($0$ is no error, $>0$ is warning, $<0$ is error) <errint>
+!! @ corresponding error message <errmsg>
+INTEGER     ,OPTIONAL,INTENT(OUT) :: errint
+CHARACTER(*),OPTIONAL,INTENT(OUT) :: errmsg
+
+!#LOCAL VARIABLES
+INTEGER :: errint_
+INTEGER :: H1,H2

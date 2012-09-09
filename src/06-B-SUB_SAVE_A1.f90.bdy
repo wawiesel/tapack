@@ -1,0 +1,3 @@
+DO n=LBOUND(A,1),UBOUND(A,1)
+ WRITE(Unit,*)A(n)
+END DO

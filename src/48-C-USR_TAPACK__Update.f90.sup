@@ -1,0 +1,14 @@
+IF( PRESENT(set_key) )THEN
+ local_key = set_key
+END IF
+IF( PRESENT(key) )THEN
+ IF( key/=local_key )THEN
+  CALL UPDATE(fdbk_comment,fdbk,s="[[TAP]] variable "//&
+    TRIM(DEFAULT(varname0,varname))//" is locked and will not be updated&
+    & because [key="//TRIM(key)//"] does not match&
+    & [local_key="//TRIM(local_key)//"].")
+  RETURN
+ END IF
+END IF
+
+CALL UPDATE(fdbk_comment,fdbk,s="[[TAP]] Updating "//TRIM(DEFAULT(varname0,varname))//".")

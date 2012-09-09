@@ -1,0 +1,85 @@
+MODULE FUN_xyzCOPLANAR
+!!#### PURPOSE
+!! Test for coplanarity between:
+!! @ three points in R^2 <P3>
+!! @ a plane and a point in R^2 <PnP>
+
+!!#### EXTERNAL KINDS
+USE KND_IntrinsicTypes,ONLY: KIND_Rsp,KIND_Rdp !!((01-A-KND_IntrinsicTypes.f90))
+
+!!#### EXTERNAL PARAMETERS
+USE PAR_Constants_Rsp,ONLY: c_0_Rsp => c_0     !!((02-A-PAR_Constants_Rsp.f90))
+USE PAR_Constants_Rdp,ONLY: c_0_Rdp => c_0     !!((02-A-PAR_Constants_Rdp.f90))
+
+!!#### EXTERNAL PROCEDURES
+USE FUN_xyzPLANE,ONLY: xyzPLANE_P3             !!((06-B-FUN_xyzPLANE.f90))
+USE FUN_xyzSDIST,ONLY: xyzSDIST_PnP            !!((06-B-FUN_xyzSDIST.f90))
+
+!!#### DEFAULT IMPLICIT
+IMPLICIT NONE
+
+!!#### DEFAULT ACCESS
+PRIVATE
+
+!!#### PROCEDURE OVERLOADING
+INTERFACE xyzCOPLANAR_P4
+ MODULE PROCEDURE xyzCOPLANAR_P4_Rsp
+ MODULE PROCEDURE xyzCOPLANAR_P4_Rdp
+END INTERFACE
+
+INTERFACE xyzCOPLANAR_PnP
+ MODULE PROCEDURE xyzCOPLANAR_PnP_Rsp
+ MODULE PROCEDURE xyzCOPLANAR_PnP_Rdp
+END INTERFACE
+
+!!#### PUBLIC ACCESS LIST
+PUBLIC :: xyzCOPLANAR_P4
+PUBLIC :: xyzCOPLANAR_PnP
+
+
+CONTAINS
+
+
+PURE FUNCTION xyzCOPLANAR_P4_Rsp( P4 ) RESULT(COPLANAR)
+!!#### LOCAL KINDS
+USE KND_IntrinsicTypes,ONLY: KIND_R=>KIND_Rsp  !!((01-A-KND_IntrinsicTypes.f90))
+INCLUDE "07-B-FUN_xyzCOPLANAR_P4.f90.hdr"
+!!--begin--
+INCLUDE "07-B-FUN_xyzCOPLANAR_P4.f90.bdy"
+!!--end--
+END FUNCTION
+
+PURE FUNCTION xyzCOPLANAR_P4_Rdp( P4 ) RESULT(COPLANAR)
+!!#### LOCAL KINDS
+USE KND_IntrinsicTypes,ONLY: KIND_R=>KIND_Rdp  !!((01-A-KND_IntrinsicTypes.f90))
+INCLUDE "07-B-FUN_xyzCOPLANAR_P4.f90.hdr"
+!!--begin--
+INCLUDE "07-B-FUN_xyzCOPLANAR_P4.f90.bdy"
+!!--end--
+END FUNCTION
+
+
+PURE FUNCTION xyzCOPLANAR_PnP_Rsp( Pn , P ) RESULT(COPLANAR)
+!!#### LOCAL KINDS
+USE KND_IntrinsicTypes,ONLY: KIND_R=>KIND_Rsp  !!((01-A-KND_IntrinsicTypes.f90))
+!!#### LOCAL PARAMETERS
+REAL(KIND_R),PARAMETER :: c_0 = c_0_Rsp
+INCLUDE "07-B-FUN_xyzCOPLANAR_PnP.f90.hdr"
+!!--begin--
+INCLUDE "07-B-FUN_xyzCOPLANAR_PnP.f90.bdy"
+!!--end--
+END FUNCTION
+
+PURE FUNCTION xyzCOPLANAR_PnP_Rdp( Pn , P ) RESULT(COPLANAR)
+!!#### LOCAL KINDS
+USE KND_IntrinsicTypes,ONLY: KIND_R=>KIND_Rdp  !!((01-A-KND_IntrinsicTypes.f90))
+!!#### LOCAL PARAMETERS
+REAL(KIND_R),PARAMETER :: c_0 = c_0_Rdp
+INCLUDE "07-B-FUN_xyzCOPLANAR_PnP.f90.hdr"
+!!--begin--
+INCLUDE "07-B-FUN_xyzCOPLANAR_PnP.f90.bdy"
+!!--end--
+END FUNCTION
+
+
+END MODULE

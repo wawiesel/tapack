@@ -1,0 +1,20 @@
+!#PURPOSE
+! Calculate a component of the Eddington tensor.
+
+!#REQUIRED INPUT
+! @ the angular flux [AngularFlux]
+REAL(KIND_R)         ,INTENT(IN) :: AngularFlux(:,:) !g,k,m=>g,m
+REAL(KIND_DOR),INTENT(IN) :: DirCos1(:)
+REAL(KIND_DOR),INTENT(IN) :: DirCos2(:)
+INTEGER             ,INTENT(IN) :: m_(:,:)
+REAL(KIND_DOR),INTENT(IN) :: PolWts(1:SIZE(m_,2))
+REAL(KIND_DOR),INTENT(IN) :: AziWts(1:SIZE(m_,1))
+
+!#REQUIRED OUTPUT
+! @ component of the Eddington tensor [Eddington]
+REAL(KIND_R) :: Eddington(1:SIZE(AngularFlux,1))
+
+!#LOCAL VARIABLES
+! @ angular dummy index (not the same as the master index)
+INTEGER :: m,mp,ma,mxy,mz,g
+

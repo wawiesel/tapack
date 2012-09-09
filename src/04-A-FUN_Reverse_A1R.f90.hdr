@@ -1,0 +1,10 @@
+!!#### REQUIRED INPUT
+!! @ array of values [y]
+REAL(KIND_R),INTENT(IN) :: y(:)
+
+!!#### REQUIRED OUTPUT
+!! @ array of reversed values [z]
+REAL(KIND_R) :: z(1:SIZE(y))
+
+!!#### LOCAL VARIABLES
+INTEGER :: i,j

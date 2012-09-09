@@ -1,0 +1,4 @@
+!!#### REQUIRED OUTPUT
+!! @ the second moment is a tensor with 
+!!   \< Ndim*(Ndim+1)/2 \> elements
+REAL(KIND_R) :: Moment2((SIZE(x,1)*(SIZE(x,1)+1))/2)

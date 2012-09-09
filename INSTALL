@@ -1,0 +1,13 @@
+To compile bin/tap.exe, all you have to do is type
+
+$ script/build.sh <config> 
+
+with <config>=ifort, corresponding to a template file in
+config/<config>.mkmf.template.
+
+This automatic system performs the following steps:
+
+1. creates a makefile (build/Makefile) based on all source in src using script/config.sh,
+2. builds the executable using script/build.sh
+3. installs the executable to bin/tap.exe
+

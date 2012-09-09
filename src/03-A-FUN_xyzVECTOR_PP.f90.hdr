@@ -1,0 +1,9 @@
+!!#### REQUIRED INPUT
+!! first point in R^3 <P_a>
+!! second point in R^3 <P_b>
+REAL(KIND_R),INTENT(IN) :: P_a(1:3)
+REAL(KIND_R),INTENT(IN) :: P_b(1:3)
+
+!!#### REQUIRED OUTPUT
+!! @ vector <xyzV>
+REAL(KIND_R) :: xyzV(1:3)

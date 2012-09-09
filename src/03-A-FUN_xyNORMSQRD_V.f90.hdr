@@ -1,0 +1,7 @@
+!!#### REQUIRED INPUT
+!! @ vector [V]
+REAL(KIND_R),INTENT(IN) :: V( 1:2 )
+
+!!#### REQUIRED OUTPUT
+!! @ normalization constant squared [NORMSQRD]
+REAL(KIND_R) :: NORMSQRD

@@ -1,0 +1,9 @@
+!!#### REQUIRED INPUT
+!! @ spherical vector a <V_a>
+!! @ spherical vector b <V_b>
+REAL(KIND_R),INTENT(IN) :: V_a( 1:2 )
+REAL(KIND_R),INTENT(IN) :: V_b( 1:2 )
+
+!!#### REQUIRED OUTPUT
+!! @ dot product of vector a and vector b [s]
+REAL(KIND_R) :: s

@@ -1,0 +1,29 @@
+!!#### REQUIRED INPUT
+!! @ name of azimuthal quadrature <aQuadrature>
+!! @ order of the azimuthal quadrature <aOrder>
+!! @ name of polar quadrature <pQuadrature>
+!! @ order of the polar quadrature <pOrder>
+CHARACTER(*),INTENT(IN) :: aQuadrature
+INTEGER     ,INTENT(IN) :: aOrder
+CHARACTER(*),INTENT(IN) :: pQuadrature
+INTEGER     ,INTENT(IN) :: pOrder
+
+
+!!#### REQUIRED OUTPUT
+!! @ weights <w>
+!! @ abcissas (direction cosines) <x>
+REAL(KIND_R),POINTER :: wa(:),xp(:),wp(:),xa(:,:)
+
+
+!!#### OPTIONAL OUTPUT
+!! @ error integer ($0$ is no error, $>0$ is warning, $<0$ is error) <errint>
+!! @ corresponding error message <errmsg>
+INTEGER     ,OPTIONAL,INTENT(OUT) :: errint
+CHARACTER(*),OPTIONAL,INTENT(OUT) :: errmsg
+
+!!#### OPTIONAL INPUT
+LOGICAL,OPTIONAL,INTENT(IN) :: UniformZGeometry
+
+!#LOCAL VARIABLES
+INTEGER :: errint_,Nmp,Nma,mp,ma
+REAL(KIND_R),POINTER :: xp_(:),wp_(:)

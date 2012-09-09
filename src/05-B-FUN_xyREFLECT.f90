@@ -1,0 +1,125 @@
+!!# FUNCTION MODULE: <FUN_xyREFLECT>
+MODULE FUN_xyREFLECT
+
+!!## PURPOSE
+!! Compute the reflections in 2D.
+
+
+!!## INFO
+!! author : William Wieselquist [waw]
+!! contact: william.wieselquist@gmail.com
+
+!!## EXTERNAL KINDS
+USE KND_IntrinsicTypes,ONLY: KIND_Rsp,KIND_Rdp !!((01-A-KND_IntrinsicTypes.f90))
+
+!!## EXTERNAL PARAMETERS
+USE PAR_Constants_Rsp,ONLY: c_2_Rsp => c_2     !!((02-A-PAR_Constants_Rsp.f90))
+USE PAR_Constants_Rdp,ONLY: c_2_Rdp => c_2     !!((02-A-PAR_Constants_Rdp.f90))
+
+!!## EXTERNAL PROCEDURES
+USE FUN_xyDOT                                  !!((03-A-FUN_xyDOT.f90))
+USE FUN_xySDIST                                !!((03-A-FUN_xySDIST.f90))
+USE FUN_xyDIRECTION                            !!((04-B-FUN_xyDIRECTION.f90))
+
+!!#### DEFAULT IMPLICIT
+IMPLICIT NONE
+
+!!#### DEFAULT ACCESS
+PRIVATE
+
+!!#### PROCEDURE OVERLOADING
+INTERFACE xyREFLECT_PnV
+ MODULE PROCEDURE xyREFLECT_PnV_Rsp
+ MODULE PROCEDURE xyREFLECT_PnV_Rdp
+END INTERFACE
+
+INTERFACE xyREFLECT_PnU
+ MODULE PROCEDURE xyREFLECT_PnU_Rsp
+ MODULE PROCEDURE xyREFLECT_PnU_Rdp
+END INTERFACE
+
+INTERFACE xyREFLECT_PnP
+ MODULE PROCEDURE xyREFLECT_PnP_Rsp
+ MODULE PROCEDURE xyREFLECT_PnP_Rdp
+END INTERFACE
+
+!!#### PUBLIC ACCESS LIST
+PUBLIC :: xyREFLECT_PnV
+PUBLIC :: xyREFLECT_PnU
+PUBLIC :: xyREFLECT_PnP
+
+
+CONTAINS
+
+
+PURE FUNCTION xyREFLECT_PnP_Rsp( Pn , P ) RESULT(xyP)
+!!#### LOCAL KINDS
+USE KND_IntrinsicTypes,ONLY: KIND_R=>KIND_Rsp  !!((01-A-KND_IntrinsicTypes.f90))
+!!#### LOCAL PARAMETERS
+REAL(KIND_R),PARAMETER :: c_2 = c_2_Rsp
+INCLUDE "05-B-FUN_xyREFLECT_PnP.f90.hdr"
+!!--begin--
+INCLUDE "05-B-FUN_xyREFLECT_PnP.f90.bdy"
+!!--end--
+END FUNCTION
+
+PURE FUNCTION xyREFLECT_PnP_Rdp( Pn , P ) RESULT(xyP)
+!!#### LOCAL KINDS
+USE KND_IntrinsicTypes,ONLY: KIND_R=>KIND_Rdp  !!((01-A-KND_IntrinsicTypes.f90))
+!!#### LOCAL PARAMETERS
+REAL(KIND_R),PARAMETER :: c_2 = c_2_Rdp
+INCLUDE "05-B-FUN_xyREFLECT_PnP.f90.hdr"
+!!--begin--
+INCLUDE "05-B-FUN_xyREFLECT_PnP.f90.bdy"
+!!--end--
+END FUNCTION
+
+
+
+PURE FUNCTION xyREFLECT_PnU_Rsp( Pn , V ) RESULT(xyV)
+!!#### LOCAL KINDS
+USE KND_IntrinsicTypes,ONLY: KIND_R=>KIND_Rsp  !!((01-A-KND_IntrinsicTypes.f90))
+!!#### LOCAL PARAMETERS
+REAL(KIND_R),PARAMETER :: c_2 = c_2_Rsp
+INCLUDE "05-B-FUN_xyREFLECT_PnV.f90.hdr"
+!!--begin--
+INCLUDE "05-B-FUN_xyREFLECT_PnV.f90.bdy"
+!!--end--
+END FUNCTION
+
+PURE FUNCTION xyREFLECT_PnU_Rdp( Pn , V ) RESULT(xyV)
+!!#### LOCAL KINDS
+USE KND_IntrinsicTypes,ONLY: KIND_R=>KIND_Rdp  !!((01-A-KND_IntrinsicTypes.f90))
+!!#### LOCAL PARAMETERS
+REAL(KIND_R),PARAMETER :: c_2 = c_2_Rdp
+INCLUDE "05-B-FUN_xyREFLECT_PnV.f90.hdr"
+!!--begin--
+INCLUDE "05-B-FUN_xyREFLECT_PnV.f90.bdy"
+!!--end--
+END FUNCTION
+
+
+PURE FUNCTION xyREFLECT_PnV_Rsp( Pn , V ) RESULT(xyV)
+!!#### LOCAL KINDS
+USE KND_IntrinsicTypes,ONLY: KIND_R=>KIND_Rsp  !!((01-A-KND_IntrinsicTypes.f90))
+!!#### LOCAL PARAMETERS
+REAL(KIND_R),PARAMETER :: c_2 = c_2_Rsp
+INCLUDE "05-B-FUN_xyREFLECT_PnV.f90.hdr"
+!!--begin--
+INCLUDE "05-B-FUN_xyREFLECT_PnV.f90.bdy"
+!!--end--
+END FUNCTION
+
+PURE FUNCTION xyREFLECT_PnV_Rdp( Pn , V ) RESULT(xyV)
+!!#### LOCAL KINDS
+USE KND_IntrinsicTypes,ONLY: KIND_R=>KIND_Rdp  !!((01-A-KND_IntrinsicTypes.f90))
+!!#### LOCAL PARAMETERS
+REAL(KIND_R),PARAMETER :: c_2 = c_2_Rdp
+INCLUDE "05-B-FUN_xyREFLECT_PnV.f90.hdr"
+!!--begin--
+INCLUDE "05-B-FUN_xyREFLECT_PnV.f90.bdy"
+!!--end--
+END FUNCTION
+
+
+END MODULE

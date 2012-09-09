@@ -1,0 +1,9 @@
+!!#### REQUIRED INPUT
+!! @ first point <P_a>
+!! @ second point <P_b>
+REAL(KIND_R),INTENT(IN) :: P_a( 1:2 ) 
+REAL(KIND_R),INTENT(IN) :: P_b( 1:2 ) 
+
+!!#### REQUIRED OUTPUT
+!! @ ray in R^2 <xyRy>
+REAL(KIND_R) :: xyRy( 1:2 , 1:2 ) 

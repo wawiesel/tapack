@@ -1,0 +1,6 @@
+!#REQUIRED OUTPUT
+COMPLEX(KIND_C),INTENT(OUT) :: A(:,:)
+
+!#LOCAL VARIABLES
+INTEGER                    :: i, k ,nrow , ncol 
+COMPLEX(KIND_C),PARAMETER   :: ZERO = (0._KIND_C,0._KIND_C)

@@ -1,0 +1,68 @@
+MODULE FUN_xyVECTOR
+!!#### PURPOSE
+!! Determine a vector <V>, from:
+!!  @ two points <PP> or
+!!  @ two points in a list <P2>.
+
+!!#### EXTERNAL KINDS
+USE KND_IntrinsicTypes,ONLY: KIND_Rsp,KIND_Rdp !!((01-A-KND_IntrinsicTypes.f90))
+
+!!#### DEFAULT IMPLICIT
+IMPLICIT NONE
+
+!!#### DEFAULT ACCESS
+PRIVATE
+
+INTERFACE xyVECTOR_PP
+ MODULE PROCEDURE xyVECTOR_PP_Rsp
+ MODULE PROCEDURE xyVECTOR_PP_Rdp
+END INTERFACE
+
+INTERFACE xyVECTOR_P2
+ MODULE PROCEDURE xyVECTOR_P2_Rsp
+ MODULE PROCEDURE xyVECTOR_P2_Rdp
+END INTERFACE
+
+
+!!#### PUBLIC ACCESS LIST
+PUBLIC :: xyVECTOR_P2
+PUBLIC :: xyVECTOR_PP
+
+
+CONTAINS
+
+
+PURE FUNCTION xyVECTOR_PP_Rsp( P_a , P_b ) RESULT( xyV )
+USE KND_IntrinsicTypes,ONLY: KIND_R=>KIND_Rsp  !!((01-A-KND_IntrinsicTypes.f90))
+INCLUDE "03-A-FUN_xyVECTOR_PP.f90.hdr"
+!!--begin--
+INCLUDE "03-A-FUN_xyVECTOR_PP.f90.bdy"
+!!--end--
+END FUNCTION
+
+PURE FUNCTION xyVECTOR_PP_Rdp( P_a , P_b ) RESULT( xyV )
+USE KND_IntrinsicTypes,ONLY: KIND_R=>KIND_Rdp  !!((01-A-KND_IntrinsicTypes.f90))
+INCLUDE "03-A-FUN_xyVECTOR_PP.f90.hdr"
+!!--begin--
+INCLUDE "03-A-FUN_xyVECTOR_PP.f90.bdy"
+!!--end--
+END FUNCTION
+
+
+PURE FUNCTION xyVECTOR_P2_Rsp( P2 ) RESULT( xyV )
+USE KND_IntrinsicTypes,ONLY: KIND_R=>KIND_Rsp  !!((01-A-KND_IntrinsicTypes.f90))
+INCLUDE "03-A-FUN_xyVECTOR_P2.f90.hdr"
+!!--begin--
+INCLUDE "03-A-FUN_xyVECTOR_P2.f90.bdy"
+!!--end--
+END FUNCTION
+
+PURE FUNCTION xyVECTOR_P2_Rdp( P2 ) RESULT( xyV )
+USE KND_IntrinsicTypes,ONLY: KIND_R=>KIND_Rdp  !!((01-A-KND_IntrinsicTypes.f90))
+INCLUDE "03-A-FUN_xyVECTOR_P2.f90.hdr"
+!!--begin--
+INCLUDE "03-A-FUN_xyVECTOR_P2.f90.bdy"
+!!--end--
+END FUNCTION
+
+END MODULE

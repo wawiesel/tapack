@@ -1,0 +1,13 @@
+!!#### REQUIRED INPUT
+!! @ x-values [x]
+!! @ function (right hand side) values [f]
+REAL(KIND_x),INTENT(IN) :: x( :       )
+REAL(KIND_f),INTENT(IN) :: f(1:SIZE(x))
+
+!!#### REQUIRED OUTPUT
+!! @ output solution vector [u]
+REAL(KIND_f) :: u(1:SIZE(x))
+
+!!#### LOCAL VARIABLES
+INTEGER     :: i,j,k,N
+REAL(KIND_f) :: s(1:SIZE(x)),phi,b,ff

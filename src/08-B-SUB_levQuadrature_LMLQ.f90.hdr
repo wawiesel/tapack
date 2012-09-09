@@ -1,0 +1,14 @@
+REAL(KIND_R),POINTER :: xa(:,:,:)
+REAL(KIND_R),POINTER :: xp(:)
+REAL(KIND_R),POINTER :: wa(:,:)
+REAL(KIND_R),POINTER :: wp(:)
+INTEGER,INTENT(IN) :: N
+INTEGER,INTENT(IN),OPTIONAL :: Nm
+!levQuadrature_LQ
+INTEGER,PARAMETER :: KEY_Nm(5) = (/24,48,80,168,288/)
+INTEGER :: Nm_,mp,Nmp,Nma,ma,mw,val
+REAL(KIND_R),ALLOCATABLE :: wts(:),abcs(:),abcs_(:,:,:,:)
+INTEGER,ALLOCATABLE :: wtloc(:)
+INTEGER :: i,j,k,N_
+REAL(KIND_R) :: mu,eta,xhi,u(3)
+

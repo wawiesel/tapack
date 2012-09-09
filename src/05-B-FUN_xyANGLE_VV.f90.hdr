@@ -1,0 +1,9 @@
+!!#### REQUIRED INPUT
+!! @ first vector in R^2 <V_a>
+!! @ second vector in R^2 <V_b>
+REAL(KIND_R),INTENT(IN) :: V_a(1:2)
+REAL(KIND_R),INTENT(IN) :: V_b(1:2)
+
+!!#### REQUIRED OUTPUT
+!! @ angle from V_a to V_b [t]
+REAL(KIND_R) :: t

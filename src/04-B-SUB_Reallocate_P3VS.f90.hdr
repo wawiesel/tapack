@@ -1,0 +1,9 @@
+!!#### REQUIRED INPUT/OUTPUT
+TYPE(varying_string),POINTER :: data(:,:,:)
+
+!!#### OPTIONAL INPUT
+!! @ fill value of the new entries [fill]
+TYPE(varying_string),OPTIONAL,INTENT(IN) :: fill
+
+!!#### LOCAL VARIABLES
+TYPE(varying_string),POINTER :: p(:,:,:)

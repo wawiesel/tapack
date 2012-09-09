@@ -1,0 +1,12 @@
+!!#### REQUIRED INPUT
+!! @ required interval for the random complex <l>
+COMPLEX(KIND_C),INTENT(IN) :: l(1:2)
+
+!!#### REQUIRED OUTPUT
+!! @ random complex number in the interval (left-inclusive) <x>
+COMPLEX(KIND_C) :: x
+
+!!#### LOCAL VARIABLES
+COMPLEX(KIND_C) :: LB,UB
+REAL(KIND_C)    :: rand(1:2)
+

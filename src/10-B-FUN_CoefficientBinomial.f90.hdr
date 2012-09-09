@@ -1,0 +1,8 @@
+!!#### REQUIRED INPUT
+!! @ binonmial coefficient integers $n$ and $k$
+INTEGER(KIND_I),INTENT(IN) :: n,k
+
+!!#### REQUIRED OUTPUT
+!! @ real-valued binomial coefficient $y=\frac{n!}{(n-k)! k!}$
+REAL(KIND_R) :: y
+

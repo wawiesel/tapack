@@ -1,0 +1,10 @@
+!!#### REQUIRED INPUT
+!! @ first vector in R^3 <V_a>
+!! @ first vector in R^3 <V_b>
+REAL(KIND_R),INTENT(IN) :: V_a( 1:3 )
+REAL(KIND_R),INTENT(IN) :: V_b( 1:3 )
+
+!!#### REQUIRED OUTPUT
+!! @ resultant vector <xyzV>
+REAL(KIND_R) :: xyzV( 1:3 )
+

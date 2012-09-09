@@ -1,0 +1,40 @@
+!!#### REQUIRED INPUT
+!! @ first line segment in R^2 <Ls_a>
+!! @ second line segment in R^2 <Ls_b>
+REAL(KIND_R),INTENT(IN) :: Ls_a(1:2,1:2)
+REAL(KIND_R),INTENT(IN) :: Ls_b(1:2,1:2)
+
+!!#### REQUIRED OUTPUT
+!! @ whether or not intersection occured <INTERSECT>
+LOGICAL :: INTERSECT
+
+!!#### OPTIONAL INPUT
+!! @ whether to include each of the endpoints <IncludeEnds_a,IncludeEnds_b>
+LOGICAL,OPTIONAL,INTENT(IN) :: IncludeEnds_a(1:2)
+LOGICAL,OPTIONAL,INTENT(IN) :: IncludeEnds_b(1:2)
+REAL(KIND_R),OPTIONAL,INTENT(IN) :: tol_a,tol_b
+
+!!#### OPTIONAL OUTPUT
+!! @ fraction of distance between left and right point on line segment <FRAC_a,FRAC_b>
+!! @ point of intersection [P_intersect]
+!! @ key describing intersection if INTERSECT is .TRUE. <key>
+!!   bit manipulation:
+!!    1: if 2nd line segment passed through 1st line segment left-endpoint
+!!    2: if counted as intersection
+!!    3: if 2nd line segment passed through 1st line segment right-endpoint
+!!    4: if counted as intersection
+!!    5: if 1st line segment passed through 2nd line segment left-endpoint
+!!    6: if counted as intersection
+!!    7: if 1st line segment passed through 2nd line segment right-endpoint
+!!    8: if counted as intersection
+
+REAL(KIND_R),OPTIONAL,INTENT(OUT) :: FRAC_a
+REAL(KIND_R),OPTIONAL,INTENT(OUT) :: FRAC_b
+REAL(KIND_R),OPTIONAL,INTENT(OUT) :: P_intersect(1:2)
+INTEGER    ,OPTIONAL,INTENT(OUT) :: key
+
+!!#### LOCAL VARIABLES
+REAL(KIND_R) :: FRAC_a_,FRAC_b_,tol_a_,tol_b_
+REAL(KIND_R) :: Ln_a(1:2,1:2),Ln_b(1:2,1:2)
+LOGICAL     :: IncludeEnds_a_(1:2)
+LOGICAL     :: IncludeEnds_b_(1:2)
