@@ -1,1 +1,5 @@
-^build$
+.*~$
+.*\.bak$
+bin/.*\.exe
+^build/
+/build/

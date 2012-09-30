@@ -1,0 +1,6 @@
+FC = gfortran
+LD = gfortran
+CPPFLAGS = -macro_expand
+FFLAGS = 
+LDFLAGS = $(LIBS)
+LIST = -listing

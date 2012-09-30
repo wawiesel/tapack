@@ -24,6 +24,7 @@ USE FUN_Substitute                                                 !!((06-C-FUN_
 USE ISO_varying_string                                             !!((03-A-ISO_varying_string.f90))
 USE PAR_Constants_Rdp                                              !!((02-A-PAR_Constants_Rdp.f90))
 USE SUB_CLEAR                                                      !!((04-A-SUB_CLEAR.f90))
+USE FUN_Error
 
 !!## GLOBAL LIBRARIES
 USE LIB_Norm                                                       !!((04-B-LIB_Norm.f90))

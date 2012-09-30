@@ -66,6 +66,7 @@ USE USR_SimpleSet                                                    !!((12-B-US
 USE SUB_FindUniqueVectors                                            !!((13-B-SUB_FindUniqueVectors.f90))
 USE USR_ExplicitCell                                                 !!((13-B-USR_ExplicitCell.f90))
 USE USR_Domain                                                       !!((13-B-USR_Domain.f90))
+USE FUN_Default
 
 USE KND_Mesh                                                         !!((05-B-KND_Mesh.f90))
 USE PAR_Mesh                                                         !!((06-B-PAR_Mesh.f90))

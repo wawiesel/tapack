@@ -68,7 +68,6 @@ USE VAR_TAPACK                !!((66-C-VAR_TAPACK.f90))
 USE CCS_TAPACK                !!((68-C-CCS_TAPACK.f90))
 USE TBX_QuasiDiffusion        !!((69-B-TBX_QuasiDiffusion.f90))
 USE PRN_TAPACK                !!((76-C-PRN_TAPACK.f90))
-USE SUB_InputLoop             !!((80-C-SUB_InputLoop.f90))
 USE TBX_MoCshort              !!((81-B-TBX_MoCshort.f90))
 ! compilation has problem with ifort 11.0 compiler due to this
 ! module file use

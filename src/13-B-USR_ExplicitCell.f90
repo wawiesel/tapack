@@ -27,7 +27,8 @@ USE FUN_Error                 !!((04-A-FUN_Error.f90))
 USE FUN_NewUnit               !!((04-B-FUN_NewUnit.f90))
 USE FUN_Default               !!((04-A-FUN_Default.f90))
 USE FUN_STR                   !!((05-B-FUN_STR.f90))
-uSE FUN_IsError
+USE FUN_IsError
+USE ISO_varying_string        
 
 !!## GLOBAL LIBRARIES
 USE LIB_Prompts               !!((06-B-LIB_Prompts.f90))
