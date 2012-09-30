@@ -5,13 +5,15 @@ use warnings;
 my $base=$ARGV[0]; #e.g. azmy0-mla0-d4
 my $pct=$ARGV[1]; 
 $pct||="50";
+my $vertol=$ARGV[2];
+$vertol||=1e-10;
 if( !@ARGV ){
   print "
-usage: tap-get-cell-refinement-list.pl <base> <pct> > refined.inp
+usage: tap-get-cell-refinement-list.pl <base> <pct> <vertol> > refined.inp
 
-  This script writes out \\MSHsplit{cell}{QUAD} cards corresponding to the
-  the cells with the most error, where error is defined as difference between
-  the high-order and low-order solutions.
+  This script writes out \\MSHsplit{cell}{QUAD}{VertTol=vertol} cards 
+  corresponding to the cells with the most error, where error is 
+  defined as difference between the high-order and low-order solutions.
 
 example: tap-get-cell-refinement-list.pl azmy0-mla-d4 50 
 
@@ -75,6 +77,7 @@ for my $i (0..$#lo){
     $first=0;
     print STDOUT "!!! ";
   }
-  printf STDOUT "\\MSHsplit{c%d}{QUAD}\n",$order[$i]+1;
+  printf STDOUT "\\MSHsplit{c%d}{QUAD}{VertTol=$vertol}\n",$order[$i]+1;
 }
+print STDOUT "\\MSHrename{T}{T}{T}\n";
 printf STDOUT "\\MSHfinalize{T}\n";
