@@ -4,7 +4,7 @@ use warnings;
 
 my $base=$ARGV[0]; #e.g. azmy0-mla0-d4
 my $pct=$ARGV[1]; 
-$pct||="50";
+if( !defined($pct) ){$pct="50"}
 my $vertol=$ARGV[2];
 $vertol||=1e-10;
 if( !@ARGV ){
