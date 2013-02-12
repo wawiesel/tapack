@@ -75,67 +75,11 @@ USE TBX_Mesh,ONLY: &                                     !!((15-B-TBX_Mesh.f90))
  TYPE_Mesh,NUM_Cells,NUM_Faces,NUM_Verts,KIND_MSH,&
  NUM_Dimensions,FaceCentroid,FaceNormal,CellVolume,FaceArea,&
  UPDATE_BoundaryFaces,TYPE_Interfaces,SETUP_Interfaces,CellCentroid,&
- Vert
+ Vert,ENSURE_Mesh_CellBased
 USE TBX_ComputationalGeometry                            !!((09-A-TBX_ComputationalGeometry.f90))
 USE USR_MoCshort,ONLY: IsReflective                      !!((48-C-USR_MoCshort.f90))
 USE VAR_QuasiDiffusion,ONLY: InterfaceType,HalfCellShape !!((46-B-VAR_QuasiDiffusion.f90))
-
-!!## EXTERNAL KINDS
-USE KND_XSExpansion                                      !!((02-A-KND_XSExpansion.f90))
-USE KND_MoCshort                                         !!((03-A-KND_MoCshort.f90))
-USE KND_QuasiDiffusion                                   !!((02-A-KND_QuasiDiffusion.f90))
-
-!!## PARAMETERS
-USE PAR_Constants_Rdp,ONLY: c_4_times_PI,c_1             !!((02-A-PAR_Constants_Rdp.f90))
-USE PAR_MoCshort     ,ONLY: KEY_BC                       !!((03-A-PAR_MoCshort.f90))
-USE PAR_QuasiDiffusion                                   !!((05-C-PAR_QuasiDiffusion.f90))
-USE ISO_varying_string                                   !!((03-A-ISO_varying_string.f90))
-
-!!## EXTERNAL PROCEDURES
-USE SUB_Reallocate                                       !!((04-B-SUB_Reallocate.f90))
-USE SUB_Pause                                            !!((04-B-SUB_Pause.f90))
-USE SUB_Stop                                             !!((04-B-SUB_Stop.f90))
-USE FUN_EQUILOC                                          !!((03-A-FUN_EQUILOC.f90))
-USE FUN_Default                                          !!((04-A-FUN_Default.f90))
-USE FUN_SIZEa                                            !!((06-B-FUN_SIZEa.f90))
-USE FUN_Sequence                                         !!((03-A-FUN_Sequence.f90))
-USE SUB_Shake                                            !!((06-B-SUB_Shake.f90))
-USE FUN_NewFile                                          !!((05-B-FUN_NewFile.f90))
-USE FUN_Error                                            !!((04-A-FUN_Error.f90))
-
-!!## GLOBAL PRINTING SUBROUTINES
-USE PRN_Text                                             !!((07-B-PRN_Text.f90))
-
-!!## USER MODULES
-!! * feedback user module
-USE USR_fdbk                                             !!((08-C-USR_fdbk.f90))
-USE USR_QuasiDiffusion                                   !!((67-B-USR_QuasiDiffusion.f90))
-
-!!## GLOBAL TOOLBOXES
-!! * SMLib sparse matrix computation
-USE USR_SMlib_Matrix_Arithmetic                          !!((19-B-USR_SMlib_Matrix_Arithmetic.f90))
-USE USR_SMlib_ILU                                        !!((20-B-USR_SMlib_ILU.f90))
-USE USR_SMlib_CGS                                        !!((20-B-USR_SMlib_CGS.f90))
-USE USR_SMlib_Band_LU                                    !!((17-B-USR_SMlib_Band_LU.f90))
-USE USR_SMlib_Band_Gauss_Solver                          !!((20-B-USR_SMlib_Band_Gauss_Solver.f90))
-
-!!## GLOBAL LIBRARIES
-USE LIB_Prompts                                          !!((06-B-LIB_Prompts.f90))
-USE LIB_GenericPhrases                                   !!((07-B-LIB_GenericPhrases.f90))
-USE LIB_Norm                                             !!((04-B-LIB_Norm.f90))
-
-!!## USER MODULES
-USE USR_DiscreteOrdinates                                !!((34-B-USR_DiscreteOrdinates.f90))
-
-!!## GLOBAL TOOLBOXES
-USE TBX_Mesh,ONLY: &                                     !!((15-B-TBX_Mesh.f90))
- TYPE_Mesh,NUM_Cells,NUM_Faces,NUM_Verts,KIND_MSH,&
- NUM_Dimensions,FaceCentroid,FaceNormal,CellVolume,FaceArea,&
- UPDATE_BoundaryFaces,TYPE_Interfaces,SETUP_Interfaces,CellCentroid,&
- Vert,ENSURE_Mesh_Cellbased
-USE TBX_ComputationalGeometry                            !!((09-A-TBX_ComputationalGeometry.f90))
-USE USR_MoCshort,ONLY: IsReflective                      !!((48-C-USR_MoCshort.f90))
-USE VAR_QuasiDiffusion,ONLY: InterfaceType,HalfCellShape !!((46-B-VAR_QuasiDiffusion.f90))
+                                         !!((04-B-LIB_Norm.f90))
 
 
 !!## DEFAULT IMPLICIT

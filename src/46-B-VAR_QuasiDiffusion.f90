@@ -15,7 +15,7 @@ USE PAR_Units                      !!((02-A-PAR_Units.f90))
 USE PAR_QuasiDiffusion             !!((05-C-PAR_QuasiDiffusion.f90))
 
 !!## GLOBAL USER MODULES
-USE USR_Mesh                       !!((14-B-USR_Mesh.f90))
+USE USR_Mesh,ONLY: TYPE_Mesh       !!((14-B-USR_Mesh.f90))
 USE USR_SMlib_Band_LU              !!((17-B-USR_SMlib_Band_LU.f90))
 USE USR_SMlib_MSR                  !!((17-B-USR_SMlib_MSR.f90))
 USE USR_SMlib_LU_CSR_MSR           !!((18-B-USR_SMlib_LU_CSR_MSR.f90))

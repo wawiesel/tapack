@@ -70,6 +70,8 @@ LOGICAL :: Opened,TRY_STATUS2
 CHARACTER(10) :: POSITION_,STATUS_
 
 !!--begin--
+POSITION_=''
+STATUS_=''
 POSITION_ = DEFAULT("AsIs      ",POSITION)
 STATUS_   = DEFAULT("Unknown   ",STATUS)
 
@@ -80,7 +82,7 @@ STATUS_   = DEFAULT("Unknown   ",STATUS)
 !!  @ if it contains the character "R" then the <RETURN> statement
 !!    is executed without continuing.
 IF( PRESENT(IfOpened) )THEN
-
+ Unit=0
  INQUIRE(FILE=File,OPENED=Opened,NUMBER=Unit,IOSTAT=jerr)
 
  IF( Opened )THEN

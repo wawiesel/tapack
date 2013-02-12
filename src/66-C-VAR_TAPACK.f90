@@ -63,6 +63,8 @@ USE VAR_EddingtonFactors,ONLY: EddingtonxxV,EddingtonyyV,EddingtonxyV,& !!((04-C
   KxxV,KxyV,KyyV
 
 !!## DEFAULT ACCESS
+IMPLICIT NONE
+
 PUBLIC
 
 !!## METHODS VARIABLES
@@ -1346,7 +1348,7 @@ CHARACTER(*),INTENT(IN) :: UpdateStr
 CHARACTER(LEN(UpdateStr)) :: UpdateStr_
 
 !!#### LOCAL VARIABLES
-INTEGER :: g,k,i,j
+INTEGER :: g,k,i,j,m
 REAL(KIND_MSH),ALLOCATABLE :: FN(:)
 
 !!--begin--

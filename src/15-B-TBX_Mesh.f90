@@ -3266,9 +3266,10 @@ REAL(KIND_MSH),DIMENSION(1:Mesh%NDim,1:4) :: Qr
 INTEGER :: k0,k1,k2,k3,j0,j1,j2,j3,i,NDim
 TYPE(TYPE_Edge),POINTER :: Edges(:)
 !!--begin--
-!set the shape integer corresponding to a box
-ALLOCATE( Mesh%DOMAIN%DomainShape )
-Mesh%DOMAIN%DomainShape = Qr_
+
+! !set the shape integer corresponding to a box
+! ALLOCATE( Mesh%DOMAIN%DomainShape )
+! Mesh%DOMAIN%DomainShape = Qr_
 NDim = NUM_Dimensions(Mesh)
 
 SELECT CASE(NDim)

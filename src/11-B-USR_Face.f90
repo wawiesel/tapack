@@ -254,11 +254,8 @@ IF( PRESENT(VertList) )THEN
 END IF
 
 IF( PRESENT(Edges) )THEN
- ALLOCATE( Face%Edges(1:SIZE(Edges)) )
- !use copy to prevent _unintended_ pointer association to Edges
- ![waw] why on earth was this commented? TAPACK v2.24
- Face%Edges = COPY( Edges )
  !Face%Edges = Edges
+ CALL COPY( Edges, Face%Edges )
 END IF
 
 IF( PRESENT(FaceArea) )THEN

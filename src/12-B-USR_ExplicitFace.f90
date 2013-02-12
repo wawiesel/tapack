@@ -408,7 +408,7 @@ REAL(KIND_MSH),INTENT(IN),OPTIONAL :: tol,reltol
 LOGICAL :: IsSamePlane
 
 !!## LOCAL VARIABLES
-REAL(KIND_MSH) :: Pn_a(1:4),Pn_b(1:4)
+REAL(KIND_MSH) :: Pn_a(1:3),Pn_b(1:3)
 
 !!--begin--
 

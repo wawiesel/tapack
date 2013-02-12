@@ -9,6 +9,7 @@ MODULE USR_Iptr
 !! Useful for having an array of lists
 !! of different sizes.
 
+IMPLICIT NONE
 
 !!## DERIVED TYPES
 TYPE TYPE_Iptr
@@ -24,6 +25,7 @@ SUBROUTINE REALLOCATE_IPtr(IPtr,dN)
 TYPE(TYPE_IPtr),POINTER :: IPtr(:)
 INTEGER,INTENT(IN) :: dN
 TYPE(TYPE_IPtr),POINTER :: IPtr2(:)
+INTEGER :: n
 IF( ASSOCIATED(IPtr) )THEN
     IPtr2=>IPtr
     IPtr=>NULL()

@@ -33,6 +33,7 @@ USE KND_IntrinsicTypes,ONLY: KIND_S  !!((01-A-KND_IntrinsicTypes.f90))
 USE PAR_NumericStrings,ONLY: digits_ !!((02-A-PAR_NumericStrings.f90))
 USE FUN_INT                          !!((06-B-FUN_INT.f90))
 
+IMPLICIT NONE
 
 !!## MODULE PROCEDURES
 CONTAINS
@@ -45,6 +46,7 @@ INTEGER :: FieldWidth
 !!#### ARGUMENT
 CHARACTER(LEN=*,KIND=KIND_S) :: FMT
 CHARACTER(LEN=10,KIND=KIND_S) :: fw
+INTEGER :: k1,k2
 
 !!--begin--
 !! Given a format string FMT, first the decimal "." is found.
