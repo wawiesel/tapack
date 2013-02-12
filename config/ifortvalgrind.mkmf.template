@@ -1,0 +1,7 @@
+FC = ifort
+LD = ifort
+CPPFLAGS = -macro_expand
+#cannot compile TBX_Mesh on ubuntu/ifort with -CA 
+FFLAGS = -g -fpp -warn all -warn nounused -CB -CU -O0 -traceback 
+LDFLAGS = $(LIBS)
+LIST = -listing
