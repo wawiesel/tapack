@@ -1055,7 +1055,7 @@ Contains
          Interface
            Subroutine funsub( x , numfun , funvls )
            Integer numfun
-           Double Precision x(numfun),funvls(numfun)
+           Double Precision x(2),funvls(numfun)
            End Subroutine
          End Interface
 
@@ -1205,7 +1205,7 @@ Contains
          Interface
                   Subroutine funsub( x , numfun , funvls )
                    Integer numfun
-                   Double Precision x(numfun),funvls(numfun)
+                   Double Precision x(2),funvls(numfun)
                   End Subroutine
                  End Interface
 
@@ -1819,7 +1819,7 @@ Contains
          Interface
                   Subroutine funsub( x , numfun , funvls )
                    Integer numfun
-                   Double Precision x(numfun),funvls(numfun)
+                   Double Precision x(2),funvls(numfun)
                   End Subroutine
                  End Interface
 
