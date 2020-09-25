@@ -593,7 +593,7 @@ TYPE(TYPE_fdbk),OPTIONAL,INTENT(INOUT) :: fdbk
 CHARACTER(*),PARAMETER :: proc_="TAPchecksoln"
 INTEGER              :: b
 TYPE(varying_string) :: VS,VStrue,VS2
-CHARACTER(32)        :: error
+CHARACTER(32)        :: errormsg
 
 !!--begin--
 
@@ -645,18 +645,18 @@ CALL ARGUMENT       ( sio , VS2                 , fdbk , Default=VStrue )
 CALL END_ARGUMENTS( sio , fdbk )
 
 IF( Reading(sio) )THEN
- call s_createfn(STR(VS), 'x y z ox oy oz m', checkfn(b), error)
- IF( TRIM(error)/="OK" )THEN
+ call s_createfn(STR(VS), 'x y z ox oy oz m', checkfn(b), errormsg)
+ IF( TRIM(errormsg)/="OK" )THEN
   VS = MODPROC(mod_,proc_)//"the submitted function <"//&
   TRIM(STR(VS))//"> produced the error message "//&
-  "<"//TRIM(error)//">."
+  "<"//TRIM(errormsg)//">."
   CALL UPDATE(fdbk_error,fdbk,s=STR(VS))
  END IF
- call s_createfn(STR(VS2),'x y z ox oy oz m', checkbnd(b),error)
- IF( TRIM(error)/="OK" )THEN
+ call s_createfn(STR(VS2),'x y z ox oy oz m', checkbnd(b),errormsg)
+ IF( TRIM(errormsg)/="OK" )THEN
   VS2 = MODPROC(mod_,proc_)//"the submitted function <"//&
   TRIM(STR(VS2))//"> produced the error message "//&
-  "<"//TRIM(error)//">."
+  "<"//TRIM(errormsg)//">."
   CALL UPDATE(fdbk_error,fdbk,s=STR(VS2))
  END IF
 
