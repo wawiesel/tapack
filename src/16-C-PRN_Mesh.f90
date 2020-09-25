@@ -175,7 +175,7 @@ INTEGER,POINTER :: VertList(:)
 WRITE(Unit,"(a)")"gmvinput ascii"
 
 !!*** NODE SPECS
-WRITE(Unit,"(a,i)")"nodev ",NUM_Verts(Mesh)
+WRITE(Unit,"(a,i0)")"nodev ",NUM_Verts(Mesh)
 DO k=1,NUM_Verts(Mesh)
  SELECT CASE(NUM_Dimensions(Mesh))
   CASE(1); WRITE(Unit,"(3Es26.19)")Vert(Mesh,k),0.0,0.0
@@ -186,17 +186,17 @@ END DO
 !!****************
 
 !!*** CELL SPECIFICATIONS
-WRITE(Unit,"(a,i)")"cells ",NUM_Cells(Mesh)
+WRITE(Unit,"(a,i0)")"cells ",NUM_Cells(Mesh)
 DO i=1,NUM_Cells(Mesh)
  WRITE(Unit,"(a)")"general 1"
  NULLIFY(VertList)
  CALL GET_CellVertBoundaryList(Mesh,i,VertList)
 
- WRITE(Unit,"(2x,i)")SIZE(VertList)
+ WRITE(Unit,"(2x,i0)")SIZE(VertList)
 
  WRITE(Unit,"(1x)",ADVANCE="no")
  DO j=1,SIZE(VertList)
-  WRITE(Unit,"(1x,i)",ADVANCE="no")VertList(j)
+  WRITE(Unit,"(1x,i0)",ADVANCE="no")VertList(j)
  END DO
  WRITE(Unit,"(1x)",ADVANCE="yes")
  DEALLOCATE(VertList)
@@ -207,14 +207,14 @@ END DO
 
 !!*** MATERIALS SPECS ***
 Nl = MAXVAL(l_)
-WRITE(Unit,"(a,2i)")"material ",Nl,0 !!0 = belongs to cells?
+WRITE(Unit,"(a,2i0)")"material ",Nl,0 !!0 = belongs to cells?
 DO l=1,Nl
  WRITE(Unit,"(1x,a)",ADVANCE="no")LABEL_Materials(l)
 END DO
 WRITE(Unit,"(1x)",ADVANCE="yes")
 
 DO i=1,NUM_Cells(Mesh)
- WRITE(Unit,"(1x,i)",ADVANCE="no")l_(i)
+ WRITE(Unit,"(1x,i0)",ADVANCE="no")l_(i)
 END DO
 WRITE(Unit,"(1x)",ADVANCE="yes")
 !!*************************
@@ -234,7 +234,7 @@ INTEGER :: i
 
 !!--begin--
 
-WRITE(Unit,"(1x,a,i)")Name,0
+WRITE(Unit,"(1x,a,i0)")Name,0
 DO i=1,NUM_Cells(Mesh)
  IF( ABS(CellData(i))>1.d99 )THEN
   WRITE(Unit,"(1x,Es26.19)",ADVANCE="no")SIGN(1.d99,CellData(i))
@@ -265,7 +265,7 @@ REAL(KIND_MSH) :: f(NUM_Verts(Mesh))
 
 !begin of the min data
 f=HUGE(1.d0)
-WRITE(Unit,"(1x,a,i)")Name//"-MIN",1
+WRITE(Unit,"(1x,a,i0)")Name//"-MIN",1
  DO i=1,NUM_Cells(Mesh)
   CC = CellCentroid(Mesh,i)
   f1 = CellFunctionData(1,i)
@@ -293,7 +293,7 @@ WRITE(Unit,"(1x)",ADVANCE="yes")
 
 !begin of the min data
 f=-HUGE(1.d0)
-WRITE(Unit,"(1x,a,i)")Name//"-MAX",1
+WRITE(Unit,"(1x,a,i0)")Name//"-MAX",1
  DO i=1,NUM_Cells(Mesh)
   CC = CellCentroid(Mesh,i)
   f1 = CellFunctionData(1,i)
@@ -333,7 +333,7 @@ INTEGER :: k
 
 !!--begin--
 
-WRITE(Unit,"(1x,a,i)")Name,1
+WRITE(Unit,"(1x,a,i0)")Name,1
 DO k=1,NUM_Verts(Mesh)
  IF( ABS(NodeData(k))>1.d99 )THEN
   WRITE(Unit,"(1x,Es26.19)",ADVANCE="no")SIGN(1.d99,NodeData(k))
@@ -421,7 +421,7 @@ DO i=1,NUM_Cells(Mesh)
   END DO
  END DO
 END DO
-WRITE(Unit,"(a,i)")"tracers",npts
+WRITE(Unit,"(a,i0)")"tracers",npts
 
 !put a tracer point at each vertex inside each cell
 !each face, and the cell so we can look at discontinous data
@@ -480,7 +480,7 @@ INTEGER :: i
 WRITE(Unit,"(a)")"variable"
 
 !cell volumes
-WRITE(Unit,"(1x,a,i)")"CellVol",0
+WRITE(Unit,"(1x,a,i0)")"CellVol",0
 DO i=1,NUM_Cells(Mesh)
  WRITE(Unit,"(1x,Es26.19)",ADVANCE="no")CellVolume(Mesh,i)
 END DO
