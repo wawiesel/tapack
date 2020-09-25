@@ -1141,7 +1141,7 @@ Mesh%NVerts = NUM_Verts_Mesh( Mesh )
 !remove unused Faces with copy and point
 ALLOCATE( Faces(1:Mesh%NFaces) )
 DO j=1,Mesh%NFaces
- Faces(j) = COPY( Mesh%Faces(j) )
+ CALL COPY( Mesh%Faces(j), Faces(j) )
  !CALL PRINT_Face(Mesh%Faces(j))
  CALL DEALLOCATE_Face( Mesh%Faces(j) )
 END DO
@@ -1155,7 +1155,7 @@ Faces=>NULL()
 !remove unused Cells with a copy and point
 ALLOCATE( Cells(1:Mesh%NCells) )
 DO i=1,Mesh%NCells
- Cells(i) = COPY( Mesh%Cells(i) )
+ CALL COPY( Mesh%Cells(i), Cells(i) )
  CALL DEALLOCATE_Cell( Mesh%Cells(i) )
 END DO
 DEALLOCATE( Mesh%Cells )
@@ -1679,7 +1679,7 @@ MeshOut%j      = MeshIn%j
 MeshOut%nfaces = MeshIn%nfaces
 ALLOCATE( MeshOut%Faces(MeshOut%nfaces) )
 DO j=1,MeshOut%nfaces
- MeshOut%Faces(j) = COPY_Face( MeshIn%Faces(j) )
+ CALL COPY_Face( MeshIn%Faces(j), MeshOut%Faces(j) )
 END DO
 
 !! 7. copy the cells
@@ -1687,7 +1687,7 @@ MeshOut%i      = MeshIn%i
 MeshOut%ncells = MeshIn%NCells
 ALLOCATE( MeshOut%Cells(MeshOut%ncells) )
 DO i=1,MeshOut%ncells
- MeshOut%Cells(i)  = COPY_Cell( MeshIn%Cells(i) )
+ CALL COPY_Cell( MeshIn%Cells(i), MeshOut%Cells(i) )
 END DO
 
 !! 8. copy the labels
