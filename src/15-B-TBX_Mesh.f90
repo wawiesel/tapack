@@ -2198,15 +2198,15 @@ FUNCTION FLAG_SameSurface(Mesh,i,j_,Allow_Essential) RESULT(SameSurface)
 !! * the Mesh object <Mesh>
 TYPE(TYPE_Mesh),INTENT(INOUT) :: Mesh
 
-!!#### REQUIRED OUTPUT
-INTEGER :: SameSurface(1:NUM_Faces(Mesh%Cells(i)))
-
 !!#### REQUIRED INPUT
 !! * cell index <i>
 !! * local face index in a cell <j_>
 INTEGER,INTENT(IN) :: i
 INTEGER,INTENT(IN) :: J_
 LOGICAL,OPTIONAL,INTENT(IN) :: Allow_Essential
+
+!!#### REQUIRED OUTPUT
+INTEGER :: SameSurface(1:NUM_Faces(Mesh%Cells(i)))
 
 !!#### LOCAL VARIABLES
 INTEGER :: j,jj_,jm
