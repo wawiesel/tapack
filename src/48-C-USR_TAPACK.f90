@@ -1187,24 +1187,21 @@ v= ( kyy_1 + kyy_x*x + kyy_y*y ) / ( phi_1 + phi_x*x + phi_y*y )
 end function eyy_cell_function
 
 
-function exx_face_function(x) result(v)
-real(8),intent(in) :: x
+function exx_face_function(x,y) result(v)
+real(8),intent(in) :: x,y
 real(8) :: v
-v= ( kxx_1 + kxx_x*x + kxx_x2*(x**2) ) / ( phi_1 + phi_x*x + phi_x2*(x**2) ) 
 v=KxxF(g,j)/PhiF(g,j)
 end function exx_face_function
 
 function exy_face_function(x,y) result(v)
 real(8),intent(in) :: x,y
 real(8) :: v
-v= ( kxy_1 + kxy_x*x + kxy_x2*(x**2) ) / ( phi_1 + phi_x*x + phi_x2*(x**2) ) 
 v=KxyF(g,j)/PhiF(g,j)
 end function exy_face_function
 
 function eyy_face_function(x,y) result(v)
 real(8),intent(in) :: x,y
 real(8) :: v
-v= ( kyy_1 + kyy_x*x + kyy_x2*(x**2) ) / ( phi_1 + phi_x*x + phi_x2*(x**2) ) 
 v=KyyF(g,j)/PhiF(g,j)
 end function eyy_face_function
 
