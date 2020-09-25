@@ -48,7 +48,11 @@ INTERFACE NULLIFY
  MODULE PROCEDURE NULLIFY_Block
 ENDINTERFACE
 
-INTERFACE INSERT
+! NOTE: This name was changed in triage so that it didn't coincide with
+! iso_varying_string's insert which is a function. Apparently you can't
+! have an interface that results in something as a function and subroutine
+! with the same name.
+INTERFACE INSERT_BLOCK
  MODULE PROCEDURE INSERT0_Block
  MODULE PROCEDURE INSERT1_Block
 END INTERFACE
@@ -76,7 +80,7 @@ END INTERFACE
 PUBLIC :: TYPE_Block
 PUBLIC :: ALLOCATE
 PUBLIC :: NULLIFY
-PUBLIC :: INSERT
+PUBLIC :: INSERT_BLOCK
 PUBLIC :: OVERWRITE
 PUBLIC :: APPEND
 PUBLIC :: DEALLOCATE
