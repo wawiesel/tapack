@@ -765,6 +765,7 @@ DO
                 & [card="//TRIM(STR(SIO%cmd))//"]"//&
              " on [line="//TRIM(STR(SIO%line_num))//"]"//&
              " of [file="//TRIM(STR(SIO%file))//"]..." )
+ CALL FLUSH(Unit_Log)
  !
  !! * Enter in to the database of command cards.
  CALL SWITCHBOARD_TAPACK(SIO,fdbk)
@@ -1006,8 +1007,15 @@ WRITE(Unit_out,"(2x,a,//)")TRIM(STR(TS))
 
 
 !4. write output listing
-N1 = SIZE(LIST_InputEdits)
-N2 = SIZE(LIST_Outputs)
+N1=0
+IF( ASSOCIATED(LIST_InputEdits) )THEN
+ N1 = SIZE(LIST_InputEdits)
+END IF
+N2=0
+IF( ASSOCIATED(LIST_Outputs) )THEN
+ N2 = SIZE(LIST_Outputs)
+END IF
+
 IF( N1+N2>0 )THEN
 
  !4.a.
@@ -1071,6 +1079,7 @@ CALL CPU_TIME(tin)
 
 !0. transport algorithms package setup
 CALL SETUP_( fdbk )
+CALL FLUSH(OutputUnit(fdbk))
 
 !1. discretizations
 
@@ -1080,6 +1089,7 @@ SELECT CASE( SpatialDiscretization )
 END SELECT
 !1.b. return number of dimensions
 NDim = NUM_Dimensions_Mesh(Mesh)
+CALL FLUSH(OutputUnit(fdbk))
 
 !1.c. energy discretization setup
 SELECT CASE( EnergyDiscretization )
@@ -1094,6 +1104,7 @@ SELECT CASE( AngularDiscretization )
                                    aQuadrature,pQuadrature,Quadrature,&
                                    QuadratureType,Ordinates , Weights , fdbk )
 END SELECT
+CALL FLUSH(OutputUnit(fdbk))
 
 !1.e. time discretization setup
 SELECT CASE( TimeTreatment )
@@ -1124,15 +1135,18 @@ END SELECT
 SELECT CASE( TransportModule )
  CASE( MoCshort_ ) ;          CALL SETUP_MoCshort( fdbk )
 END SELECT
+CALL FLUSH(OutputUnit(fdbk))
 
 !3.c. acceleration method setup
 SELECT CASE( AccelerationModule )
  CASE( QuasiDiffusion_ ) ;    CALL SETUP_QuasiDiffusion( fdbk )
 END SELECT
+CALL FLUSH(OutputUnit(fdbk))
 
 
 !4. Setup the integral regions.
 CALL SETUP_IntegralRegions( Mesh , 2 , IntegralRegions )
+CALL FLUSH(OutputUnit(fdbk))
 
 !end time
 CALL CPU_TIME(tout)
@@ -1144,7 +1158,6 @@ CALL UpdateAndDump(fdbk_profile,fdbk,s="[[TAP]] setup completed in &
 
 !!--end--
 END SUBROUTINE
-
 
 
 !!### SUBROUTINE >>SOLVE_TAPACK_HighOrder<<
