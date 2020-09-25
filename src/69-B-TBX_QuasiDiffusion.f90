@@ -78,8 +78,10 @@ USE VAR_AngularFluxes,ONLY: AngularFluxC,AngularFluxF,AngularFluxV !!((04-C-VAR_
 USE VAR_ScalarFluxes ,ONLY: LO_ScalarFluxC,LO_ScalarFluxF,&        !!((04-C-VAR_ScalarFluxes.f90))
                             ScalarFluxCellFunction,ScalarFluxIN,&
                             LastLO_ScalarFluxC,LastLO_ScalarFluxF,&
-                            ScalarFluxC,ScalarFluxF,LastScalarFluxC,LastScalarFluxF
-USE VAR_Currents     ,ONLY: LO_CurrentFN,CurrentIN,CurrentFN,LastLO_CurrentFN,LastCurrentFN       !!((04-C-VAR_Currents.f90))
+                            ScalarFluxC,ScalarFluxF,LastScalarFluxC,&
+                            LastScalarFluxF
+USE VAR_Currents     ,ONLY: LO_CurrentFN,CurrentIN,CurrentFN,&     !!((04-C-VAR_Currents.f90))
+                            LastLO_CurrentFN,LastCurrentFN       
 USE VAR_DiscreteOrdinates,ONLY: Ordinates,Weights                  !!((47-B-VAR_DiscreteOrdinates.f90))
 USE VAR_Source                                                     !!((47-B-VAR_Source.f90))
 USE VAR_Materials                                                  !!((48-B-VAR_Materials.f90))
@@ -87,7 +89,7 @@ USE VAR_XSMonkey                                                   !!((47-B-VAR_
 USE VAR_MoCshort     ,ONLY: BC,Using_AnalyticTransportTest         !!((47-B-VAR_MoCshort.f90))
 USE VAR_TAPACK       ,ONLY: Author,Label,OutputFileBase,&              !!((66-C-VAR_TAPACK.f90))
   tolPhiVInf,&
-  FactorGenerationStyle,FactorEvalMethod,CellFunctionMethod,&
+  FactorGenerationStyle,FactorEvalMethod,&
   tolBalRel,tolBalAbs
 USE USR_TransportAnalyticTest                                      !!((56-C-USR_TransportAnalyticTest.f90))
 
@@ -270,7 +272,9 @@ END IF
 WRITE(Unit_,200)iter,residmat,maxloc_relres0,maxval_relres0*100.,iter_relres
 
 !! Save last iteration's scalar fluxes
-IF( (.NOT. ASSOCIATED(LastLO_ScalarFluxC)) .AND. (.NOT. ASSOCIATED(LastLO_ScalarFluxF)) .AND. (.NOT. ASSOCIATED(LastLO_CurrentFN)) )THEN              
+IF( (.NOT. ASSOCIATED(LastLO_ScalarFluxC)) .AND. &
+    (.NOT. ASSOCIATED(LastLO_ScalarFluxF)) .AND. &
+    (.NOT. ASSOCIATED(LastLO_CurrentFN)) )THEN              
     ALLOCATE( LastLO_ScalarFluxC(SIZE(LO_ScalarFluxC,1),SIZE(LO_ScalarFluxC,2)) )
     ALLOCATE( LastLO_ScalarFluxF(SIZE(LO_ScalarFluxF,1),SIZE(LO_ScalarFluxF,2)) )
     ALLOCATE( LastLO_CurrentFN(SIZE(LO_CurrentFN,1),SIZE(LO_CurrentFN,2)) )
@@ -689,29 +693,39 @@ SELECT CASE( System )
 
  CASE( QDF_System01 )
    CALL UPDATE_QDF01( A , b , LO_Mesh , mact , macs , l_ , &
-     AvgExtSource , EddingtonxxC , EddingtonyyC , EddingtonxyC , EddingtonxxF , EddingtonyyF , EddingtonxyF , Jbdry , Jdomn , CBoundary , &
-     ScalarFluxIN , CurrentIN , BC , LOBC , FixBdryVals , fdbk , Noisy,Unit_Noisy,Interactive)
+     AvgExtSource , EddingtonxxC , EddingtonyyC , EddingtonxyC , &
+     EddingtonxxF , EddingtonyyF , EddingtonxyF , Jbdry , Jdomn , &
+     CBoundary , ScalarFluxIN , CurrentIN , BC , LOBC , &
+     FixBdryVals , fdbk , Noisy,Unit_Noisy,Interactive)
 
  CASE( QDF_System02 )
    CALL UPDATE_QDF02( A , b , LO_Mesh , mact , macs , l_ , &
-     AvgExtSource , EddingtonxxC , EddingtonyyC , EddingtonxyC , EddingtonxxF , EddingtonyyF , EddingtonxyF , Jbdry , Jdomn , CBoundary , &
-     ScalarFluxIN , CurrentIN , BC , LOBC , FixBdryVals , fdbk , Noisy,Unit_Noisy,Interactive)
+     AvgExtSource , EddingtonxxC , EddingtonyyC , EddingtonxyC , &
+     EddingtonxxF , EddingtonyyF , EddingtonxyF , Jbdry , Jdomn , &
+     CBoundary , ScalarFluxIN , CurrentIN , BC , LOBC , &
+     FixBdryVals , fdbk , Noisy,Unit_Noisy,Interactive)
 
  CASE( QDF_System03 )
    CALL UPDATE_QDF03( A , b , LO_Mesh , mact , macs , l_ , &
-     AvgExtSource , EddingtonxxC , EddingtonyyC , EddingtonxyC , EddingtonxxF , EddingtonyyF , EddingtonxyF , Jbdry , Jdomn , CBoundary , &
-     ScalarFluxIN , CurrentIN , BC , LOBC , FixBdryVals , fdbk , Noisy,Unit_Noisy,Interactive)
+     AvgExtSource , EddingtonxxC , EddingtonyyC , EddingtonxyC , &
+     EddingtonxxF , EddingtonyyF , EddingtonxyF , Jbdry , Jdomn , &
+     CBoundary , ScalarFluxIN , CurrentIN , BC , LOBC , &
+     FixBdryVals , fdbk , Noisy,Unit_Noisy,Interactive)
 
  CASE( QDF_System04 )
    CALL UPDATE_QDF04( A , b , LO_Mesh , mact , macs , l_ , &
-     AvgExtSource , EddingtonxxC , EddingtonyyC , EddingtonxyC , EddingtonxxF , EddingtonyyF , EddingtonxyF , Jbdry , Jdomn , CBoundary , &
-     ScalarFluxIN , CurrentIN , BC , LOBC , FixBdryVals , fdbk , Noisy,Unit_Noisy,Interactive, &
+     AvgExtSource , EddingtonxxC , EddingtonyyC , EddingtonxyC , &
+     EddingtonxxF , EddingtonyyF , EddingtonxyF , Jbdry , Jdomn , &
+     CBoundary , ScalarFluxIN , CurrentIN , BC , LOBC , &
+     FixBdryVals , fdbk , Noisy,Unit_Noisy,Interactive, &
      ExtSourceF1=FaceAvgExtSource1 )
 
  CASE( QDF_System05 )
             
-    IF( iter>0 .AND. pure_acceleration .AND. ASSOCIATED(ScalarFluxC) .AND. ASSOCIATED(LastLO_ScalarFluxC) )THEN
-        CALL UpdateAndDump(fdbk_comment,fdbk,s='[[QDF]] initializing AvgExtSource for pure acceleration')
+    IF( iter>0 .AND. pure_acceleration .AND. &
+        ASSOCIATED(ScalarFluxC) .AND. ASSOCIATED(LastLO_ScalarFluxC) )THEN
+        CALL UpdateAndDump(fdbk_comment,fdbk,&
+            s='[[QDF]] initializing AvgExtSource for pure acceleration')
         ALLOCATE( SAVE_AvgExtSource(1,NUM_Cells(LO_Mesh)) )                    
         SAVE_AvgExtSource=AvgExtSource
         ScalarFluxIN=0.d0
@@ -724,8 +738,10 @@ SELECT CASE( System )
     END IF
 
    CALL UPDATE_QDF05( A , b , LO_Mesh , mact , macs , l_ , &
-     AvgExtSource , EddingtonxxC , EddingtonyyC , EddingtonxyC , EddingtonxxF , EddingtonyyF , EddingtonxyF , Jbdry , Jdomn , CBoundary , &
-     ScalarFluxIN , CurrentIN , BC , LOBC , FixBdryVals , COEFF_macs, COEFF_mact, fdbk , Noisy,Unit_Noisy,Interactive, &
+     AvgExtSource , EddingtonxxC , EddingtonyyC , EddingtonxyC , &
+     EddingtonxxF , EddingtonyyF , EddingtonxyF , Jbdry , Jdomn , &
+     CBoundary , ScalarFluxIN , CurrentIN , BC , LOBC , FixBdryVals , &
+     COEFF_macs, COEFF_mact, fdbk , Noisy,Unit_Noisy,Interactive, &
      ExtSourceF1=FaceAvgExtSource1 )
 
 END SELECT
@@ -867,29 +883,45 @@ SELECT CASE( System )
 
  CASE( QDF_System01 )
    CALL RESIDUAL_QDF01( res , relres , x , iter , LO_Mesh , mact , macs , l_ , &
-     AvgExtSource , EddingtonxxC , EddingtonyyC , EddingtonxyC , EddingtonxxF , EddingtonyyF , EddingtonxyF , Jbdry , Jdomn , CBoundary , &
-     ScalarFluxIN , CurrentIN , BC , LOBC , FixBdryVals , fdbk , Noisy,Unit_Noisy,Interactive,Unit_resid)
+     AvgExtSource , EddingtonxxC , EddingtonyyC , EddingtonxyC , &
+     EddingtonxxF , EddingtonyyF , EddingtonxyF , Jbdry , Jdomn , &
+     CBoundary , &
+     ScalarFluxIN , CurrentIN , BC , LOBC , FixBdryVals , fdbk , &
+     Noisy,Unit_Noisy,Interactive,Unit_resid)
 
  CASE( QDF_System02 )
    CALL RESIDUAL_QDF02( res , relres , x , iter , LO_Mesh , mact , macs , l_ , &
-     AvgExtSource , EddingtonxxC , EddingtonyyC , EddingtonxyC , EddingtonxxF , EddingtonyyF , EddingtonxyF , Jbdry , Jdomn , CBoundary , &
-     ScalarFluxIN , CurrentIN , BC , LOBC , FixBdryVals , fdbk , Noisy,Unit_Noisy,Interactive,Unit_resid)
+     AvgExtSource , EddingtonxxC , EddingtonyyC , EddingtonxyC , &
+     EddingtonxxF , EddingtonyyF , EddingtonxyF , Jbdry , Jdomn , &
+     CBoundary , &
+     ScalarFluxIN , CurrentIN , BC , LOBC , FixBdryVals , fdbk , &
+     Noisy,Unit_Noisy,Interactive,Unit_resid)
 
  CASE( QDF_System03 )
    CALL RESIDUAL_QDF03( res , relres , x , iter , LO_Mesh , mact , macs , l_ , &
-     AvgExtSource , EddingtonxxC , EddingtonyyC , EddingtonxyC , EddingtonxxF , EddingtonyyF , EddingtonxyF , Jbdry , Jdomn , CBoundary , &
-     ScalarFluxIN , CurrentIN , BC , LOBC , FixBdryVals , fdbk , Noisy,Unit_Noisy,Interactive,Unit_resid)
+     AvgExtSource , EddingtonxxC , EddingtonyyC , EddingtonxyC , &
+     EddingtonxxF , EddingtonyyF , EddingtonxyF , Jbdry , Jdomn , &
+     CBoundary , &
+     ScalarFluxIN , CurrentIN , BC , LOBC , FixBdryVals , fdbk , &
+     Noisy,Unit_Noisy,Interactive,Unit_resid)
 
  CASE( QDF_System04 )
    CALL RESIDUAL_QDF04( res , relres , x , iter , LO_Mesh , mact , macs , l_ , &
-     AvgExtSource , EddingtonxxC , EddingtonyyC , EddingtonxyC , EddingtonxxF , EddingtonyyF , EddingtonxyF , Jbdry , Jdomn , CBoundary , &
-     ScalarFluxIN , CurrentIN , BC , LOBC , FixBdryVals , fdbk , Noisy,Unit_Noisy,Interactive,Unit_resid,&
+     AvgExtSource , EddingtonxxC , EddingtonyyC , EddingtonxyC , &
+     EddingtonxxF , EddingtonyyF , EddingtonxyF , Jbdry , Jdomn , &
+     CBoundary , &
+     ScalarFluxIN , CurrentIN , BC , LOBC , FixBdryVals , fdbk , &
+     Noisy,Unit_Noisy,Interactive,Unit_resid,&
      ExtSourceF1=FaceAvgExtSource1)
 
  CASE( QDF_System05 )
    CALL RESIDUAL_QDF05( res , relres , x , iter , LO_Mesh , mact , macs , l_ , &
-     AvgExtSource , EddingtonxxC , EddingtonyyC , EddingtonxyC , EddingtonxxF , EddingtonyyF , EddingtonxyF , Jbdry , Jdomn , CBoundary , &
-     ScalarFluxIN , CurrentIN , BC , LOBC , FixBdryVals , COEFF_macs, COEFF_mact, fdbk , Noisy,Unit_Noisy,Interactive,Unit_resid,&
+     AvgExtSource , EddingtonxxC , EddingtonyyC , EddingtonxyC , &
+     EddingtonxxF , EddingtonyyF , EddingtonxyF , Jbdry , Jdomn , &
+     CBoundary , &
+     ScalarFluxIN , CurrentIN , BC , LOBC , FixBdryVals , &
+     COEFF_macs, COEFF_mact, fdbk , Noisy,Unit_Noisy,&
+     Interactive,Unit_resid,&
      ExtSourceF1=FaceAvgExtSource1)
 
 END SELECT
