@@ -7,7 +7,6 @@ MODULE CCS_Mesh
 !! (MSH) package.
 
 
-
 !!## MODULE DEPENDENCIES
 USE ISO_varying_string                    !!((03-A-ISO_varying_string.f90))
 USE PAR_Constants_Rdp                     !!((02-A-PAR_Constants_Rdp.f90))
@@ -777,7 +776,9 @@ IF( Writing(SIO) )THEN
 END IF
 
 !! Arguments.
-CALL BEGIN_ARGUMENTS( SIO , (/"Pos","VertSpec"/) , fdbk , NSubArg=(/NUM_Dimensions_Mesh(Mesh),0/),&
+CALL BEGIN_ARGUMENTS( SIO , (/"Pos     ",&
+                              "VertSpec"/) , &
+  fdbk , NSubArg=(/NUM_Dimensions_Mesh(Mesh),0/),&
   Optional=(/.TRUE.,.TRUE./) )
 CALL ARGUMENT( SIO , Pos    , fdbk, Default=(/0.d0,0.d0/) )
 CALL ARGUMENT( SIO , VertSpec  , fdbk , Default='')
