@@ -1,6 +1,6 @@
 FC = gfortran
 LD = gfortran
 CPPFLAGS = -macro_expand
-FFLAGS = -g
+FFLAGS = -g -cpp -std=gnu 
 LDFLAGS = $(LIBS)
 LIST = -listing
