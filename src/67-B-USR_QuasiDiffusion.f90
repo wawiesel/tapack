@@ -1337,7 +1337,7 @@ END DO
 
 !calculate original properties
 ibef = adj_bandwidth ( node_num, adj_num, adj_row, adj )
-write(*,"(a,i)")"bandwidth = ",ibef
+write(*,"(a,i0)")"bandwidth = ",ibef
 
 !reordering
 ALLOCATE( perm(1:node_num) )

@@ -355,7 +355,7 @@ REAL(KIND_MSH),DIMENSION(NUM_Dimensions(Mesh)) :: &
   FCB,FCR,FCT,FCL
 !!--begin--
 !formats
-100 FORMAT(a,i)
+100 FORMAT(a,i0)
 101 FORMAT(a,1e21.10)
 102 FORMAT(a,2e21.10)
 
@@ -942,7 +942,7 @@ ELSE
 END IF
 
 !formats
-100 FORMAT(a,i)
+100 FORMAT(a,i0)
 101 FORMAT(a,1e21.10)
 102 FORMAT(a,2e21.10)
 
@@ -1042,7 +1042,7 @@ Unit_        = DEFAULT(DEFAULT_Unit,Unit)
 Interactive_ = DEFAULT(DEFAULT_Interactive,Interactive)
 
 !formats
-100 FORMAT(a,i)
+100 FORMAT(a,i0)
 101 FORMAT(a,1e21.10)
 102 FORMAT(a,2e21.10)
 
