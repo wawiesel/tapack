@@ -61,9 +61,9 @@ source script/test.sh
 
 This software was last compiled on UBUNTU 12 with the GFORTRAN 4.4.3 
 in 2012. It requires `-std=gnu` and a C-preprocessor flag. 
-That bin and build directory are included in the `last_working` subdirectory.
-You should be able to use the `last_working/bin/tap.exe` on an older linux 
-system. 
+That bin and build directory are included in the `releases` subdirectory.
+You should be able to use the `releases/v2.5.0/bin/tap.exe` on an older linux 
+system and run all tests. 
 
 Currently, there are build errors when trying to compile with GCC 4.9 which 
 when resolved still have some issues running the code. It seems some 
