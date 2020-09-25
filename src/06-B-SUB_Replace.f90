@@ -26,17 +26,21 @@ IMPLICIT NONE
 !!#### DEFAULT ACCESS
 PRIVATE
 
-INTERFACE Replace
+! NOTE: This name was changed in triage so that it didn't coincide with
+! iso_varying_string's replace which is a function. Apparently you can't
+! have an interface that results in something as a function and subroutine
+! with the same name.
+INTERFACE ReplaceString
  MODULE PROCEDURE Replace0
  MODULE PROCEDURE Replace1
 ENDINTERFACE
-PUBLIC :: Replace
+PUBLIC :: ReplaceString
 
 
 CONTAINS
 
 
-PURE SUBROUTINE Replace0(Target,OldString,ReplaceWith,NewString,CaseSensitive,NReplaces)
+SUBROUTINE Replace0(Target,OldString,ReplaceWith,NewString,CaseSensitive,NReplaces)
 !!#### REQUIRED INPUT
 !! @ search string <Target>
 !! @ master string <OldString>
@@ -116,7 +120,7 @@ IF( ASSOCIATED(Locs) )DEALLOCATE( Locs )
 ENDSUBROUTINE
 
 
-PURE SUBROUTINE Replace1(Target,OldString,ReplaceWith,NewString,CaseSensitive,NReplaces)
+SUBROUTINE Replace1(Target,OldString,ReplaceWith,NewString,CaseSensitive,NReplaces)
 !!#### REQUIRED INPUT
 !! @ search string [Target]
 !! @ master string [OldString]
