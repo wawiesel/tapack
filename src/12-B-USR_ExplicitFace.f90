@@ -320,7 +320,8 @@ SELECT CASE( Xf%NDim )
     !would like a line-segment/plane intersection here instead
     Ln(:,1) = -Pn(1:2)*Pn(3)
     Ln(:,2) = xyPERPCCW_U( Pn(1:2) )
-    INTERSECT = xyINTERSECT_LnLs( Ln , RESHAPE(Xf%Coeff,xySHAPE_Ls) , IncludeEnds=SPREAD(IncludeEdges,1,2) , P_intersect=P_intersect , key=key )
+    INTERSECT = xyINTERSECT_LnLs( Ln , RESHAPE(Xf%Coeff,xySHAPE_Ls) , &
+    IncludeEnds=SPREAD(IncludeEdges,1,2) , P_intersect=P_intersect , key=key )
   END SELECT
 END SELECT
 !!--end--
