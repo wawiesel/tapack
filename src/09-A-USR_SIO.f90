@@ -1526,7 +1526,7 @@ ELSE
 !       IOSTAT=SIO%IOSTAT)
 !  Opened = .TRUE.
 ! END IF
- SIO%RECL = INQUIRE_RECL(SIO)
+ SIO%RECL = 1
 END IF
 
 IF( PRESENT(DELIM   ) )THEN
@@ -2028,8 +2028,8 @@ IF( (TRIM(SIO%ACTION) .sEQ. "Write") .OR. &
     (TRIM(SIO%FORM) .sEQ. "Unformatted") )RETURN
 
 !!read advancing input
-READ(SIO%UNIT,"(a1)",ADVANCE="yes",IOSTAT=SIO%IOSTAT,SIZE=SIO%SIZE)Char
-IF( SIO%SIZE==0 )BACKSPACE(SIO%UNIT)
+BACKSPACE(SIO%UNIT)
+READ(SIO%UNIT,"(a1)",ADVANCE="yes",IOSTAT=SIO%IOSTAT)Char
 
 !!set end of line to false
 SIO%END_OF_LINE = .FALSE.
@@ -2038,7 +2038,7 @@ SIO%END_OF_LINE = .FALSE.
 SIO%line_num  = SIO%line_num + 1
 
 !!update the end-of-file condition
-IF( SIO%IOSTAT<0 )SIO%end_of_file = .TRUE.
+IF( SIO%IOSTAT/=0 )SIO%end_of_file = .TRUE.
 
 !!reset the IOSTAT variable
 SIO%IOSTAT = 0
@@ -2624,7 +2624,7 @@ IF( Reading(SIO) )THEN
 
    !!1.2a.3 Get the actual Argument.
    CALL READ_CHARS(SIO,VS,fdbk,Stops=&
-     (/SIO%ArgDelim,SIO%ArgEnd/) )
+     (/SIO%ArgEnd,SIO%ArgDelim/) )
 
 
   !!1.2b otherwise just increment SIO%CurrArg
