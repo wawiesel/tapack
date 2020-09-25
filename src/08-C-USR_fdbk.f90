@@ -308,7 +308,7 @@ DO
   !! Add integer tags.
   IF( ASSOCIATED(fdbk%CurrentTrace%I) )THEN
    DO j=1,SIZE(fdbk%CurrentTrace%I)
-    CALL REPLACE( Target        = "%I("//TRIM(STR(j))//")"           , &
+    CALL REPLACEString( Target        = "%I("//TRIM(STR(j))//")"           , &
                   OldString     = fdbk%CurrentTrace%S               , &
                   ReplaceWith   = TRIM(STR(fdbk%CurrentTrace%I(j))) , &
                   NewString     = fdbk%CurrentTrace%S               , &
@@ -319,7 +319,7 @@ DO
   !! Add real tags.
   IF( ASSOCIATED(fdbk%CurrentTrace%R) )THEN
    DO j=1,SIZE(fdbk%CurrentTrace%R)
-    CALL REPLACE( Target        = "%R("//TRIM(STR(j))//")"           , &
+    CALL REPLACEString( Target        = "%R("//TRIM(STR(j))//")"           , &
                   OldString     = fdbk%CurrentTrace%S               , &
                   ReplaceWith   = TRIM(STR(fdbk%CurrentTrace%R(j))) , &
                   NewString     = fdbk%CurrentTrace%S               , &
@@ -330,7 +330,7 @@ DO
   !! Add logical tags.
   IF( ASSOCIATED(fdbk%CurrentTrace%L) )THEN
    DO j=1,SIZE(fdbk%CurrentTrace%L)
-    CALL REPLACE( Target        = "%L("//TRIM(STR(j))//")"           , &
+    CALL REPLACEString( Target        = "%L("//TRIM(STR(j))//")"           , &
                   OldString     = fdbk%CurrentTrace%S               , &
                   ReplaceWith   = TRIM(STR(fdbk%CurrentTrace%L(j))) , &
                   NewString     = fdbk%CurrentTrace%S               , &
