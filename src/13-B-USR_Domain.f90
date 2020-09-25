@@ -166,12 +166,12 @@ END IF
 
 IF( ASSOCIATED(Domain%Faces)       )THEN
  ALLOCATE( D%Faces(1:SIZE(DOMAIN%Faces)) )
- D%Faces = COPY( DOMAIN%Faces )
+ CALL COPY( DOMAIN%Faces, D%Faces )
 END IF
 
 IF( ASSOCIATED(Domain%Cell)       )THEN
  ALLOCATE( D%Cell )
- D%Cell  = COPY( DOMAIN%Cell )
+ CALL COPY( DOMAIN%Cell, D%Cell )
 END IF
 
 !!--end--
