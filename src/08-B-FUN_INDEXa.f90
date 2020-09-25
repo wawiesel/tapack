@@ -118,8 +118,8 @@ PUBLIC :: INDEXa
 CONTAINS
 
 
-!!### PURE FUNCTION: INDEXa_
-PURE FUNCTION INDEXa_( STRING_LIST , STRING , BACK , &
+!!### FUNCTION: INDEXa_
+FUNCTION INDEXa_( STRING_LIST , STRING , BACK , &
   CASESEN , START , WILDCARD ) RESULT(I)
 
 !!#### REQUIRED INPUT
@@ -214,7 +214,7 @@ DO
   DO K=1,SIZE(WLOCS)
    J2 = WLOCS(K)
    IF( J2-1>J1 )THEN
-    CALL REPLACE( STRING_(J1:J2-1) , S , "" , S , CaseSensitive=CASESEN_ , NReplaces=J)
+    CALL REPLACEString( STRING_(J1:J2-1) , S , "" , S , CaseSensitive=CASESEN_ , NReplaces=J)
     IF( J/=1 )THEN
      Found = .FALSE.
      EXIT
