@@ -1121,9 +1121,6 @@ END SUBROUTINE
 
 
 SUBROUTINE WRAPUP_order( k_ , order , o , nodeused )
-!!#### REQUIRED OUTPUT
-!! * the parallel threads variable
-TYPE(TYPE_pthread),POINTER    :: pthread(:)
 
 !!#### REQUIRED INPUT
 INTEGER,INTENT(IN)    :: k_(:,:)
