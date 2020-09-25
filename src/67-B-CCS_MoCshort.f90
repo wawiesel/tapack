@@ -623,8 +623,18 @@ REAL(KIND_MCS) :: sigt,sigs
 !!--begin--
 
 !! Arguments.
-CALL BEGIN_ARGUMENTS( sio , (/"Test   ","sigmat ","sigmas ","SpatRep",&
-"C","A","BX","BY","D1","DX","DY"/) , fdbk ,&
+CALL BEGIN_ARGUMENTS( sio , &
+  (/"Test   ",&
+    "sigmat ",&
+    "sigmas ",&
+    "SpatRep",&
+    "C      ",&
+    "A      ",&
+    "BX     ",&
+    "BY     ",&
+    "D1     ",&
+    "DX     ",&
+    "DY     "/) , fdbk ,&
   nsubarg=(/0,0,0,0,&
             0,0,0,0,0,0,0/) ,&
   optional=(/.FALSE.,.FALSE.,.FALSE.,.FALSE.,&
