@@ -26,15 +26,19 @@ CALL INIT_DENSEARRAY( DenseArray , preall_ )
 CALL INIT_SPARSEARRAY( SparseArray , IndexArray , preall_ )
 
 !Get the number of arrays
-!CALL RANDOM_SEED()
-!CALL RANDOM_SEED( put=(/2147483562,2147483398/) )
 IF( PRESENT(Rseed) )THEN
- CALL RANDOM_SEED( put=Rseed )
+ CALL RANDOM_SEED( size=seed_size )
+ ALLOCATE( local_Rseed(seed_size) )
+ local_Rseed(1:2)=Rseed(1:2)
+ CALL RANDOM_SEED( put=local_Rseed )
 ELSE
  CALL RANDOM_SEED()
 END IF
 IF( PRESENT(Rseed_out) )THEN
- CALL RANDOM_SEED( get=Rseed_out )
+ CALL RANDOM_SEED( size=seed_size )
+ ALLOCATE( local_Rseed(seed_size) )
+ CALL RANDOM_SEED( get=local_Rseed )
+ Rseed_out(1:2)=local_Rseed(1:2)
 END IF
 
 !WRITE(*,*)"RandomSeed=",Rseed
